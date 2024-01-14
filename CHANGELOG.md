@@ -5,3 +5,5 @@
 - (performance improve)
 # 0.0.3
 - support remove doc icon in doctree
+# 0.0.4
+- fix logic err

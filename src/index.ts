@@ -96,7 +96,7 @@ export default class siyuan_doctree_compress extends Plugin {
         const layoutReadyAsyncHandler = async () => {
 
             const _mainSwitchStat_ = await this.settingUtils.get("mainSwitch");
-            const _hideIcon_ = await this.settingUtils.get("mainSwitch");
+            const _hideIcon_ = await this.settingUtils.get("hideIcon");
             console.log(_mainSwitchStat_);
             console.log(_hideIcon_);
 
