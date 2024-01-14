@@ -1,6 +1,5 @@
 import {
-    Plugin,
-    lockScreen
+    Plugin
 } from "siyuan";
 import "@/index.scss";
 
@@ -73,10 +72,15 @@ export default class siyuan_doctree_compress extends Plugin {
 
                     const config = { attributes: true, childList: true, subtree: true };
 
-                    doctreeBbserver.observe(document, config);
+                    // doctreeBbserver.observe(document, config);
+                    //
+                    document.querySelectorAll('.fn__flex-column').forEach(element => {
+                        doctreeBbserver.observe(element, config);
+                    });
+                    //
 
                     function handleDomChanges() {
-                        // console.log("dom changed");//DBG
+                        console.log("dom changed");//DBG
 
                         const elements = document.querySelectorAll('.b3-list-item__toggle');
 
@@ -91,7 +95,7 @@ export default class siyuan_doctree_compress extends Plugin {
                                 element.style.paddingLeft = `${compressedPadding}px`;
 
                                 element.setAttribute('data-compressed', 'true'); //mark as compressed prevent nested compression
-                                // console.log("compressed" + element);//DBG
+                                console.log("compressed" + element);//DBG
                             }
                         });
                     }
