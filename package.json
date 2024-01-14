@@ -1,0 +1,33 @@
+{
+  "name": "plugin-sample-vite-svelte",
+  "version": "0.3.2",
+  "type": "module",
+  "description": "This is a sample plugin based on vite and svelte for Siyuan (https://b3log.org/siyuan)",
+  "repository": "",
+  "homepage": "",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "make-link": "node  --no-warnings ./scripts/make_dev_link.js",
+    "dev": "vite build --watch",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^2.0.3",
+    "@tsconfig/svelte": "^4.0.1",
+    "@types/node": "^20.2.0",
+    "eslint": "^8.42.0",
+    "fast-glob": "^3.2.12",
+    "glob": "^7.2.3",
+    "minimist": "^1.2.8",
+    "rollup-plugin-livereload": "^2.0.5",
+    "sass": "^1.62.1",
+    "siyuan": "0.9.2",
+    "svelte": "^3.57.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4",
+    "vite": "^4.3.7",
+    "vite-plugin-static-copy": "^0.15.0",
+    "vite-plugin-zip-pack": "^1.0.5"
+  }
+}
