@@ -1,8 +1,8 @@
 {
-  "name": "plugin-sample-vite-svelte",
+  "name": "siyuan_doctree_compress",
   "version": "0.3.2",
   "type": "module",
-  "description": "This is a sample plugin based on vite and svelte for Siyuan (https://b3log.org/siyuan)",
+  "description": "compress your doctree as the % you defined",
   "repository": "",
   "homepage": "",
   "author": "",

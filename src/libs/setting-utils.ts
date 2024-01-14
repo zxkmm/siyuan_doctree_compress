@@ -35,6 +35,8 @@ export class SettingUtils {
                     this.plugin.data[this.name] = data;
                     this.save();
                 }
+                window.location.reload();
+
             }
         });
     }

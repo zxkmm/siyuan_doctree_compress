@@ -1,30 +1,26 @@
 {
-  "name": "plugin-sample-vite-svelte",
-  "author": "frostime",
-  "url": "https://github.com/siyuan-note/plugin-sample-vite-svelte",
-  "version": "0.3.2",
+  "name": "siyuan_doctree_compress",
+  "author": "zxkmm",
+  "url": "https://github.com/zxkmm/siyuan_doctree_compress",
+  "version": "0.0.1",
   "minAppVersion": "2.12.1",
   "backends": [
     "windows",
     "linux",
-    "darwin",
-    "ios",
-    "android"
+    "darwin"
   ],
   "frontends": [
     "desktop",
-    "mobile",
     "browser-desktop",
-    "browser-mobile",
     "desktop-window"
   ],
   "displayName": {
-    "en_US": "Plugin sample with vite and svelte",
-    "zh_CN": "插件样例 vite + svelte 版"
+    "en_US": "doctree compress",
+    "zh_CN": "文档树压缩"
   },
   "description": {
-    "en_US": "SiYuan plugin sample with vite and svelte",
-    "zh_CN": "使用 vite 和 svelte 开发的思源插件样例"
+    "en_US": "compress your doctree as the % you defined",
+    "zh_CN": "按您自定义的百分比压缩文档树"
   },
   "readme": {
     "en_US": "README.md",
@@ -32,10 +28,10 @@
   },
   "funding": {
     "custom": [
-      "https://afdian.net/a/frostime"
+      "https://github.com/zxkmm/zxkmm"
     ]
   },
   "keywords": [
-    "plugin", "sample", "插件样例"
+    "文档树", "压缩", "compress", "doctree"
   ]
 }
