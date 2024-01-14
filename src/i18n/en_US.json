@@ -3,5 +3,10 @@
   "compressPercent": "Compress Percent",
   "compressPercentDesc": "% of the original doctree padding",
   "hintTitle": "About",
+  "hideIcon":"Hide Document Icons in Doctree",
+  "hideIconDesc":"",
+  "hideIconForce":"Force hide mode",
+  "hideIconDescForce":"Only vaild if the switch above is enabled",
   "hintDesc": "<ul><li>● Made by <a href='https://github.com/zxkmm'>zxkmm</a>, Open source under MIT license。</li><li>● Star⭐ my GitHub if you like this plugin</li><li>● Link：<a href='https://github.com/zxkmm/siyuan_doctree_compress'>https://github.com/zxkmm/siyuan_doctree_compress</a></li><li>"
+
 }

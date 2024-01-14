@@ -13,6 +13,25 @@ export default class siyuan_doctree_compress extends Plugin {
 
     private settingUtils: SettingUtils;
 
+    rmvdoctreeIcons(elementType) {
+
+        const _hideIconForceSwitch_ = this.settingUtils.get("hideIconForce");
+
+        const styleElement = document.createElement('style');
+        styleElement.textContent = _hideIconForceSwitch_ == true ? `
+            .${elementType} {
+                display: none !important;
+            }
+        ` : `
+            .${elementType} {
+                display: none;
+            }
+        `
+            ;
+
+        document.head.appendChild(styleElement);
+    }
+
     async onload() {
         this.data[STORAGE_NAME] = { readonlyText: "Readonly" };
 
@@ -42,12 +61,28 @@ export default class siyuan_doctree_compress extends Plugin {
         });
 
         this.settingUtils.addItem({
-            key: "hint",
-            value: "",
-            type: "hint",
-            title: this.i18n.hintTitle,
-            description: this.i18n.hintDesc,
-        });
+            key: "hideIcon",
+            value: false,
+            type: "checkbox",
+            title: this.i18n.hideIcon,
+            description: this.i18n.hideIconDesc,
+        }),
+
+            this.settingUtils.addItem({
+                key: "hideIconForce",
+                value: false,
+                type: "checkbox",
+                title: this.i18n.hideIconForce,
+                description: this.i18n.hideIconDescForce,
+            }),
+
+            this.settingUtils.addItem({
+                key: "hint",
+                value: "",
+                type: "hint",
+                title: this.i18n.hintTitle,
+                description: this.i18n.hintDesc,
+            });
 
 
     }
@@ -59,13 +94,21 @@ export default class siyuan_doctree_compress extends Plugin {
         this.settingUtils.load();
 
         const layoutReadyAsyncHandler = async () => {
-            
-            
-            
+
+            const _mainSwitchStat_ = await this.settingUtils.get("mainSwitch");
+            const _hideIcon_ = await this.settingUtils.get("mainSwitch");
+            console.log(_mainSwitchStat_);
+            console.log(_hideIcon_);
+
+            if (_mainSwitchStat_ && _hideIcon_) {
+                this.rmvdoctreeIcons('b3-list-item__icon');
+            }
+
+
             //async!!!!!!!
             try {
                 const compressionPercentage = (await this.settingUtils.get("Slider"));
-                if ((await this.settingUtils.get("mainSwitch"))) {
+                if (_mainSwitchStat_) {
                     const doctreeObserver = new MutationObserver(mutations => {
                         handleDomChanges();
                     });
@@ -103,7 +146,7 @@ export default class siyuan_doctree_compress extends Plugin {
 
                 }
             } catch (error) {
-                console.error("siyuan_doctree_compress: failed loading device ifEnable condition", error);
+                console.error("siyuan_doctree_compress: failed inject interface", error);
             }
         };
 

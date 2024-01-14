@@ -2,6 +2,10 @@
   "mainSwitch": "主开关",
   "compressPercent": "压缩百分比",
   "compressPercentDesc": "文档树缩进压缩百分比 %",
+  "hideIcon":"隐藏文档树中文档的图标",
+  "hideIconDesc":"",
+  "hideIconForce":"强制模式",
+  "hideIconDescForce":"仅在上一个开关启用时有效",
   "hintTitle": "关于",
   "hintDesc": "<ul><li>● 由<a href='https://github.com/zxkmm'>zxkmm</a>制作， MIT 协议开源。</li><li>● 如果您喜欢这个插件，请给我的 GitHub 仓库点亮免费的星星⭐（Star）。</li><li>● 链接：<a href='https://github.com/zxkmm/siyuan_doctree_compress'>https://github.com/zxkmm/siyuan_doctree_compress</a></li><li>"
 }
