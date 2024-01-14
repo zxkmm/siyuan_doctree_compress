@@ -66,7 +66,7 @@ export default class siyuan_doctree_compress extends Plugin {
             try {
                 const compressionPercentage = (await this.settingUtils.get("Slider"));
                 if ((await this.settingUtils.get("mainSwitch"))) {
-                    const doctreeBbserver = new MutationObserver(mutations => {
+                    const doctreeObserver = new MutationObserver(mutations => {
                         handleDomChanges();
                     });
 
@@ -75,12 +75,12 @@ export default class siyuan_doctree_compress extends Plugin {
                     // doctreeBbserver.observe(document, config);
                     //
                     document.querySelectorAll('.fn__flex-column').forEach(element => {
-                        doctreeBbserver.observe(element, config);
+                        doctreeObserver.observe(element, config);
                     });
                     //
 
                     function handleDomChanges() {
-                        console.log("dom changed");//DBG
+                        // console.log("dom changed");//DBG
 
                         const elements = document.querySelectorAll('.b3-list-item__toggle');
 
@@ -95,7 +95,7 @@ export default class siyuan_doctree_compress extends Plugin {
                                 element.style.paddingLeft = `${compressedPadding}px`;
 
                                 element.setAttribute('data-compressed', 'true'); //mark as compressed prevent nested compression
-                                console.log("compressed" + element);//DBG
+                                // console.log("compressed" + element);//DBG
                             }
                         });
                     }
