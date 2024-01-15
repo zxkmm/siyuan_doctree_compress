@@ -7,6 +7,17 @@
   "hideIconDesc":"",
   "hideIconForce":"Force hide mode",
   "hideIconDescForce":"Only vaild if the switch above is enabled",
-  "hintDesc": "<ul><li>● Made by <a href='https://github.com/zxkmm'>zxkmm</a>, Open source under MIT license。</li><li>● Star⭐ my GitHub if you like this plugin</li><li>● Link：<a href='https://github.com/zxkmm/siyuan_doctree_compress'>https://github.com/zxkmm/siyuan_doctree_compress</a></li><li>"
-
+  "hintDesc": "<ul><li>● Made by <a href='https://github.com/zxkmm'>zxkmm</a>, Open source under MIT license。</li><li>● Star⭐ my GitHub if you like this plugin</li><li>● Link：<a href='https://github.com/zxkmm/siyuan_doctree_compress'>https://github.com/zxkmm/siyuan_doctree_compress</a></li><li>",
+  "highPerformanceHintDesc":"以下功能可能对性能有较大影响，请不要在低配电脑上打开",
+  "highPerformanceHintTitle":"高性能区",
+  "hintDangerousZoneTitle":"危险区",
+  "hintDangerousZoneDesc":"以下特性可能有如下风险：和非官方主题冲突/ 影响文档树以外区域/ 影响其他插件， 请积极汇报bug，感谢！",
+  "overloadFontSizeSwitch":"重载文档树字体大小",
+  "overloadFontSizeSwitchDesc":"启用后可以用下面的设置来调节文档树字体大小",
+  "overloadFontSizeForceSwitch":"强制重载模式",
+  "overloadFontSizeForceSwitchDesc":"上面开关没有作用时启用",
+  "overloadFontSizePx":"文档树字体大小",
+  "overloadFontSizePxDesc":"需勾选上面的开关才能生效",
+  "mouseHoverZeroPadding":"鼠标悬停时灵活布局文档树项目",
+  "mouseHoverZeroPaddingDesc":"鼠标悬停时灵活布局文档树项目，方便点击和查看标题"
 }

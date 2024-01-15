@@ -3,6 +3,13 @@ import {
 } from "siyuan";
 import "@/index.scss";
 
+/*
+zxkmm naming style:
+_inFuncMember_
+_funcArgument_
+funcName
+_privateClassMember
+*/
 
 
 import { SettingUtils } from "./libs/setting-utils";
@@ -13,12 +20,13 @@ export default class siyuan_doctree_compress extends Plugin {
 
     private settingUtils: SettingUtils;
 
+
     rmvdoctreeIcons(elementType) {
 
         const _hideIconForceSwitch_ = this.settingUtils.get("hideIconForce");
 
-        const styleElement = document.createElement('style');
-        styleElement.textContent = _hideIconForceSwitch_ == true ? `
+        const _styleElement_ = document.createElement('style');
+        _styleElement_.textContent = _hideIconForceSwitch_ == true ? `
             .${elementType} {
                 display: none !important;
             }
@@ -29,10 +37,66 @@ export default class siyuan_doctree_compress extends Plugin {
         `
             ;
 
-        document.head.appendChild(styleElement);
+        document.head.appendChild(_styleElement_);
     }
 
+
+    overloadDoctreeFontSize() {
+
+        const _overloadFontSizeForceSwitch_ = this.settingUtils.get("overloadFontSizeForceSwitch");
+        const _overloadFontSizePx_ = this.settingUtils.get("overloadFontSizePx");
+
+        const _styleElement_ = document.createElement('style');
+        _styleElement_.textContent = _overloadFontSizeForceSwitch_ == true ? `
+        .layout-tab-container.fn__flex-1 {
+            font-size: ${_overloadFontSizePx_}px;
+        }
+        ` : `
+        .layout-tab-container.fn__flex-1 {
+            font-size: ${_overloadFontSizePx_}px !important;
+        }
+        `
+            ;
+
+        document.head.appendChild(_styleElement_);
+    }
+
+
+
+    //TODO: 弃用这个 弃用这个 弃用这个！！！！
+
+    // handleMouseEvents() {
+    //     const elements = document.querySelectorAll('.b3-list-item:not(.event-added)');
+
+    //     elements.forEach(element => {
+    //         const mouseoverHandler = function () {
+    //             const toggleElement = this.querySelector('.b3-list-item__toggle');
+    //             if (toggleElement) {
+    //                 toggleElement.style.paddingLeft = '0px';
+    //             }
+    //         };
+
+    //         const mouseoutHandler = function () {
+    //             const toggleElement = this.querySelector('.b3-list-item__toggle');
+    //             if (toggleElement) {
+    //                 // Restore the original padding from the CSS variable
+    //                 toggleElement.style.paddingLeft = 'var(--original-padding)';
+    //             }
+    //         };
+
+    //         // Add new event listeners
+    //         element.addEventListener('mouseover', mouseoverHandler);
+    //         element.addEventListener('mouseout', mouseoutHandler);
+
+    //         // Add a class to mark that the event listeners have been added
+    //         element.classList.add('event-added');
+    //     });
+    // }
+
+
+
     async onload() {
+
         this.data[STORAGE_NAME] = { readonlyText: "Readonly" };
 
         this.settingUtils = new SettingUtils(this, STORAGE_NAME);
@@ -76,6 +140,60 @@ export default class siyuan_doctree_compress extends Plugin {
                 description: this.i18n.hideIconDescForce,
             }),
 
+        this.settingUtils.addItem({
+            key: "hintDangerousZone",
+            value: "",
+            type: "hint",
+            title: this.i18n.hintDangerousZoneTitle,
+            description: this.i18n.hintDangerousZoneDesc,
+        });
+
+            this.settingUtils.addItem({
+                key: "overloadFontSizeSwitch",
+                value: false,
+                type: "checkbox",
+                title: this.i18n.overloadFontSizeSwitch,
+                description: this.i18n.overloadFontSizeSwitchDesc,
+            }),
+
+
+                this.settingUtils.addItem({
+                    key: "overloadFontSizeForceSwitch",
+                    value: false,
+                    type: "checkbox",
+                    title: this.i18n.overloadFontSizeForceSwitch,
+                    description: this.i18n.overloadFontSizeForceSwitchDesc,
+                }),
+
+                this.settingUtils.addItem({
+                    key: "overloadFontSizePx",
+                    value: 14,
+                    type: "slider",
+                    title: this.i18n.overloadFontSizePx,
+                    description: this.i18n.overloadFontSizePxDesc,
+                    slider: {
+                        min: 5,
+                        max: 60,
+                        step: 1,
+                    }
+                });
+
+            this.settingUtils.addItem({
+                key: "highPerformanceZoneHint",
+                value: "",
+                type: "hint",
+                title: this.i18n.highPerformanceHintTitle,
+                description: this.i18n.highPerformanceHintDesc,
+            });
+
+            this.settingUtils.addItem({
+                key: "mouseHoverZeroPadding",
+                value: false,
+                type: "checkbox",
+                title: this.i18n.mouseHoverZeroPadding,
+                description: this.i18n.mouseHoverZeroPaddingDesc,
+            });
+
             this.settingUtils.addItem({
                 key: "hint",
                 value: "",
@@ -90,15 +208,61 @@ export default class siyuan_doctree_compress extends Plugin {
 
 
     onLayoutReady() {
+
         this.loadData(STORAGE_NAME);
         this.settingUtils.load();
 
+        const _mouseoverZeroPadding_ = this.settingUtils.get("mouseHoverZeroPadding");
+        const _mainSwitchStat_ = this.settingUtils.get("mainSwitch");
+        const _hideIcon_ = this.settingUtils.get("hideIcon");
+        const _compressionPercentage_ = (this.settingUtils.get("Slider"));
+        const _overloadFontSizeSwitch_ = this.settingUtils.get("overloadFontSizeSwitch");
+
+
+        console.log("---onload handler setting vvv----");
+        console.log("mouseHoverZeroPadding vvv");
+        console.log(_mouseoverZeroPadding_);
+        console.log("mainSwitch vvv");
+        console.log(_mainSwitchStat_);
+        console.log("hideIcon vvv");
+        console.log(_hideIcon_);
+        console.log("compressionPercentage vvv");
+        console.log(_compressionPercentage_);
+        console.log("overloadFontSizeForceSwitch vvv");
+        console.log(_overloadFontSizeSwitch_);
+        console.log("---onload handler setting ^^^----");
+
+        
+        if(_mainSwitchStat_ && _mouseoverZeroPadding_){ //TODO: 希望能更优雅一些。。。
+
+            function addTempPaddingCss(css) {
+                const head = document.head || document.getElementsByTagName('head')[0];
+                const style = document.createElement('style');
+                head.appendChild(style);
+                style.appendChild(document.createTextNode(css));
+            }
+
+            const css = `
+        .b3-list-item:hover > .b3-list-item__toggle {
+            padding-left: 0px !important;
+        }
+        `;
+
+            addTempPaddingCss(css);
+        }
+
+
+        if (_mainSwitchStat_ && _overloadFontSizeSwitch_) {
+            this.overloadDoctreeFontSize();
+        }
+        
+
         const layoutReadyAsyncHandler = async () => {
 
-            const _mainSwitchStat_ = await this.settingUtils.get("mainSwitch");
-            const _hideIcon_ = await this.settingUtils.get("hideIcon");
-            console.log(_mainSwitchStat_);
-            console.log(_hideIcon_);
+            // const _mainSwitchStat_ = await this.settingUtils.get("mainSwitch");
+            // const _hideIcon_ = await this.settingUtils.get("hideIcon");
+
+        
 
             if (_mainSwitchStat_ && _hideIcon_) {
                 this.rmvdoctreeIcons('b3-list-item__icon');
@@ -107,41 +271,100 @@ export default class siyuan_doctree_compress extends Plugin {
 
             //async!!!!!!!
             try {
-                const compressionPercentage = (await this.settingUtils.get("Slider"));
+
+
+
                 if (_mainSwitchStat_) {
-                    const doctreeObserver = new MutationObserver(mutations => {
-                        handleDomChanges();
-                    });
 
-                    const config = { attributes: true, childList: true, subtree: true };
 
-                    // doctreeBbserver.observe(document, config);
-                    //
-                    document.querySelectorAll('.fn__flex-column').forEach(element => {
-                        doctreeObserver.observe(element, config);
-                    });
-                    //
+                    if (!_mouseoverZeroPadding_) { //主开关打开 && 鼠标悬停零缩进关闭
 
-                    function handleDomChanges() {
-                        // console.log("dom changed");//DBG
+                        console.log("主开关打开 && 鼠标悬停零缩进关闭");
 
-                        const elements = document.querySelectorAll('.b3-list-item__toggle');
 
-                        elements.forEach(element => {
-                            const isCompressed = element.getAttribute('data-compressed');
-
-                            if (!isCompressed) {
-                                const originalPadding = parseFloat(window.getComputedStyle(element).paddingLeft);
-
-                                const compressedPadding = originalPadding * (1 - compressionPercentage / 100);
-
-                                element.style.paddingLeft = `${compressedPadding}px`;
-
-                                element.setAttribute('data-compressed', 'true'); //mark as compressed prevent nested compression
-                                // console.log("compressed" + element);//DBG
-                            }
+                        const doctreeObserver = new MutationObserver(mutations => {
+                            handleDomChanges();
                         });
+
+                        const config = { attributes: true, childList: true, subtree: true };
+
+                        // doctreeBbserver.observe(document, config);
+                        //
+                        document.querySelectorAll('.fn__flex-column').forEach(element => {
+                            doctreeObserver.observe(element, config);
+                        });
+                        //
+
+                        function handleDomChanges() {
+
+                            const elements = document.querySelectorAll('.b3-list-item__toggle');
+
+                            elements.forEach(element => {
+                                const isCompressed = element.getAttribute('data-compressed');
+
+                                if (!isCompressed) {
+                                    const originalPadding = parseFloat(window.getComputedStyle(element).paddingLeft);
+
+                                    const compressedPadding = originalPadding * (1 - _compressionPercentage_ / 100);
+
+                                    element.style.paddingLeft = `${compressedPadding}px`;
+
+                                    element.setAttribute('data-compressed', 'true'); //mark as compressed prevent nested compression
+                                }
+                            });
+                        }
+
                     }
+                    //
+
+                    // if (_mouseoverZeroPadding_) { //主开关打开 && 鼠标悬停零缩进打开 //旧方案，暂时保留！！！
+
+
+                    //     console.log("主开关打开 && 鼠标悬停零缩进打开");
+                    //     function handleDomChanges() {
+                    //         const elements = document.querySelectorAll('.b3-list-item:not(.event-added)');
+
+                    //         elements.forEach(element => {
+                    //             const toggleElement = element.querySelector('.b3-list-item__toggle');
+                    //             if (toggleElement) {
+                    //                 const originalPadding = window.getComputedStyle(toggleElement).paddingLeft;
+                    //                 toggleElement.setAttribute('data-original-padding', originalPadding);
+
+                    //                 element.classList.add('event-added');
+                    //             }
+                    //         });
+                    //     }
+
+                    //     const doctreeObserver = new MutationObserver(mutations => {
+                    //         mutations.forEach(mutation => {
+                    //             if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                    //                 const element = mutation.target;
+                    //                 const toggleElement = element.querySelector('.b3-list-item__toggle');
+                    //                 if (toggleElement) {
+                    //                     const originalPadding = toggleElement.getAttribute('data-original-padding');
+                    //                     if (originalPadding) {
+                    //                         toggleElement.style.paddingLeft = originalPadding;
+                    //                     }
+                    //                 }
+                    //             }
+                    //         });
+
+                    //         handleDomChanges();
+                    //     });
+
+                    //     const config = { attributes: true, childList: true, subtree: true };
+
+                    //     document.querySelectorAll('.fn__flex-1').forEach(element => {
+                    //         doctreeObserver.observe(element, config);
+                    //     });
+
+                    //     handleDomChanges();
+
+                    // }
+
+                    // //
+
+
 
 
                 }
