@@ -2,7 +2,7 @@
   "name": "siyuan_doctree_compress",
   "author": "zxkmm",
   "url": "https://github.com/zxkmm/siyuan_doctree_compress",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "minAppVersion": "2.12.1",
   "backends": [
     "windows",
@@ -19,8 +19,8 @@
     "zh_CN": "文档树压缩"
   },
   "description": {
-    "en_US": "compress your doctree as the % you defined",
-    "zh_CN": "按您自定义的百分比压缩文档树"
+    "en_US": "fully customs your doctree",
+    "zh_CN": "完全自定义您的文档树"
   },
   "readme": {
     "en_US": "README.md",

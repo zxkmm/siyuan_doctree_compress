@@ -140,67 +140,88 @@ export default class siyuan_doctree_compress extends Plugin {
                 description: this.i18n.hideIconDescForce,
             }),
 
+            this.settingUtils.addItem({
+                key: "hintDangerousZone",
+                value: "",
+                type: "hint",
+                title: this.i18n.hintDangerousZoneTitle,
+                description: this.i18n.hintDangerousZoneDesc,
+            });
+
         this.settingUtils.addItem({
-            key: "hintDangerousZone",
-            value: "",
-            type: "hint",
-            title: this.i18n.hintDangerousZoneTitle,
-            description: this.i18n.hintDangerousZoneDesc,
-        });
+            key: "overloadFontSizeSwitch",
+            value: false,
+            type: "checkbox",
+            title: this.i18n.overloadFontSizeSwitch,
+            description: this.i18n.overloadFontSizeSwitchDesc,
+        }),
+
 
             this.settingUtils.addItem({
-                key: "overloadFontSizeSwitch",
+                key: "overloadFontSizeForceSwitch",
                 value: false,
                 type: "checkbox",
-                title: this.i18n.overloadFontSizeSwitch,
-                description: this.i18n.overloadFontSizeSwitchDesc,
+                title: this.i18n.overloadFontSizeForceSwitch,
+                description: this.i18n.overloadFontSizeForceSwitchDesc,
             }),
 
-
-                this.settingUtils.addItem({
-                    key: "overloadFontSizeForceSwitch",
-                    value: false,
-                    type: "checkbox",
-                    title: this.i18n.overloadFontSizeForceSwitch,
-                    description: this.i18n.overloadFontSizeForceSwitchDesc,
-                }),
-
-                this.settingUtils.addItem({
-                    key: "overloadFontSizePx",
-                    value: 14,
-                    type: "slider",
-                    title: this.i18n.overloadFontSizePx,
-                    description: this.i18n.overloadFontSizePxDesc,
-                    slider: {
-                        min: 5,
-                        max: 60,
-                        step: 1,
-                    }
-                });
-
             this.settingUtils.addItem({
-                key: "highPerformanceZoneHint",
-                value: "",
-                type: "hint",
-                title: this.i18n.highPerformanceHintTitle,
-                description: this.i18n.highPerformanceHintDesc,
+                key: "overloadFontSizePx",
+                value: 14,
+                type: "slider",
+                title: this.i18n.overloadFontSizePx,
+                description: this.i18n.overloadFontSizePxDesc,
+                slider: {
+                    min: 5,
+                    max: 60,
+                    step: 1,
+                }
             });
 
-            this.settingUtils.addItem({
-                key: "mouseHoverZeroPadding",
-                value: false,
-                type: "checkbox",
-                title: this.i18n.mouseHoverZeroPadding,
-                description: this.i18n.mouseHoverZeroPaddingDesc,
-            });
+        this.settingUtils.addItem({
+            key: "highPerformanceZoneHint",
+            value: "",
+            type: "hint",
+            title: this.i18n.experimentFeatureHintTitle,
+            description: this.i18n.experimentFeatureHintDesc,
+        });
 
-            this.settingUtils.addItem({
-                key: "hint",
-                value: "",
-                type: "hint",
-                title: this.i18n.hintTitle,
-                description: this.i18n.hintDesc,
-            });
+        this.settingUtils.addItem({
+            key: "mouseHoverZeroPadding",
+            value: false,
+            type: "checkbox",
+            title: this.i18n.mouseHoverZeroPadding,
+            description: this.i18n.mouseHoverZeroPaddingDesc,
+        });
+
+        this.settingUtils.addItem({
+            key: "mouseHoverZeroPaddingForce",
+            value: true,
+            type: "checkbox",
+            title: this.i18n.mouseHoverZeroPaddingForce,
+            description: this.i18n.mouseHoverZeroPaddingForceDesc,
+        });
+
+        this.settingUtils.addItem({
+            key: "mouseHoverZeroPaddingPx",
+            value: 4,
+            type: "slider",
+            title: this.i18n.mouseHoverZeroPaddingPx,
+            description: this.i18n.mouseHoverZeroPaddingPxDesc,
+            slider: {
+                min: 0,
+                max: 10,
+                step: 1,
+            }
+        });
+
+        this.settingUtils.addItem({
+            key: "hint",
+            value: "",
+            type: "hint",
+            title: this.i18n.hintTitle,
+            description: this.i18n.hintDesc,
+        });
 
 
     }
@@ -217,6 +238,8 @@ export default class siyuan_doctree_compress extends Plugin {
         const _hideIcon_ = this.settingUtils.get("hideIcon");
         const _compressionPercentage_ = (this.settingUtils.get("Slider"));
         const _overloadFontSizeSwitch_ = this.settingUtils.get("overloadFontSizeSwitch");
+        const _mouseHoverZeroPaddingForce_ = this.settingUtils.get("mouseHoverZeroPaddingForce");
+        const _mouseHoverZeroPaddingPx_ = this.settingUtils.get("mouseHoverZeroPaddingPx");
 
 
         console.log("---onload handler setting vvv----");
@@ -230,10 +253,14 @@ export default class siyuan_doctree_compress extends Plugin {
         console.log(_compressionPercentage_);
         console.log("overloadFontSizeForceSwitch vvv");
         console.log(_overloadFontSizeSwitch_);
+        console.log("mouseHoverZeroPaddingForce vvv");
+        console.log(_mouseHoverZeroPaddingForce_);
+        console.log("mouseHoverZeroPaddingPx vvv");
+        console.log(_mouseHoverZeroPaddingPx_);
         console.log("---onload handler setting ^^^----");
 
-        
-        if(_mainSwitchStat_ && _mouseoverZeroPadding_){ //TODO: 希望能更优雅一些。。。
+
+        if (_mainSwitchStat_ && _mouseoverZeroPadding_) { //TODO: 希望能更优雅一些。。。
 
             function addTempPaddingCss(css) {
                 const head = document.head || document.getElementsByTagName('head')[0];
@@ -242,11 +269,14 @@ export default class siyuan_doctree_compress extends Plugin {
                 style.appendChild(document.createTextNode(css));
             }
 
-            const css = `
+            const css = _mouseHoverZeroPaddingForce_ ? `
         .b3-list-item:hover > .b3-list-item__toggle {
-            padding-left: 0px !important;
+            padding-left: ${_mouseHoverZeroPaddingPx_}px !important;
         }
-        `;
+        ` : `
+        .b3-list-item:hover > .b3-list-item__toggle {
+            padding-left: ${_mouseHoverZeroPaddingPx_}px;
+        }`
 
             addTempPaddingCss(css);
         }
@@ -255,14 +285,14 @@ export default class siyuan_doctree_compress extends Plugin {
         if (_mainSwitchStat_ && _overloadFontSizeSwitch_) {
             this.overloadDoctreeFontSize();
         }
-        
+
 
         const layoutReadyAsyncHandler = async () => {
 
             // const _mainSwitchStat_ = await this.settingUtils.get("mainSwitch");
             // const _hideIcon_ = await this.settingUtils.get("hideIcon");
 
-        
+
 
             if (_mainSwitchStat_ && _hideIcon_) {
                 this.rmvdoctreeIcons('b3-list-item__icon');

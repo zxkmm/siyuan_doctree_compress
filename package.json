@@ -1,8 +1,8 @@
 {
   "name": "siyuan_doctree_compress",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
-  "description": "compress your doctree as the % you defined",
+  "description": "fully customs your doctree",
   "repository": "",
   "homepage": "",
   "author": "",
