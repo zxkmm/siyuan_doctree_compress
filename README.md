@@ -5,6 +5,22 @@
  - Customization of the font size of document items in the document tree
  - Fluid layout of document tree items: Temporarily remove indentation when the mouse hovers over, to avoid difficulty in seeing or clicking on titles in multi-level subdirectories
 
+ ### What is Flow Layout
+
+- When browsing a document tree with multiple levels of subdocuments, you may encounter situations where you cannot click on them due to excessive indentation, as shown in the image below.
+
+![disabled_ldbj](https://tvax3.sinaimg.cn/large/0089YRx6gy1hlvq5zs9xzj30cy0fctay.jpg)
+
+This makes it difficult or even impossible to click on multi-level subdirectories.
+- Flow layout allows the temporary reduction of indentation to the left position when hovering over a subdirectory item, making it easier for you to view titles and click into documents. After you move your mouse away, the indentation will be restored, so it does not affect your ability to differentiate subdirectories. As shown in the image below:
+
+![enabled_ldbj](https://tvax4.sinaimg.cn/large/0089YRx6gy1hlvqad31rwg309e08mh65.gif)
+
+- Furthermore, since flow layout keeps the contents of each column fixed at the same position, you can even perform blind operations once you get used to it, without having to align and click on icons, as shown in the image below:
+
+![static_area](https://tvax3.sinaimg.cn/large/0089YRx6gy1hlvq6uhx16j30z00oik89.jpg)
+
+
 ## changelog 0.1.2
 - add support for mobile serving mode
 - add support for mouse hoving font size overload
