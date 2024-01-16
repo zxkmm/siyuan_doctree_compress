@@ -8,16 +8,19 @@
 ### 什么是流动布局
 - 您在浏览多层子文档的文档树时，会遇到因为有多级缩进而点不到的情况，如下图。  
 
-![disable_ldbj](http://ys-i.ysepan.com/317882926/014702961/f4K543K4W2HQN6jNSpno65/disabled_ldbj.png)
+![disabled_ldbj](https://tvax3.sinaimg.cn/large/0089YRx6gy1hlvq5zs9xzj30cy0fctay.jpg)
+
 
 这导致难以或者根本不能点击多级子目录。   
 - 流动布局在鼠标悬浮到子目录项目时，可以临时将子目录的缩进缩短到左侧位置，方便您轻松地查看标题和点击进入文档，在您的鼠标离开后，缩进将恢复，所以完全不影响您区分子目录。如下图：
 
-![enable_ldbj](http://ys-i.ysepan.com/317882926/014702960/f4K543K4W2HQN5jNSpno6d/enabled_ldbj.gif)  
+![enabled_ldbj](https://tvax2.sinaimg.cn/large/0089YRx6gy1hlvq6gnhksg309e08mh65.gif)   
 
 - 更多地，由于流动布局将每个栏目的内容都固定在列的相同位置，您习惯后甚至可以实现盲操作，而不用去对准图标点击，如下图
 
-![static_area](http://ys-i.ysepan.com/317882956/014702971/f4K543K4W4GQWUmKRqrp34/static_area.png)   
+![static_area](https://tvax3.sinaimg.cn/large/0089YRx6gy1hlvq6uhx16j30z00oik89.jpg)   
+
+
 
 
 
