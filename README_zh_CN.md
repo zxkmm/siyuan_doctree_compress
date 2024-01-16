@@ -14,7 +14,7 @@
 这导致难以或者根本不能点击多级子目录。   
 - 流动布局在鼠标悬浮到子目录项目时，可以临时将子目录的缩进缩短到左侧位置，方便您轻松地查看标题和点击进入文档，在您的鼠标离开后，缩进将恢复，所以完全不影响您区分子目录。如下图：
 
-![enabled_ldbj](https://tvax2.sinaimg.cn/large/0089YRx6gy1hlvq6gnhksg309e08mh65.gif)   
+![enabled_ldbj](https://tvax4.sinaimg.cn/large/0089YRx6gy1hlvqad31rwg309e08mh65.gif)   
 
 - 更多地，由于流动布局将每个栏目的内容都固定在列的相同位置，您习惯后甚至可以实现盲操作，而不用去对准图标点击，如下图
 
