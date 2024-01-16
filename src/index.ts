@@ -183,7 +183,7 @@ export default class siyuan_doctree_compress extends Plugin {
 
         this.settingUtils.addItem({
             key: "mouseOverLineUnclamp",
-            value: true,
+            value: false,
             type: "checkbox",
             title: this.i18n.mouseOverLineUnclampTitle,
             description: this.i18n.mouseOverLineUnclampDesc,
@@ -192,7 +192,7 @@ export default class siyuan_doctree_compress extends Plugin {
 
         this.settingUtils.addItem({
             key: "mouseOverLineUnclampForce",
-            value: true,
+            value: false,
             type: "checkbox",
             title: this.i18n.mouseOverLineUnclampForceTitle,
             description: this.i18n.mouseOverLineUnclampForceDesc,
@@ -201,7 +201,7 @@ export default class siyuan_doctree_compress extends Plugin {
 
         this.settingUtils.addItem({
             key: "mouseOverReduceFontSize",
-            value: true,
+            value: false,
             type: "checkbox",
             title: this.i18n.mouseOverReduceFontSizeTitle,
             description: this.i18n.mouseOverReduceFontSizeDesc,
@@ -210,7 +210,7 @@ export default class siyuan_doctree_compress extends Plugin {
 
         this.settingUtils.addItem({
             key: "mouseOverReduceFontSizeForce",
-            value: true,
+            value: false,
             type: "checkbox",
             title: this.i18n.mouseOverReduceFontSizeForceTitle,
             description: this.i18n.mouseOverReduceFontSizeForceDesc,
