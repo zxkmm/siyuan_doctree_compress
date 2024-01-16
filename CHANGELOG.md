@@ -10,3 +10,9 @@
 
 # 0.1.0
 - add many many new features
+
+##  0.1.2
+- add support for mobile serving mode
+- add support for mouse hoving font size overload
+- add support for unclamp when mouse hoving
+- fix influenced setting panel

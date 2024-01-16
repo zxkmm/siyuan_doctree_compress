@@ -21,17 +21,17 @@ export default class siyuan_doctree_compress extends Plugin {
     private settingUtils: SettingUtils;
 
 
-    rmvdoctreeIcons(elementType) {
+    rmvdoctreeIcons(_elementType_) {
 
         const _hideIconForceSwitch_ = this.settingUtils.get("hideIconForce");
 
         const _styleElement_ = document.createElement('style');
         _styleElement_.textContent = _hideIconForceSwitch_ == true ? `
-            .${elementType} {
+            .${_elementType_} {
                 display: none !important;
             }
         ` : `
-            .${elementType} {
+            .${_elementType_} {
                 display: none;
             }
         `
@@ -262,22 +262,22 @@ export default class siyuan_doctree_compress extends Plugin {
         const _mouseHoverReduceFontSizePx_ = this.settingUtils.get("mouseHoverReduceFontSizePx");
 
 
-        console.log("---onload handler setting vvv----");
-        console.log("mouseHoverZeroPadding vvv");
-        console.log(_mouseoverZeroPadding_);
-        console.log("mainSwitch vvv");
-        console.log(_mainSwitchStat_);
-        console.log("hideIcon vvv");
-        console.log(_hideIcon_);
-        console.log("compressionPercentage vvv");
-        console.log(_compressionPercentage_);
-        console.log("overloadFontSizeForceSwitch vvv");
-        console.log(_overloadFontSizeSwitch_);
-        console.log("mouseHoverZeroPaddingForce vvv");
-        console.log(_mouseHoverZeroPaddingForce_);
-        console.log("mouseHoverZeroPaddingPx vvv");
-        console.log(_mouseHoverZeroPaddingPx_);
-        console.log("---onload handler setting ^^^----");
+        // console.log("---onload handler setting vvv----");
+        // console.log("mouseHoverZeroPadding vvv");
+        // console.log(_mouseoverZeroPadding_);
+        // console.log("mainSwitch vvv");
+        // console.log(_mainSwitchStat_);
+        // console.log("hideIcon vvv");
+        // console.log(_hideIcon_);
+        // console.log("compressionPercentage vvv");
+        // console.log(_compressionPercentage_);
+        // console.log("overloadFontSizeForceSwitch vvv");
+        // console.log(_overloadFontSizeSwitch_);
+        // console.log("mouseHoverZeroPaddingForce vvv");
+        // console.log(_mouseHoverZeroPaddingForce_);
+        // console.log("mouseHoverZeroPaddingPx vvv");
+        // console.log(_mouseHoverZeroPaddingPx_);
+        // console.log("---onload handler setting ^^^----");
 
 
         if (_mainSwitchStat_ && _mouseoverZeroPadding_) { //TODO: 希望能更优雅一些。。。
@@ -290,11 +290,11 @@ export default class siyuan_doctree_compress extends Plugin {
             }
 
             const css = _mouseHoverZeroPaddingForce_ ? `
-        .b3-list-item:hover > .b3-list-item__toggle {
+        .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
             padding-left: ${_mouseHoverZeroPaddingPx_}px !important;
         }
         ` : `
-        .b3-list-item:hover > .b3-list-item__toggle {
+        .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
             padding-left: ${_mouseHoverZeroPaddingPx_}px;
         }`
 
@@ -311,12 +311,12 @@ export default class siyuan_doctree_compress extends Plugin {
             }
 
             const css = _mouseOverLineUnclampForce_ ? `
-            .b3-list-item:hover > .b3-list-item__text {
+            .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
                 overflow:visible !important;
              -webkit-line-clamp: unset;
              }
              ` : `
-             .b3-list-item:hover > .b3-list-item__text {
+             .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
                 overflow:visible;
              -webkit-line-clamp: unset;
              }`
@@ -334,11 +334,11 @@ export default class siyuan_doctree_compress extends Plugin {
             }
 
             const css = _mouseOverReduceFontSizeForce_ ? `
-            .b3-list-item:hover > .b3-list-item__text {
+            .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
                 font-size: ${_mouseHoverReduceFontSizePx_}px !important;
              }
              ` : `
-             .b3-list-item:hover > .b3-list-item__text {
+             .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
                 font-size: ${_mouseHoverReduceFontSizePx_}px;
              }`
 
@@ -352,9 +352,6 @@ export default class siyuan_doctree_compress extends Plugin {
 
 
         const layoutReadyAsyncHandler = async () => {
-
-            // const _mainSwitchStat_ = await this.settingUtils.get("mainSwitch");
-            // const _hideIcon_ = await this.settingUtils.get("hideIcon");
 
 
 
@@ -373,7 +370,7 @@ export default class siyuan_doctree_compress extends Plugin {
 
                     if (!_mouseoverZeroPadding_) { //主开关打开 && 鼠标悬停零缩进关闭
 
-                        console.log("主开关打开 && 鼠标悬停零缩进关闭");
+                        // console.log("主开关打开 && 鼠标悬停零缩进关闭");
 
 
                         const doctreeObserver = new MutationObserver(mutations => {

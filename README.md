@@ -5,6 +5,13 @@
  - Customization of the font size of document items in the document tree
  - Fluid layout of document tree items: Temporarily remove indentation when the mouse hovers over, to avoid difficulty in seeing or clicking on titles in multi-level subdirectories
 
+## changelog 0.1.2
+- add support for mobile serving mode
+- add support for mouse hoving font size overload
+- add support for unclamp when mouse hoving
+- fix influenced setting panel
+
+
 ## Links
  - Repo/Source Code: https://github.com/zxkmm/siyuan_doctree_compress 
  - Download: https://github.com/zxkmm/siyuan_doctree_compress/releases or search `siyuan_doctree_compress` in SiYuan market

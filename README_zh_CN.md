@@ -5,6 +5,13 @@
  - 自定义文档树的文档项目字体大小
  - 文档树项目流动布局：在鼠标悬停时，暂时将缩进取消，避免多级子目录难以看到标题或难以点击
 
+ ## changelog 0.1.2
+ - add support for mobile serving mode
+ - add support for mouse hoving font size overload
+ - add support for unclamp when mouse hoving
+ - fix influenced setting panel
+
+
 ## 链接
  - repo/Source Code：https://github.com/zxkmm/siyuan_doctree_compress 
 
