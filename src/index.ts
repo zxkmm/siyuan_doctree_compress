@@ -61,6 +61,82 @@ export default class siyuan_doctree_compress extends Plugin {
         document.head.appendChild(_styleElement_);
     }
 
+    async appendCurrentDeviceIntoList() {
+        try {
+            // await!!!!!
+            var current_device_info = await this.fetchCurrentDeviceInfo();
+
+            var enableDeviceList = this.settingUtils.get("enableDeviceList");
+            var enableDeviceListArray = enableDeviceList.split("\n");
+            var enableDeviceListArrayLength = enableDeviceListArray.length;
+            var enableDeviceListArrayLast = enableDeviceListArray[enableDeviceListArrayLength - 1];
+
+            // remove empty line
+            if (enableDeviceListArrayLast === "") {
+                enableDeviceListArray.pop();
+            }
+
+            enableDeviceListArray.push(current_device_info);
+
+            var enableDeviceListArrayString = enableDeviceListArray.join("\n");
+
+            this.settingUtils.assignValue("enableDeviceList", enableDeviceListArrayString);
+            this.settingUtils.save();
+        } catch (error) {
+            console.error("Error appending current device into list:", error);
+        }
+    }
+
+    async removeCurrentDeviceFromList() {
+
+        try {
+
+            var current_device_info = await this.fetchCurrentDeviceInfo();
+
+            var enableDeviceList = this.settingUtils.get("enableDeviceList");
+            var enableDeviceListArray = enableDeviceList.split("\n");
+
+            // make sure visited the entire list
+            for (var i = enableDeviceListArray.length - 1; i >= 0; i--) {
+                var deviceInfo = enableDeviceListArray[i];
+
+                if (deviceInfo === current_device_info) {
+                    enableDeviceListArray.splice(i, 1);
+                }
+            }
+
+            // reassemble list
+            var enableDeviceListArrayString = enableDeviceListArray.join("\n");
+
+            this.settingUtils.assignValue("enableDeviceList", enableDeviceListArrayString);
+            this.settingUtils.save();
+        } catch (error) {
+            console.error("Error removing current device from list:", error);
+        }
+
+    }
+
+    fetchCurrentDeviceInfo(): Promise<string> {
+        var current_device_uuid = window.siyuan.config.system.id;
+        var current_device_name = window.siyuan.config.system.name;
+        var current_device_info = current_device_uuid + " " + current_device_name;
+
+        return Promise.resolve(current_device_info.toString());
+    }
+
+    async currentDeviceInList() {
+        try {
+            var current_device_info = await this.fetchCurrentDeviceInfo();
+
+            var enableDeviceList = await this.settingUtils.get("enableDeviceList");
+            var enableDeviceListArray = enableDeviceList.split("\n");
+
+            return enableDeviceListArray.includes(current_device_info);
+        } catch (error) {
+            console.error("Error checking if current device is enabled:", error);
+        }
+    }
+
     async onload() {
 
         this.data[STORAGE_NAME] = { readonlyText: "Readonly" };
@@ -77,72 +153,6 @@ export default class siyuan_doctree_compress extends Plugin {
             description: "",
         });
 
-        this.settingUtils.addItem({
-            key: "Slider",
-            value: 50,
-            type: "slider",
-            title: this.i18n.compressPercent,
-            description: this.i18n.compressPercentDesc,
-            slider: {
-                min: 0,
-                max: 100,
-                step: 5,
-            }
-        });
-
-        this.settingUtils.addItem({
-            key: "hideIcon",
-            value: false,
-            type: "checkbox",
-            title: this.i18n.hideIcon,
-            description: this.i18n.hideIconDesc,
-        }),
-
-            this.settingUtils.addItem({
-                key: "hideIconForce",
-                value: false,
-                type: "checkbox",
-                title: this.i18n.hideIconForce,
-                description: this.i18n.hideIconDescForce,
-            }),
-
-            this.settingUtils.addItem({
-                key: "hintDangerousZone",
-                value: "",
-                type: "hint",
-                title: this.i18n.hintDangerousZoneTitle,
-                description: this.i18n.hintDangerousZoneDesc,
-            });
-
-        this.settingUtils.addItem({
-            key: "overloadFontSizeSwitch",
-            value: false,
-            type: "checkbox",
-            title: this.i18n.overloadFontSizeSwitch,
-            description: this.i18n.overloadFontSizeSwitchDesc,
-        }),
-
-
-            this.settingUtils.addItem({
-                key: "overloadFontSizeForceSwitch",
-                value: false,
-                type: "checkbox",
-                title: this.i18n.overloadFontSizeForceSwitch,
-                description: this.i18n.overloadFontSizeForceSwitchDesc,
-            }),
-
-            this.settingUtils.addItem({
-                key: "overloadFontSizePx",
-                value: 14,
-                type: "slider",
-                title: this.i18n.overloadFontSizePx,
-                description: this.i18n.overloadFontSizePxDesc,
-                slider: {
-                    min: 5,
-                    max: 60,
-                    step: 1,
-                }
-            });
 
         this.settingUtils.addItem({
             key: "highPerformanceZoneHint",
@@ -231,6 +241,125 @@ export default class siyuan_doctree_compress extends Plugin {
         });
 
         this.settingUtils.addItem({
+            key: "hintDangerousZone",
+            value: "",
+            type: "hint",
+            title: this.i18n.hintDangerousZoneTitle,
+            description: this.i18n.hintDangerousZoneDesc,
+        });
+
+        this.settingUtils.addItem({
+            key: "Slider",
+            value: 50,
+            type: "slider",
+            title: this.i18n.compressPercent,
+            description: this.i18n.compressPercentDesc,
+            slider: {
+                min: 0,
+                max: 100,
+                step: 5,
+            }
+        });
+
+        this.settingUtils.addItem({
+            key: "hideIcon",
+            value: false,
+            type: "checkbox",
+            title: this.i18n.hideIcon,
+            description: this.i18n.hideIconDesc,
+        }),
+
+            this.settingUtils.addItem({
+                key: "hideIconForce",
+                value: false,
+                type: "checkbox",
+                title: this.i18n.hideIconForce,
+                description: this.i18n.hideIconDescForce,
+            }),
+
+            this.settingUtils.addItem({
+                key: "overloadFontSizeSwitch",
+                value: false,
+                type: "checkbox",
+                title: this.i18n.overloadFontSizeSwitch,
+                description: this.i18n.overloadFontSizeSwitchDesc,
+            }),
+
+
+            this.settingUtils.addItem({
+                key: "overloadFontSizeForceSwitch",
+                value: false,
+                type: "checkbox",
+                title: this.i18n.overloadFontSizeForceSwitch,
+                description: this.i18n.overloadFontSizeForceSwitchDesc,
+            }),
+
+            this.settingUtils.addItem({
+                key: "overloadFontSizePx",
+                value: 14,
+                type: "slider",
+                title: this.i18n.overloadFontSizePx,
+                description: this.i18n.overloadFontSizePxDesc,
+                slider: {
+                    min: 5,
+                    max: 60,
+                    step: 1,
+                }
+            });
+
+        this.settingUtils.addItem({
+            key: "hintDeviceSpecificSettings",
+            value: "",
+            type: "hint",
+            title: this.i18n.hintDeviceSpecificSettingsTitle,
+            description: this.i18n.hintDeviceSpecificSettingsDesc,
+        });
+
+        this.settingUtils.addItem({
+            key: "onlyEnableListedDevices",
+            value: false,
+            type: "checkbox",
+            title: this.i18n.onlyEnableListedDevices,
+            description: this.i18n.onlyEnableListedDevicesDesc,
+        });
+
+        this.settingUtils.addItem({
+            key: "enableDeviceList",
+            value: "",
+            type: "textarea",
+            title: this.i18n.enableDeviceList,
+            description: this.i18n.enableDeviceListDesc,
+        });
+
+        this.settingUtils.addItem({
+            key: "addCurrentDeviceIntoList",
+            value: "",
+            type: "button",
+            title: this.i18n.addCurrentDeviceIntoList,
+            description: this.i18n.addCurrentDeviceIntoListDesc,
+            button: {
+                label: this.i18n.addCurrentDeviceIntoListLabel,
+                callback: () => {
+                    this.appendCurrentDeviceIntoList();
+                }
+            }
+        });
+
+        this.settingUtils.addItem({
+            key: "removeCurrentDeviceFromList",
+            value: "",
+            type: "button",
+            title: this.i18n.removeCurrentDeviceFromList,
+            description: this.i18n.removeCurrentDeviceFromListDesc,
+            button: {
+                label: this.i18n.removeCurrentDeviceFromListLabel,
+                callback: () => {
+                    this.removeCurrentDeviceFromList();
+                }
+            }
+        });
+
+        this.settingUtils.addItem({
             key: "hint",
             value: "",
             type: "hint",
@@ -248,124 +377,145 @@ export default class siyuan_doctree_compress extends Plugin {
         this.loadData(STORAGE_NAME);
         this.settingUtils.load();
 
-        const _mouseoverZeroPadding_ = this.settingUtils.get("mouseHoverZeroPadding");
-        const _mainSwitchStat_ = this.settingUtils.get("mainSwitch");
-        const _hideIcon_ = this.settingUtils.get("hideIcon");
-        const _compressionPercentage_ = (this.settingUtils.get("Slider"));
-        const _overloadFontSizeSwitch_ = this.settingUtils.get("overloadFontSizeSwitch");
-        const _mouseHoverZeroPaddingForce_ = this.settingUtils.get("mouseHoverZeroPaddingForce");
-        const _mouseHoverZeroPaddingPx_ = this.settingUtils.get("mouseHoverZeroPaddingPx");
-        const _mouseOverLineUnclamp_ = this.settingUtils.get("mouseOverLineUnclamp");
-        const _mouseOverLineUnclampForce_ = this.settingUtils.get("mouseOverLineUnclampForce");
-        const _mouseOverReduceFontSize_ = this.settingUtils.get("mouseOverReduceFontSize");
-        const _mouseOverReduceFontSizeForce_ = this.settingUtils.get("mouseOverLineUnclampForce");
-        const _mouseHoverReduceFontSizePx_ = this.settingUtils.get("mouseHoverReduceFontSizePx");
 
 
-        // console.log("---onload handler setting vvv----");
-        // console.log("mouseHoverZeroPadding vvv");
-        // console.log(_mouseoverZeroPadding_);
-        // console.log("mainSwitch vvv");
-        // console.log(_mainSwitchStat_);
-        // console.log("hideIcon vvv");
-        // console.log(_hideIcon_);
-        // console.log("compressionPercentage vvv");
-        // console.log(_compressionPercentage_);
-        // console.log("overloadFontSizeForceSwitch vvv");
-        // console.log(_overloadFontSizeSwitch_);
-        // console.log("mouseHoverZeroPaddingForce vvv");
-        // console.log(_mouseHoverZeroPaddingForce_);
-        // console.log("mouseHoverZeroPaddingPx vvv");
-        // console.log(_mouseHoverZeroPaddingPx_);
-        // console.log("---onload handler setting ^^^----");
-
-
-        if (_mainSwitchStat_ && _mouseoverZeroPadding_) { //TODO: 希望能更优雅一些。。。
-
-            function addTempPaddingCss(css) {
-                const head = document.head || document.getElementsByTagName('head')[0];
-                const style = document.createElement('style');
-                head.appendChild(style);
-                style.appendChild(document.createTextNode(css));
-            }
-
-            const css = _mouseHoverZeroPaddingForce_ ? `
-        .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
-            padding-left: ${_mouseHoverZeroPaddingPx_}px !important;
-        }
-        ` : `
-        .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
-            padding-left: ${_mouseHoverZeroPaddingPx_}px;
-        }`
-
-            addTempPaddingCss(css);
-        }
-
-        if (_mainSwitchStat_ && _mouseOverLineUnclamp_) {
-
-            function addReduceLineClampCss(css) {
-                const head = document.head || document.getElementsByTagName('head')[0];
-                const style = document.createElement('style');
-                head.appendChild(style);
-                style.appendChild(document.createTextNode(css));
-            }
-
-            const css = _mouseOverLineUnclampForce_ ? `
-            .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
-                overflow:visible !important;
-             -webkit-line-clamp: unset;
-             }
-             ` : `
-             .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
-                overflow:visible;
-             -webkit-line-clamp: unset;
-             }`
-
-            addReduceLineClampCss(css);
-        }
-
-        if (_mainSwitchStat_ && _mouseOverReduceFontSize_) { //TODO: 希望能更优雅一些。。。
-
-            function addTempPaddingCss(css) {
-                const head = document.head || document.getElementsByTagName('head')[0];
-                const style = document.createElement('style');
-                head.appendChild(style);
-                style.appendChild(document.createTextNode(css));
-            }
-
-            const css = _mouseOverReduceFontSizeForce_ ? `
-            .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
-                font-size: ${_mouseHoverReduceFontSizePx_}px !important;
-             }
-             ` : `
-             .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
-                font-size: ${_mouseHoverReduceFontSizePx_}px;
-             }`
-
-            addTempPaddingCss(css);
-        }
-
-
-        if (_mainSwitchStat_ && _overloadFontSizeSwitch_) {
-            this.overloadDoctreeFontSize();
-        }
 
 
         const layoutReadyAsyncHandler = async () => {
 
 
 
-            if (_mainSwitchStat_ && _hideIcon_) {
-                this.rmvdoctreeIcons('b3-list-item__icon');
-            }
+
 
 
             //async!!!!!!!
             try {
 
+                const _mouseoverZeroPadding_ = this.settingUtils.get("mouseHoverZeroPadding");
+                const _mainSwitchStat_ = this.settingUtils.get("mainSwitch");
+                const _hideIcon_ = this.settingUtils.get("hideIcon");
+                const _compressionPercentage_ = this.settingUtils.get("Slider");
+                const _overloadFontSizeSwitch_ = this.settingUtils.get("overloadFontSizeSwitch");
+                const _mouseHoverZeroPaddingForce_ = this.settingUtils.get("mouseHoverZeroPaddingForce");
+                const _mouseHoverZeroPaddingPx_ = this.settingUtils.get("mouseHoverZeroPaddingPx");
+                const _mouseOverLineUnclamp_ = this.settingUtils.get("mouseOverLineUnclamp");
+                const _mouseOverLineUnclampForce_ = this.settingUtils.get("mouseOverLineUnclampForce");
+                const _mouseOverReduceFontSize_ = this.settingUtils.get("mouseOverReduceFontSize");
+                const _mouseOverReduceFontSizeForce_ = this.settingUtils.get("mouseOverLineUnclampForce");
+                const _mouseHoverReduceFontSizePx_ = this.settingUtils.get("mouseHoverReduceFontSizePx");
+                const _onlyEnableListedDevices_ = this.settingUtils.get("onlyEnableListedDevices");
+                const _currentDeviceInList_ = await this.currentDeviceInList();
+
+                // console.log({
+                //     mouseoverZeroPadding: _mouseoverZeroPadding_,
+                //     mainSwitchStat: _mainSwitchStat_,
+                //     hideIcon: _hideIcon_,
+                //     compressionPercentage: _compressionPercentage_,
+                //     overloadFontSizeSwitch: _overloadFontSizeSwitch_,
+                //     mouseHoverZeroPaddingForce: _mouseHoverZeroPaddingForce_,
+                //     mouseHoverZeroPaddingPx: _mouseHoverZeroPaddingPx_,
+                //     mouseOverLineUnclamp: _mouseOverLineUnclamp_,
+                //     mouseOverLineUnclampForce: _mouseOverLineUnclampForce_,
+                //     mouseOverReduceFontSize: _mouseOverReduceFontSize_,
+                //     mouseOverReduceFontSizeForce: _mouseOverReduceFontSizeForce_,
+                //     mouseHoverReduceFontSizePx: _mouseHoverReduceFontSizePx_,
+                //     onlyEnableListedDevices: _onlyEnableListedDevices_,
+                //     currentDeviceInList: _currentDeviceInList_
+                // });
 
 
-                if (_mainSwitchStat_) {
+                /*条件列表：
+                当前设备真， 仅允许开关开，后半段为假 ：真||假： 执行
+                当前设备真， 仅允许开关关，后半段为真 ：真||真： 执行
+                当前设备假， 仅允许开关开，后半段为假 ：假||假： 不执行
+                当前设备假， 仅允许开关关，后半段为真 ：假||真： 执行
+                */
+
+                // if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_) {
+                //     console.log("进入条件");
+                // } else {
+                //     console.log("不进入条件");
+                // }
+
+
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _hideIcon_) {
+                    this.rmvdoctreeIcons('b3-list-item__icon');
+                }
+
+
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _mouseoverZeroPadding_) { //TODO: 希望能更优雅一些。。。
+
+                    function addTempPaddingCss(css) {
+                        const head = document.head || document.getElementsByTagName('head')[0];
+                        const style = document.createElement('style');
+                        head.appendChild(style);
+                        style.appendChild(document.createTextNode(css));
+                    }
+
+                    const css = _mouseHoverZeroPaddingForce_ ? `
+                .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
+                    padding-left: ${_mouseHoverZeroPaddingPx_}px !important;
+                }
+                ` : `
+                .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
+                    padding-left: ${_mouseHoverZeroPaddingPx_}px;
+                }`
+
+                    addTempPaddingCss(css);
+                }
+
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _mouseOverLineUnclamp_) {
+
+                    function addReduceLineClampCss(css) {
+                        const head = document.head || document.getElementsByTagName('head')[0];
+                        const style = document.createElement('style');
+                        head.appendChild(style);
+                        style.appendChild(document.createTextNode(css));
+                    }
+
+                    const css = _mouseOverLineUnclampForce_ ? `
+                    .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
+                        overflow:visible !important;
+                     -webkit-line-clamp: unset;
+                     }
+                     ` : `
+                     .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
+                        overflow:visible;
+                     -webkit-line-clamp: unset;
+                     }`
+
+                    addReduceLineClampCss(css);
+                }
+
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _mouseOverReduceFontSize_) { //TODO: 希望能更优雅一些。。。
+
+                    function addTempPaddingCss(css) {
+                        const head = document.head || document.getElementsByTagName('head')[0];
+                        const style = document.createElement('style');
+                        head.appendChild(style);
+                        style.appendChild(document.createTextNode(css));
+                    }
+
+                    const css = _mouseOverReduceFontSizeForce_ ? `
+                    .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
+                        font-size: ${_mouseHoverReduceFontSizePx_}px !important;
+                     }
+                     ` : `
+                     .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
+                        font-size: ${_mouseHoverReduceFontSizePx_}px;
+                     }`
+
+                    addTempPaddingCss(css);
+                }
+
+
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _overloadFontSizeSwitch_) {
+                    this.overloadDoctreeFontSize();
+                }
+
+
+
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_) {
 
 
                     if (!_mouseoverZeroPadding_) { //主开关打开 && 鼠标悬停零缩进关闭
