@@ -23,5 +23,15 @@
   "mouseHoverZeroPaddingForce":"Force Flexible Layout Mode",
   "mouseHoverZeroPaddingForceDesc":"Enable when the above switch is not effective, and only effective when the previous switch is on",
   "mouseHoverZeroPaddingPx":"Flexible Layout Padding",
-  "mouseHoverZeroPaddingPxDesc":"default value is 4 which is the default padding of the first level notbooks"
+  "mouseHoverZeroPaddingPxDesc":"default value is 4 which is the default padding of the first level notbooks",
+  "mouseOverLineUnclampDesc":"Convenient for clicking and viewing titles",
+  "mouseOverLineUnclampTitle":"Unclamp lines in doctree, convenient for clicking and viewing titles",
+  "mouseOverLineUnclampForceDesc":"Force Unclamp lines mode",
+  "mouseOverLineUnclampForceTitle":"Enable when the above switch is not effective, and only effective when the previous switch is on",
+  "mouseOverReduceFontSizeDesc":"Convenient for clicking and viewing titles",
+  "mouseOverReduceFontSizeTitle":"Reload font size when mouse hovering",
+  "mouseOverReduceFontSizeForceDesc":"Enable when the above switch is not effective, and only effective when the previous switch is on",
+  "mouseOverReduceFontSizeForceTitle":"Force reload font zise mode",
+  "mouseHoverReduceFontSizePx":"Font size when mouse over",
+  "mouseHoverReduceFontSizePxDesc":"default:14 unit: px"
 }

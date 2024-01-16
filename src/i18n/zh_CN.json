@@ -19,9 +19,20 @@
   "overloadFontSizePx":"文档树字体大小",
   "overloadFontSizePxDesc":"需勾选上面的开关才能生效",
   "mouseHoverZeroPadding":"鼠标悬停时流动布局文档树项目",
-  "mouseHoverZeroPaddingDesc":"鼠标悬停时流动布局文档树项目，方便点击和查看标题",
+  "mouseHoverZeroPaddingDesc":"鼠标悬停时流动布局文档树项目，方便点击和查看标题,不建议和本栏目其他功能一起启用",
   "mouseHoverZeroPaddingForce": "强制流动布局模式",
   "mouseHoverZeroPaddingForceDesc": "默认启用，若主题冲突可关闭；且仅在上一个开关启用时有效",
-  "mouseHoverZeroPaddingPx": "灵活布局缩进值",
-  "mouseHoverZeroPaddingPxDesc": "默认值是4，也是一级笔记本条目的默认缩进值，单位：像素"
+  "mouseHoverZeroPaddingPx": "流动布局缩进值",
+  "mouseHoverZeroPaddingPxDesc": "默认值是4，也是一级笔记本条目的默认缩进值，单位：像素",
+  "mouseOverLineUnclampDesc":"方便点击和查看标题,不建议和本栏目其他功能一起启用",
+  "mouseOverLineUnclampTitle":"鼠标悬停时自动换行文档树项目",
+  "mouseOverLineUnclampForceDesc":"强制自动换行模式",
+  "mouseOverLineUnclampForceTitle":"上面开关没有作用时再启用，且仅在上一个开关启用时有效",
+  "mouseOverReduceFontSizeDesc":"方便查看标题,不建议和本栏目其他功能一起启用",
+  "mouseOverReduceFontSizeTitle":"鼠标悬停时重载字体大小",
+  "mouseOverReduceFontSizeForceDesc":"上面开关没有作用时再启用，且仅在上一个开关启用时有效",
+  "mouseOverReduceFontSizeForceTitle":"强制重载字体大小模式",
+  "mouseHoverReduceFontSizePx":"鼠标悬停时重载字体大小值",
+  "mouseHoverReduceFontSizePxDesc":"默认值:14 单位: 像素"
+
 }

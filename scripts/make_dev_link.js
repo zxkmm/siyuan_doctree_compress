@@ -7,7 +7,7 @@ import readline  from 'node:readline';
 
 //Please write the "workspace/data/plugins" directory here
 //请在这里填写你的 "workspace/data/plugins" 目录
-let targetDir = '/home/zxkmm/Documents/siyuan_dev/data/plugins';
+let targetDir = '/home/zxkmm/文档/siyuan_dev/data/plugins';
 //Like this
 // let targetDir = `H:\\SiYuanDevSpace\\data\\plugins`;
 //********************************************************************************************

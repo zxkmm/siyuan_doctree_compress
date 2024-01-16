@@ -61,40 +61,6 @@ export default class siyuan_doctree_compress extends Plugin {
         document.head.appendChild(_styleElement_);
     }
 
-
-
-    //TODO: 弃用这个 弃用这个 弃用这个！！！！
-
-    // handleMouseEvents() {
-    //     const elements = document.querySelectorAll('.b3-list-item:not(.event-added)');
-
-    //     elements.forEach(element => {
-    //         const mouseoverHandler = function () {
-    //             const toggleElement = this.querySelector('.b3-list-item__toggle');
-    //             if (toggleElement) {
-    //                 toggleElement.style.paddingLeft = '0px';
-    //             }
-    //         };
-
-    //         const mouseoutHandler = function () {
-    //             const toggleElement = this.querySelector('.b3-list-item__toggle');
-    //             if (toggleElement) {
-    //                 // Restore the original padding from the CSS variable
-    //                 toggleElement.style.paddingLeft = 'var(--original-padding)';
-    //             }
-    //         };
-
-    //         // Add new event listeners
-    //         element.addEventListener('mouseover', mouseoverHandler);
-    //         element.addEventListener('mouseout', mouseoutHandler);
-
-    //         // Add a class to mark that the event listeners have been added
-    //         element.classList.add('event-added');
-    //     });
-    // }
-
-
-
     async onload() {
 
         this.data[STORAGE_NAME] = { readonlyText: "Readonly" };
@@ -216,6 +182,55 @@ export default class siyuan_doctree_compress extends Plugin {
         });
 
         this.settingUtils.addItem({
+            key: "mouseOverLineUnclamp",
+            value: true,
+            type: "checkbox",
+            title: this.i18n.mouseOverLineUnclampTitle,
+            description: this.i18n.mouseOverLineUnclampDesc,
+
+        });
+
+        this.settingUtils.addItem({
+            key: "mouseOverLineUnclampForce",
+            value: true,
+            type: "checkbox",
+            title: this.i18n.mouseOverLineUnclampForceTitle,
+            description: this.i18n.mouseOverLineUnclampForceDesc,
+
+        });
+
+        this.settingUtils.addItem({
+            key: "mouseOverReduceFontSize",
+            value: true,
+            type: "checkbox",
+            title: this.i18n.mouseOverReduceFontSizeTitle,
+            description: this.i18n.mouseOverReduceFontSizeDesc,
+
+        });
+
+        this.settingUtils.addItem({
+            key: "mouseOverReduceFontSizeForce",
+            value: true,
+            type: "checkbox",
+            title: this.i18n.mouseOverReduceFontSizeForceTitle,
+            description: this.i18n.mouseOverReduceFontSizeForceDesc,
+
+        });
+
+        this.settingUtils.addItem({
+            key: "mouseHoverReduceFontSizePx",
+            value: 4,
+            type: "slider",
+            title: this.i18n.mouseHoverReduceFontSizePx,
+            description: this.i18n.mouseHoverReduceFontSizePxDesc,
+            slider: {
+                min: 1,
+                max: 50,
+                step: 1,
+            }
+        });
+
+        this.settingUtils.addItem({
             key: "hint",
             value: "",
             type: "hint",
@@ -240,6 +255,11 @@ export default class siyuan_doctree_compress extends Plugin {
         const _overloadFontSizeSwitch_ = this.settingUtils.get("overloadFontSizeSwitch");
         const _mouseHoverZeroPaddingForce_ = this.settingUtils.get("mouseHoverZeroPaddingForce");
         const _mouseHoverZeroPaddingPx_ = this.settingUtils.get("mouseHoverZeroPaddingPx");
+        const _mouseOverLineUnclamp_ = this.settingUtils.get("mouseOverLineUnclamp");
+        const _mouseOverLineUnclampForce_ = this.settingUtils.get("mouseOverLineUnclampForce");
+        const _mouseOverReduceFontSize_ = this.settingUtils.get("mouseOverReduceFontSize");
+        const _mouseOverReduceFontSizeForce_ = this.settingUtils.get("mouseOverLineUnclampForce");
+        const _mouseHoverReduceFontSizePx_ = this.settingUtils.get("mouseHoverReduceFontSizePx");
 
 
         console.log("---onload handler setting vvv----");
@@ -277,6 +297,50 @@ export default class siyuan_doctree_compress extends Plugin {
         .b3-list-item:hover > .b3-list-item__toggle {
             padding-left: ${_mouseHoverZeroPaddingPx_}px;
         }`
+
+            addTempPaddingCss(css);
+        }
+
+        if (_mainSwitchStat_ && _mouseOverLineUnclamp_) {
+
+            function addReduceLineClampCss(css) {
+                const head = document.head || document.getElementsByTagName('head')[0];
+                const style = document.createElement('style');
+                head.appendChild(style);
+                style.appendChild(document.createTextNode(css));
+            }
+
+            const css = _mouseOverLineUnclampForce_ ? `
+            .b3-list-item:hover > .b3-list-item__text {
+                overflow:visible !important;
+             -webkit-line-clamp: unset;
+             }
+             ` : `
+             .b3-list-item:hover > .b3-list-item__text {
+                overflow:visible;
+             -webkit-line-clamp: unset;
+             }`
+
+            addReduceLineClampCss(css);
+        }
+
+        if (_mainSwitchStat_ && _mouseOverReduceFontSize_) { //TODO: 希望能更优雅一些。。。
+
+            function addTempPaddingCss(css) {
+                const head = document.head || document.getElementsByTagName('head')[0];
+                const style = document.createElement('style');
+                head.appendChild(style);
+                style.appendChild(document.createTextNode(css));
+            }
+
+            const css = _mouseOverReduceFontSizeForce_ ? `
+            .b3-list-item:hover > .b3-list-item__text {
+                font-size: ${_mouseHoverReduceFontSizePx_}px !important;
+             }
+             ` : `
+             .b3-list-item:hover > .b3-list-item__text {
+                font-size: ${_mouseHoverReduceFontSizePx_}px;
+             }`
 
             addTempPaddingCss(css);
         }
