@@ -21,9 +21,11 @@
 ## Declaration
  - This plugin is fully open source under the MIT license, does not have internet access, and does not have the ability to fetch and inject malicious code from a remote source.
 
-# Addtional attach to MIT lincense
-You are free to use the code in this repo, whether it's close source or not, whether it's paid software or not. However, I attached these additional request into the license of this repo, if you used the code or design in this repo:
- - If you use my code, you have to attach my username "zxkmm" and the link of this repo in three places:
-    1. Code comment.
-    2. Setting interface which related to my code.
-    3. About page of your software/website.
+# Additional Attachment to MIT License
+
+You are free to use the code in this repository, regardless of whether it's closed source or not, or whether it's part of paid software or not. However, I have incorporated these additional requests into the license of this repository. If you use the code, design, text, algorithms, or anything else from this repository, you must include my username "zxkmm" and the link to this repository in three places:
+
+1. In the code comments.
+2. In the settings interface related to my code.
+3. On the 'About' page of your software/website/and or any other format of computer production.
+
