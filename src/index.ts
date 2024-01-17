@@ -154,7 +154,7 @@ export default class siyuan_doctree_compress extends Plugin {
         });
 
 
-        this.settingUtils.addItem({
+        this.settingUtils.addItem({ //dynamic options
             key: "highPerformanceZoneHint",
             value: "",
             type: "hint",
@@ -240,7 +240,24 @@ export default class siyuan_doctree_compress extends Plugin {
             }
         });
 
+
         this.settingUtils.addItem({
+            key: "disable document buttons popup",
+            value: false,
+            type: "checkbox",
+            title: this.i18n.disableDocumentButtonsPopup,
+            description: this.i18n.disableDocumentButtonsPopupDesc,
+        });
+
+        this.settingUtils.addItem({
+            key: "hideContextualLabel",
+            value: false,
+            type: "checkbox",
+            title: this.i18n.hideContextualLabel,
+            description: this.i18n.hideContextualLabelDesc,
+        });
+
+        this.settingUtils.addItem({ //static options
             key: "hintDangerousZone",
             value: "",
             type: "hint",
@@ -276,6 +293,14 @@ export default class siyuan_doctree_compress extends Plugin {
                 title: this.i18n.hideIconForce,
                 description: this.i18n.hideIconDescForce,
             }),
+
+            this.settingUtils.addItem({
+                key: "displayIconButDisableIconClick",
+                value: false,
+                type: "checkbox",
+                title: this.i18n.displayIconButDisableIconClick,
+                description: this.i18n.displayIconButDisableIconClickDesc,
+            });
 
             this.settingUtils.addItem({
                 key: "overloadFontSizeSwitch",
@@ -405,6 +430,9 @@ export default class siyuan_doctree_compress extends Plugin {
                 const _mouseHoverReduceFontSizePx_ = this.settingUtils.get("mouseHoverReduceFontSizePx");
                 const _onlyEnableListedDevices_ = this.settingUtils.get("onlyEnableListedDevices");
                 const _currentDeviceInList_ = await this.currentDeviceInList();
+                const _hideContextualLabel_ = this.settingUtils.get("hideContextualLabel");
+                const _displayIconButDIsableIconClick_ = this.settingUtils.get("displayIconButDisableIconClick");
+                const _disableDocumentButtonsPopup_ = this.settingUtils.get("disable document buttons popup");
 
                 // console.log({
                 //     mouseoverZeroPadding: _mouseoverZeroPadding_,
@@ -438,8 +466,26 @@ export default class siyuan_doctree_compress extends Plugin {
                 // }
 
 
-                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _hideIcon_) {
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _hideIcon_) { //hide icon sel
                     this.rmvdoctreeIcons('b3-list-item__icon');
+                }
+
+
+
+                if (_hideContextualLabel_) { //hide contextual label sel
+                    function hideContextualLabel(css) {
+                        const head = document.head || document.getElementsByTagName('head')[0];
+                        const style = document.createElement('style');
+                        head.appendChild(style);
+                        style.appendChild(document.createTextNode(css));
+                    }
+
+                    const css = `
+                    .fn__flex-1.fn__flex-column.file-tree.sy__file .ariaLabel:hover {
+                        pointer-events: none;
+                      }                      
+                   `
+                    hideContextualLabel(css);
                 }
 
 
@@ -487,7 +533,7 @@ export default class siyuan_doctree_compress extends Plugin {
                     addReduceLineClampCss(css);
                 }
 
-                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _mouseOverReduceFontSize_) { //TODO: 希望能更优雅一些。。。
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _mouseOverReduceFontSize_) { //mouse hover reduce font size sel
 
                     function addTempPaddingCss(css) {
                         const head = document.head || document.getElementsByTagName('head')[0];
@@ -508,14 +554,51 @@ export default class siyuan_doctree_compress extends Plugin {
                     addTempPaddingCss(css);
                 }
 
+                //static options
 
-                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _overloadFontSizeSwitch_) {
+
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _overloadFontSizeSwitch_) { //overload font size sel
                     this.overloadDoctreeFontSize();
+                }
+
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _displayIconButDIsableIconClick_) {// display icon but disable icon click sel
+                    function hideIconPopup(css) {
+                        const head = document.head || document.getElementsByTagName('head')[0];
+                        const style = document.createElement('style');
+                        head.appendChild(style);
+                        style.appendChild(document.createTextNode(css));
+                    }
+
+                    const css = `
+                    .b3-list-item__icon.b3-tooltips.b3-tooltips__n[aria-label="修改图标"],
+                    .b3-list-item__icon.b3-tooltips.b3-tooltips__n[aria-label="Change icon"] {
+                    pointer-events: none;
+                    }
+                   `
+                    hideIconPopup(css);
+                }
+
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _disableDocumentButtonsPopup_) {
+                    function makeIconPopupAnArrow(css) {
+                        const head = document.head || document.getElementsByTagName('head')[0];
+                        const style = document.createElement('style');
+                        head.appendChild(style);
+                        style.appendChild(document.createTextNode(css));
+                    }
+
+                    const css = `
+                    .b3-list-item__icon.b3-tooltips.b3-tooltips__n:hover::after,
+                    .b3-list-item__action.b3-tooltips.b3-tooltips__nw:hover::after,
+                    .popover__block.b3-tooltips.b3-tooltips__nw:hover::after {
+                      display: none;
+                    }                    
+                   `
+                    makeIconPopupAnArrow(css);
                 }
 
 
 
-                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_) {
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_) { //main sel
 
 
                     if (!_mouseoverZeroPadding_) { //主开关打开 && 鼠标悬停零缩进关闭

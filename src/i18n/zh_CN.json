@@ -45,5 +45,11 @@
   "onlyEnableListedDevices": "仅在列表中的设备上启用",
   "removeCurrentDeviceFromList": "从列表中移除当前设备",
   "removeCurrentDeviceFromListDesc": "",
-  "removeCurrentDeviceFromListLabel": "移除"
+  "removeCurrentDeviceFromListLabel": "移除",
+  "hideContextualLabel": "隐藏文档详情标签",
+  "hideContextualLabelDesc": "隐藏文档树中当前文档的悬停标签（创建时间等弹出式标签）",
+  "displayIconButDisableIconClickDesc": "显示文档图标但禁用图标点击",
+  "displayIconButDisableIconClick": "禁用文档图标点击",
+  "disableDocumentButtonsPopup": "禁用文档按钮气泡",
+  "disableDocumentButtonsPopupDesc": "禁用鼠标悬停时文档按钮弹出的气泡"
 }
