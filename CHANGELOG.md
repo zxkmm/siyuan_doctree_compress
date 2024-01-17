@@ -16,3 +16,6 @@
 - add support for mouse hoving font size overload
 - add support for unclamp when mouse hoving
 - fix influenced setting panel
+
+## 0.2.0
+- add per device selection
