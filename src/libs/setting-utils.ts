@@ -171,6 +171,8 @@ export class SettingUtils {
         })
     }
 
+    
+
     private getElement(key: string) {
         let item = this.settings.get(key);
         let element = this.elements.get(key) as any;

@@ -145,6 +145,8 @@ export default class siyuan_doctree_compress extends Plugin {
 
         this.settingUtils.load();
 
+
+
         this.settingUtils.addItem({
             key: "mainSwitch",
             value: false,
@@ -266,6 +268,14 @@ export default class siyuan_doctree_compress extends Plugin {
         });
 
         this.settingUtils.addItem({
+            key: "enableAdjustStaticDoctreePadding",
+            value: false,
+            type: "checkbox",
+            title: this.i18n.enableAdjustStaticDoctreePadding,
+            description: this.i18n.enableAdjustStaticDoctreePaddingDesc,
+        });
+
+        this.settingUtils.addItem({
             key: "Slider",
             value: 50,
             type: "slider",
@@ -302,13 +312,13 @@ export default class siyuan_doctree_compress extends Plugin {
                 description: this.i18n.displayIconButDisableIconClickDesc,
             });
 
-            this.settingUtils.addItem({
-                key: "overloadFontSizeSwitch",
-                value: false,
-                type: "checkbox",
-                title: this.i18n.overloadFontSizeSwitch,
-                description: this.i18n.overloadFontSizeSwitchDesc,
-            }),
+        this.settingUtils.addItem({
+            key: "overloadFontSizeSwitch",
+            value: false,
+            type: "checkbox",
+            title: this.i18n.overloadFontSizeSwitch,
+            description: this.i18n.overloadFontSizeSwitchDesc,
+        }),
 
 
             this.settingUtils.addItem({
@@ -331,6 +341,35 @@ export default class siyuan_doctree_compress extends Plugin {
                     step: 1,
                 }
             });
+
+        this.settingUtils.addItem({
+            key: "overloadLineHeight",
+            value: false,
+            type: "checkbox",
+            title: this.i18n.overloadLineHeight,
+            description: this.i18n.overloadLineHeightDesc,
+        });
+
+        this.settingUtils.addItem({
+            key: "overloadLineHeightForce",
+            value: false,
+            type: "checkbox",
+            title: this.i18n.overloadLineHeightForce,
+            description: this.i18n.overloadLineHeightForceDesc,
+        });
+
+        this.settingUtils.addItem({
+            key: "overloadLineHeightPx",
+            value: 28,
+            type: "slider",
+            title: this.i18n.overloadLineHeightPx,
+            description: this.i18n.overloadLineHeightPxDesc,
+            slider: {
+                min: 1,
+                max: 100,
+                step: 1,
+            }
+        });
 
         this.settingUtils.addItem({
             key: "hintDeviceSpecificSettings",
@@ -419,6 +458,7 @@ export default class siyuan_doctree_compress extends Plugin {
                 const _mouseoverZeroPadding_ = this.settingUtils.get("mouseHoverZeroPadding");
                 const _mainSwitchStat_ = this.settingUtils.get("mainSwitch");
                 const _hideIcon_ = this.settingUtils.get("hideIcon");
+                const _enableAdjustStaticDoctreePadding_ = this.settingUtils.get("enableAdjustStaticDoctreePadding");
                 const _compressionPercentage_ = this.settingUtils.get("Slider");
                 const _overloadFontSizeSwitch_ = this.settingUtils.get("overloadFontSizeSwitch");
                 const _mouseHoverZeroPaddingForce_ = this.settingUtils.get("mouseHoverZeroPaddingForce");
@@ -433,6 +473,9 @@ export default class siyuan_doctree_compress extends Plugin {
                 const _hideContextualLabel_ = this.settingUtils.get("hideContextualLabel");
                 const _displayIconButDIsableIconClick_ = this.settingUtils.get("displayIconButDisableIconClick");
                 const _disableDocumentButtonsPopup_ = this.settingUtils.get("disable document buttons popup");
+                const _overloadLineHeight_ = this.settingUtils.get("overloadLineHeight");
+                const _overloadLineHeightForce_ = this.settingUtils.get("overloadLineHeightForce");
+                const _overloadLineHeightPx_ = this.settingUtils.get("overloadLineHeightPx");
 
                 // console.log({
                 //     mouseoverZeroPadding: _mouseoverZeroPadding_,
@@ -464,6 +507,26 @@ export default class siyuan_doctree_compress extends Plugin {
                 // } else {
                 //     console.log("不进入条件");
                 // }
+
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _overloadLineHeight_) { //overload line height sel
+                    function overloadLineHeight(css) {
+                        const head = document.head || document.getElementsByTagName('head')[0];
+                        const style = document.createElement('style');
+                        head.appendChild(style);
+                        style.appendChild(document.createTextNode(css));
+                    }
+
+                    const css = _overloadLineHeightForce_ ? `
+                    .layout-tab-container .b3-list-item__text {
+                        line-height: ${_overloadLineHeightPx_}px !important;
+                     }
+                     ` : `
+                     .layout-tab-container .b3-list-item__text {
+                        line-height: ${_overloadLineHeightPx_}px;
+                     }`
+
+                    overloadLineHeight(css);
+                }
 
 
                 if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _hideIcon_) { //hide icon sel
@@ -601,7 +664,7 @@ export default class siyuan_doctree_compress extends Plugin {
                 if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_) { //main sel
 
 
-                    if (!_mouseoverZeroPadding_) { //主开关打开 && 鼠标悬停零缩进关闭
+                    if (!_mouseoverZeroPadding_ && _enableAdjustStaticDoctreePadding_) { //主开关打开 && 鼠标悬停零缩进关闭 && 分别缩进开关启用
 
                         // console.log("主开关打开 && 鼠标悬停零缩进关闭");
 
@@ -621,22 +684,28 @@ export default class siyuan_doctree_compress extends Plugin {
 
                         function handleDomChanges() {
 
-                            const elements = document.querySelectorAll('.b3-list-item__toggle');
-
+                            const elements = document.querySelectorAll('.b3-list-item');
+                        
                             elements.forEach(element => {
-                                const isCompressed = element.getAttribute('data-compressed');
-
+                                const isCompressed = element.querySelector('.b3-list-item__toggle').getAttribute('data-compressed');
+                        
                                 if (!isCompressed) {
-                                    const originalPadding = parseFloat(window.getComputedStyle(element).paddingLeft);
-
+                                    const originalPadding = parseFloat(window.getComputedStyle(element.querySelector('.b3-list-item__toggle')).paddingLeft);
+                        
                                     const compressedPadding = originalPadding * (1 - _compressionPercentage_ / 100);
-
-                                    element.style.paddingLeft = `${compressedPadding}px`;
-
-                                    element.setAttribute('data-compressed', 'true'); //mark as compressed prevent nested compression
+                        
+                                    if (element.getAttribute('data-type') != 'navigation-root') { //prevent compress notebook
+                        
+                                        console.dir(element.getAttribute('data-type'));
+                        
+                                        element.querySelector('.b3-list-item__toggle').style.paddingLeft = `${compressedPadding}px`;
+                        
+                                        element.querySelector('.b3-list-item__toggle').setAttribute('data-compressed', 'true'); //mark as compressed prevent nested compression
+                                    }
                                 }
                             });
                         }
+                        
 
                     }
                     //

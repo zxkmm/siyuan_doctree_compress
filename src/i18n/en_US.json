@@ -1,39 +1,58 @@
 {
   "mainSwitch": "Main Switch",
+
+  "enableAdjustStaticDoctreePadding": "Enable Compress Doctree Padding",
+  "enableAdjustStaticDoctreePaddingDesc": "Enable Compress Doctree Padding",
   "compressPercent": "Compression Percentage",
   "compressPercentDesc": "Document tree indentation compression percentage %",
+
   "hideIcon": "Hide Document Icons in the Tree",
   "hideIconDesc": "",
   "hideIconForce": "Force Hide Icon Mode",
   "hideIconDescForce": "Enable when the above switch is not effective, and only effective when the previous switch is on",
+
   "hintTitle": "About<hr>",
   "hintDesc": "<ul><li>● Made by <a href='https://github.com/zxkmm'>zxkmm</a>, open source under the MIT license.</li><li>● If you like this plugin, please light up the free star⭐ (Star) for my GitHub repository.</li><li>● Link: <a href='https://github.com/zxkmm/siyuan_doctree_compress'>https://github.com/zxkmm/siyuan_doctree_compress</a></li><li>",
+  
   "experimentFeatureHintDesc": "(Maybe have compatible issue with 3rd party themes)",
   "experimentFeatureHintTitle": "<hr style='border: none; border-top: 3px solid;'>● Dynamic Doctree layout Options",
+  
   "hintDangerousZoneTitle": "<hr style='border: none; border-top: 3px solid;'>● Static Doctree Layout Options",
   "hintDangerousZoneDesc": "(Maybe have compatible issue with 3rd party themes)",
+ 
   "overloadFontSizeSwitch": "Overload Document Tree Font Size",
   "overloadFontSizeSwitchDesc": "Once enabled, you can use the following settings to adjust the font size of the document tree",
   "overloadFontSizeForceSwitch": "Force Overload Font Mode",
   "overloadFontSizeForceSwitchDesc": "Enable when the above switch is not effective, and only effective when the previous switch is on",
   "overloadFontSizePx": "Document Tree Font Size",
   "overloadFontSizePxDesc": "Must check the above switch to take effect",
+ 
   "mouseHoverZeroPadding": "Flow Layout of Document Tree Items when Mouse Hovering",
   "mouseHoverZeroPaddingDesc": "Convenient for clicking and viewing titles. <br>  <a href=\"https://github.com/zxkmm/siyuan_doctree_compress#what-is-flow-layout\">Read more details here</a>\n",
   "mouseHoverZeroPaddingForce": "Force Flow Layout Mode",
   "mouseHoverZeroPaddingForceDesc": "Enable when the above switch is not effective, and only effective when the previous switch is on",
   "mouseHoverZeroPaddingPx": "Flow Layout Padding",
   "mouseHoverZeroPaddingPxDesc": "default value is 4 which is the default padding of the first level notbooks",
+ 
   "mouseOverLineUnclampDesc": "Convenient for clicking and viewing titles",
   "mouseOverLineUnclampTitle": "Unclamp lines in doctree, convenient for clicking and viewing titles",
   "mouseOverLineUnclampForceDesc": "Enable when the above switch is not effective, and only effective when the previous switch is on",
   "mouseOverLineUnclampForceTitle": "Force Unclamp lines mode",
+ 
   "mouseOverReduceFontSizeDesc": "Convenient for clicking and viewing titles",
   "mouseOverReduceFontSizeTitle": "Reload font size when mouse hovering",
   "mouseOverReduceFontSizeForceDesc": "Enable when the above switch is not effective, and only effective when the previous switch is on",
   "mouseOverReduceFontSizeForceTitle": "Force reload font zise mode",
   "mouseHoverReduceFontSizePx": "Font size when mouse over",
   "mouseHoverReduceFontSizePxDesc": "default:14 unit: px",
+
+  "overloadLineHeight": "Overload Line Height",
+  "overloadLineHeightDesc": "Overload Document Tree Line Height",
+  "overloadLineHeightForce": "Force Overload Height Mode",
+  "overloadLineHeightForceDesc": "Enable when the above switch is not effective, and only effective when the previous switch is on",
+  "overloadLineHeightPx": "Document Tree Line Height",
+  "overloadLineHeightPxDesc": "Must check the above switch to take effect, default: 28 unit: px",
+
   "addCurrentDeviceIntoListLabel":"Add",
   "addCurrentDeviceIntoListDesc":"",
   "addCurrentDeviceIntoList":"Add current device into the list",
@@ -46,10 +65,13 @@
   "removeCurrentDeviceFromList":"Remove current device from the list",
   "removeCurrentDeviceFromListDesc":"",
   "removeCurrentDeviceFromListLabel":"Remove",
+ 
   "hideContextualLabel": "Hide Contextual Label",
   "hideContextualLabelDesc": "Hide the hovering label of the current document in the document tree",
+ 
   "displayIconButDisableIconClickDesc":"Display icons but disable icon click",
   "displayIconButDisableIconClick":"Disable icon click",
+
   "disableDocumentButtonsPopup":"Disable document buttons popup",
   "disableDocumentButtonsPopupDesc":"Disable document buttons popup when mouse hovering"
 }

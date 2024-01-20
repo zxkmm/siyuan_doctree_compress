@@ -1,5 +1,8 @@
 {
   "mainSwitch": "主开关",
+
+  "enableAdjustStaticDoctreePadding": "启用文档树缩进压缩",
+  "enableAdjustStaticDoctreePaddingDesc": "",
   "compressPercent": "压缩百分比",
   "compressPercentDesc": "文档树缩进压缩百分比 %",
   "hideIcon": "隐藏文档树中文档的图标",
@@ -34,6 +37,14 @@
   "mouseOverReduceFontSizeForceTitle": "强制重载字体大小模式",
   "mouseHoverReduceFontSizePx": "鼠标悬停时重载字体大小值",
   "mouseHoverReduceFontSizePxDesc": "默认值:14 单位: 像素",
+
+  "overloadLineHeight": "重载行高",
+  "overloadLineHeightDesc": "重载文档树项目行高",
+  "overloadLineHeightForce": "强制重载行高模式",
+  "overloadLineHeightForceDesc": "当上述开关无效时启用，且只有在前一个开关打开时才有效",
+  "overloadLineHeightPx": "文档树行高",
+  "overloadLineHeightPxDesc": "必须勾选上面的开关才能生效，默认值：28 单位：像素",
+
   "addCurrentDeviceIntoListLabel": "添加",
   "addCurrentDeviceIntoListDesc": "",
   "addCurrentDeviceIntoList": "将当前设备添加到列表中",
