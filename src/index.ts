@@ -66,7 +66,7 @@ export default class siyuan_doctree_compress extends Plugin {
          -webkit-line-clamp: unset;
          }`
 
-         this.applyStyles(css);
+        this.applyStyles(css);
 
     }
 
@@ -86,13 +86,13 @@ export default class siyuan_doctree_compress extends Plugin {
 
     hideContextualLabel() {
 
-       const css = `
+        const css = `
         .fn__flex-1.fn__flex-column.file-tree.sy__file .ariaLabel:hover {
             pointer-events: none;
           }                      
        `
 
-       this.applyStyles(css);
+        this.applyStyles(css);
 
 
     }
@@ -109,15 +109,15 @@ export default class siyuan_doctree_compress extends Plugin {
             line-height: ${_px_}px;
          }`
 
-         this.applyStyles(css);
+        this.applyStyles(css);
 
 
 
     }
 
     rmvDoctreeIcons(_force_) {
-            
-            const css = _force_ ? `
+
+        const css = _force_ ? `
             .b3-list-item__icon {
                 display: none !important;
             }
@@ -126,8 +126,8 @@ export default class siyuan_doctree_compress extends Plugin {
                 display: none;
             }
             `
-    
-            this.applyStyles(css);
+
+        this.applyStyles(css);
     }
 
 
