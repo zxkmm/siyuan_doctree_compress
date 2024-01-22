@@ -28,12 +28,7 @@ export default class siyuan_doctree_compress extends Plugin {
           display: none;
         }                    
        `
-
-        const head = document.head || document.getElementsByTagName('head')[0];
-        const style = document.createElement('style');
-        head.appendChild(style);
-        style.appendChild(document.createTextNode(css));
-
+        this.applyStyles(css);
     }
 
     displayIconButDIsableIconClick() {
@@ -43,13 +38,7 @@ export default class siyuan_doctree_compress extends Plugin {
         pointer-events: none;
         }
        `
-
-        const head = document.head || document.getElementsByTagName('head')[0];
-        const style = document.createElement('style');
-        head.appendChild(style);
-        style.appendChild(document.createTextNode(css));
-
-
+        this.applyStyles(css);
     }
 
     mouseOverReduceFontSize(_force_, _px_) {
@@ -61,11 +50,7 @@ export default class siyuan_doctree_compress extends Plugin {
          .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
             font-size: ${_px_}px;
          }`
-
-        const head = document.head || document.getElementsByTagName('head')[0];
-        const style = document.createElement('style');
-        head.appendChild(style);
-        style.appendChild(document.createTextNode(css));
+        this.applyStyles(css);
 
     }
 
@@ -81,14 +66,11 @@ export default class siyuan_doctree_compress extends Plugin {
          -webkit-line-clamp: unset;
          }`
 
-        const head = document.head || document.getElementsByTagName('head')[0];
-        const style = document.createElement('style');
-        head.appendChild(style);
-        style.appendChild(document.createTextNode(css));
+         this.applyStyles(css);
 
     }
 
-    mouseOverZeroPadding(_force_, _px_) { //AKA flow layout
+    mouseOverZeroPadding(_force_, _px_) {
         const css = _force_ ? `
         .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
             padding-left: ${_px_}px !important;
@@ -98,26 +80,19 @@ export default class siyuan_doctree_compress extends Plugin {
             padding-left: ${_px_}px;
         }`
 
-        const head = document.head || document.getElementsByTagName('head')[0];
-        const style = document.createElement('style');
-        head.appendChild(style);
-        style.appendChild(document.createTextNode(css));
+        this.applyStyles(css);
     }
 
 
     hideContextualLabel() {
 
-        const head = document.head || document.getElementsByTagName('head')[0];
-        const style = document.createElement('style');
-
-        const css = `
+       const css = `
         .fn__flex-1.fn__flex-column.file-tree.sy__file .ariaLabel:hover {
             pointer-events: none;
           }                      
        `
 
-        head.appendChild(style);
-        style.appendChild(document.createTextNode(css));
+       this.applyStyles(css);
 
 
     }
@@ -134,10 +109,7 @@ export default class siyuan_doctree_compress extends Plugin {
             line-height: ${_px_}px;
          }`
 
-        const head = document.head || document.getElementsByTagName('head')[0];
-        const style = document.createElement('style');
-        head.appendChild(style);
-        style.appendChild(document.createTextNode(css));
+         this.applyStyles(css);
 
 
 
@@ -155,18 +127,13 @@ export default class siyuan_doctree_compress extends Plugin {
             }
             `
     
-            const head = document.head || document.getElementsByTagName('head')[0];
-            const style = document.createElement('style');
-            head.appendChild(style);
-            style.appendChild(document.createTextNode(css));
+            this.applyStyles(css);
     }
 
 
     rmvdoctreeIcons(_force_) {
-
         const _elementType_ = ".b3-list-item__icon"
-        const _styleElement_ = document.createElement('style');
-        _styleElement_.textContent = _force_ == true ? `
+        const css = _force_ == true ? `
             .${_elementType_} {
                 display: none !important;
             }
@@ -175,28 +142,28 @@ export default class siyuan_doctree_compress extends Plugin {
                 display: none;
             }
         `
-            ;
-
-        document.head.appendChild(_styleElement_);
+        this.applyStyles(css);
     }
 
 
     overloadDoctreeFontSize(_force_, _px_) {
-
-
-        const _styleElement_ = document.createElement('style');
-        _styleElement_.textContent = _force_ == true ? `
-        .layout-tab-container.fn__flex-1 {
-            font-size: ${_px_}px;
-        }
-        ` : `
+        const css = _force_ == true ? `
         .layout-tab-container.fn__flex-1 {
             font-size: ${_px_}px !important;
         }
+        ` : `
+        .layout-tab-container.fn__flex-1 {
+            font-size: ${_px_}px;
+        }
         `
-            ;
+        this.applyStyles(css);
+    }
 
-        document.head.appendChild(_styleElement_);
+    applyStyles(css) {
+        const head = document.head || document.getElementsByTagName('head')[0];
+        const style = document.createElement('style');
+        head.appendChild(style);
+        style.appendChild(document.createTextNode(css));
     }
 
     async appendCurrentDeviceIntoList() {
