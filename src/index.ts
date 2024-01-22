@@ -611,10 +611,6 @@ export default class siyuan_doctree_compress extends Plugin {
                 */
 
 
-
-
-
-
                 if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_) { //main swtich and per deivce condition selecter
 
                     if (_overloadLineHeight_) { //overload line height sel
