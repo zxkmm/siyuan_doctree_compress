@@ -20,153 +20,13 @@ export default class siyuan_doctree_compress extends Plugin {
 
     private settingUtils: SettingUtils;
 
-    disableDocumentButtonsPopup() {
-        const css = `
-        .b3-list-item__icon.b3-tooltips.b3-tooltips__n:hover::after,
-        .b3-list-item__action.b3-tooltips.b3-tooltips__nw:hover::after,
-        .popover__block.b3-tooltips.b3-tooltips__nw:hover::after {
-          display: none;
-        }                    
-       `
 
-        const head = document.head || document.getElementsByTagName('head')[0];
-        const style = document.createElement('style');
-        head.appendChild(style);
-        style.appendChild(document.createTextNode(css));
+    rmvdoctreeIcons(_elementType_) {
 
-    }
+        const _hideIconForceSwitch_ = this.settingUtils.get("hideIconForce");
 
-    displayIconButDIsableIconClick() {
-        const css = `
-        .b3-list-item__icon.b3-tooltips.b3-tooltips__n[aria-label="修改图标"],
-        .b3-list-item__icon.b3-tooltips.b3-tooltips__n[aria-label="Change icon"] {
-        pointer-events: none;
-        }
-       `
-
-        const head = document.head || document.getElementsByTagName('head')[0];
-        const style = document.createElement('style');
-        head.appendChild(style);
-        style.appendChild(document.createTextNode(css));
-
-
-    }
-
-    mouseOverReduceFontSize(_force_, _px_) {
-        const css = _force_ ? `
-        .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
-            font-size: ${_px_}px !important;
-         }
-         ` : `
-         .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
-            font-size: ${_px_}px;
-         }`
-
-        const head = document.head || document.getElementsByTagName('head')[0];
-        const style = document.createElement('style');
-        head.appendChild(style);
-        style.appendChild(document.createTextNode(css));
-
-    }
-
-    mouseOverLineUnclamp(_force_) {
-        const css = _force_ ? `
-        .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
-            overflow:visible !important;
-         -webkit-line-clamp: unset;
-         }
-         ` : `
-         .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
-            overflow:visible;
-         -webkit-line-clamp: unset;
-         }`
-
-        const head = document.head || document.getElementsByTagName('head')[0];
-        const style = document.createElement('style');
-        head.appendChild(style);
-        style.appendChild(document.createTextNode(css));
-
-    }
-
-    mouseOverZeroPadding(_force_, _px_) { //AKA flow layout
-        const css = _force_ ? `
-        .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
-            padding-left: ${_px_}px !important;
-        }
-        ` : `
-        .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
-            padding-left: ${_px_}px;
-        }`
-
-        const head = document.head || document.getElementsByTagName('head')[0];
-        const style = document.createElement('style');
-        head.appendChild(style);
-        style.appendChild(document.createTextNode(css));
-    }
-
-
-    hideContextualLabel() {
-
-        const head = document.head || document.getElementsByTagName('head')[0];
-        const style = document.createElement('style');
-
-        const css = `
-        .fn__flex-1.fn__flex-column.file-tree.sy__file .ariaLabel:hover {
-            pointer-events: none;
-          }                      
-       `
-
-        head.appendChild(style);
-        style.appendChild(document.createTextNode(css));
-
-
-    }
-
-
-    overloadLineHeight(_force_, _px_) {
-
-        const css = _force_ ? `
-        .layout-tab-container .b3-list-item__text {
-            line-height: ${_px_}px !important;
-         }
-         ` : `
-         .layout-tab-container .b3-list-item__text {
-            line-height: ${_px_}px;
-         }`
-
-        const head = document.head || document.getElementsByTagName('head')[0];
-        const style = document.createElement('style');
-        head.appendChild(style);
-        style.appendChild(document.createTextNode(css));
-
-
-
-    }
-
-    rmvDoctreeIcons(_force_) {
-            
-            const css = _force_ ? `
-            .b3-list-item__icon {
-                display: none !important;
-            }
-            ` : `
-            .b3-list-item__icon {
-                display: none;
-            }
-            `
-    
-            const head = document.head || document.getElementsByTagName('head')[0];
-            const style = document.createElement('style');
-            head.appendChild(style);
-            style.appendChild(document.createTextNode(css));
-    }
-
-
-    rmvdoctreeIcons(_force_) {
-
-        const _elementType_ = ".b3-list-item__icon"
         const _styleElement_ = document.createElement('style');
-        _styleElement_.textContent = _force_ == true ? `
+        _styleElement_.textContent = _hideIconForceSwitch_ == true ? `
             .${_elementType_} {
                 display: none !important;
             }
@@ -181,17 +41,19 @@ export default class siyuan_doctree_compress extends Plugin {
     }
 
 
-    overloadDoctreeFontSize(_force_, _px_) {
+    overloadDoctreeFontSize() {
 
+        const _overloadFontSizeForceSwitch_ = this.settingUtils.get("overloadFontSizeForceSwitch");
+        const _overloadFontSizePx_ = this.settingUtils.get("overloadFontSizePx");
 
         const _styleElement_ = document.createElement('style');
-        _styleElement_.textContent = _force_ == true ? `
+        _styleElement_.textContent = _overloadFontSizeForceSwitch_ == true ? `
         .layout-tab-container.fn__flex-1 {
-            font-size: ${_px_}px;
+            font-size: ${_overloadFontSizePx_}px;
         }
         ` : `
         .layout-tab-container.fn__flex-1 {
-            font-size: ${_px_}px !important;
+            font-size: ${_overloadFontSizePx_}px !important;
         }
         `
             ;
@@ -596,12 +458,9 @@ export default class siyuan_doctree_compress extends Plugin {
                 const _mouseoverZeroPadding_ = this.settingUtils.get("mouseHoverZeroPadding");
                 const _mainSwitchStat_ = this.settingUtils.get("mainSwitch");
                 const _hideIcon_ = this.settingUtils.get("hideIcon");
-                const _hideIconForceSwitch_ = this.settingUtils.get("hideIconForce");
                 const _enableAdjustStaticDoctreePadding_ = this.settingUtils.get("enableAdjustStaticDoctreePadding");
                 const _compressionPercentage_ = this.settingUtils.get("Slider");
                 const _overloadFontSizeSwitch_ = this.settingUtils.get("overloadFontSizeSwitch");
-                const _overloadFontSizeForceSwitch_ = this.settingUtils.get("overloadFontSizeForceSwitch");
-                const _overloadFontSizePx_ = this.settingUtils.get("overloadFontSizePx");
                 const _mouseHoverZeroPaddingForce_ = this.settingUtils.get("mouseHoverZeroPaddingForce");
                 const _mouseHoverZeroPaddingPx_ = this.settingUtils.get("mouseHoverZeroPaddingPx");
                 const _mouseOverLineUnclamp_ = this.settingUtils.get("mouseOverLineUnclamp");
@@ -643,63 +502,171 @@ export default class siyuan_doctree_compress extends Plugin {
                 当前设备假， 仅允许开关关，后半段为真 ：假||真： 执行
                 */
 
+                // if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_) {
+                //     console.log("进入条件");
+                // } else {
+                //     console.log("不进入条件");
+                // }
 
-
-
-
-
-                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_) { //main swtich and per deivce condition selecter
-
-                    if (_overloadLineHeight_) { //overload line height sel
-                        this.overloadLineHeight(_overloadLineHeightForce_, _overloadLineHeightPx_);
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _overloadLineHeight_) { //overload line height sel
+                    function overloadLineHeight(css) {
+                        const head = document.head || document.getElementsByTagName('head')[0];
+                        const style = document.createElement('style');
+                        head.appendChild(style);
+                        style.appendChild(document.createTextNode(css));
                     }
 
+                    const css = _overloadLineHeightForce_ ? `
+                    .layout-tab-container .b3-list-item__text {
+                        line-height: ${_overloadLineHeightPx_}px !important;
+                     }
+                     ` : `
+                     .layout-tab-container .b3-list-item__text {
+                        line-height: ${_overloadLineHeightPx_}px;
+                     }`
 
-                    if (_hideIcon_) { //hide icon sel
-                        this.rmvDoctreeIcons(_hideIconForceSwitch_);
+                    overloadLineHeight(css);
+                }
+
+
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _hideIcon_) { //hide icon sel
+                    this.rmvdoctreeIcons('b3-list-item__icon');
+                }
+
+
+
+                if (_hideContextualLabel_) { //hide contextual label sel
+                    function hideContextualLabel(css) {
+                        const head = document.head || document.getElementsByTagName('head')[0];
+                        const style = document.createElement('style');
+                        head.appendChild(style);
+                        style.appendChild(document.createTextNode(css));
                     }
 
+                    const css = `
+                    .fn__flex-1.fn__flex-column.file-tree.sy__file .ariaLabel:hover {
+                        pointer-events: none;
+                      }                      
+                   `
+                    hideContextualLabel(css);
+                }
 
 
-                    if (_hideContextualLabel_) { //hide contextual label sel
-                        this.hideContextualLabel();
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _mouseoverZeroPadding_) { //TODO: 希望能更优雅一些。。。
+
+                    function addTempPaddingCss(css) {
+                        const head = document.head || document.getElementsByTagName('head')[0];
+                        const style = document.createElement('style');
+                        head.appendChild(style);
+                        style.appendChild(document.createTextNode(css));
                     }
 
+                    const css = _mouseHoverZeroPaddingForce_ ? `
+                .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
+                    padding-left: ${_mouseHoverZeroPaddingPx_}px !important;
+                }
+                ` : `
+                .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
+                    padding-left: ${_mouseHoverZeroPaddingPx_}px;
+                }`
 
-                    if (_mouseoverZeroPadding_) { //TODO: 希望能更优雅一些。。。
+                    addTempPaddingCss(css);
+                }
 
-                        this.mouseOverZeroPadding(_mouseHoverZeroPaddingForce_, _mouseHoverZeroPaddingPx_);
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _mouseOverLineUnclamp_) {
 
+                    function addReduceLineClampCss(css) {
+                        const head = document.head || document.getElementsByTagName('head')[0];
+                        const style = document.createElement('style');
+                        head.appendChild(style);
+                        style.appendChild(document.createTextNode(css));
                     }
 
-                    if (_mouseOverLineUnclamp_) {
+                    const css = _mouseOverLineUnclampForce_ ? `
+                    .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
+                        overflow:visible !important;
+                     -webkit-line-clamp: unset;
+                     }
+                     ` : `
+                     .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
+                        overflow:visible;
+                     -webkit-line-clamp: unset;
+                     }`
 
-                        this.mouseOverLineUnclamp(_mouseOverLineUnclampForce_);
+                    addReduceLineClampCss(css);
+                }
+
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _mouseOverReduceFontSize_) { //mouse hover reduce font size sel
+
+                    function addTempPaddingCss(css) {
+                        const head = document.head || document.getElementsByTagName('head')[0];
+                        const style = document.createElement('style');
+                        head.appendChild(style);
+                        style.appendChild(document.createTextNode(css));
                     }
 
-                    if (_mouseOverReduceFontSize_) { //mouse hover reduce font size sel
+                    const css = _mouseOverReduceFontSizeForce_ ? `
+                    .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
+                        font-size: ${_mouseHoverReduceFontSizePx_}px !important;
+                     }
+                     ` : `
+                     .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
+                        font-size: ${_mouseHoverReduceFontSizePx_}px;
+                     }`
 
-                        this.mouseOverReduceFontSize(_mouseOverReduceFontSizeForce_, _mouseHoverReduceFontSizePx_);
+                    addTempPaddingCss(css);
+                }
+
+                //static options
+
+
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _overloadFontSizeSwitch_) { //overload font size sel
+                    this.overloadDoctreeFontSize();
+                }
+
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _displayIconButDIsableIconClick_) {// display icon but disable icon click sel
+                    function hideIconPopup(css) {
+                        const head = document.head || document.getElementsByTagName('head')[0];
+                        const style = document.createElement('style');
+                        head.appendChild(style);
+                        style.appendChild(document.createTextNode(css));
                     }
 
-                    //static options
+                    const css = `
+                    .b3-list-item__icon.b3-tooltips.b3-tooltips__n[aria-label="修改图标"],
+                    .b3-list-item__icon.b3-tooltips.b3-tooltips__n[aria-label="Change icon"] {
+                    pointer-events: none;
+                    }
+                   `
+                    hideIconPopup(css);
+                }
 
-
-                    if (_overloadFontSizeSwitch_) { //overload font size sel
-                        this.overloadDoctreeFontSize(_overloadFontSizeForceSwitch_, _overloadFontSizePx_);
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_ && _disableDocumentButtonsPopup_) {
+                    function makeIconPopupAnArrow(css) {
+                        const head = document.head || document.getElementsByTagName('head')[0];
+                        const style = document.createElement('style');
+                        head.appendChild(style);
+                        style.appendChild(document.createTextNode(css));
                     }
 
-                    if (_displayIconButDIsableIconClick_) {// display icon but disable icon click sel
-                        this.displayIconButDIsableIconClick();
-                    }
+                    const css = `
+                    .b3-list-item__icon.b3-tooltips.b3-tooltips__n:hover::after,
+                    .b3-list-item__action.b3-tooltips.b3-tooltips__nw:hover::after,
+                    .popover__block.b3-tooltips.b3-tooltips__nw:hover::after {
+                      display: none;
+                    }                    
+                   `
+                    makeIconPopupAnArrow(css);
+                }
 
-                    if (_disableDocumentButtonsPopup_) {
-                        this.disableDocumentButtonsPopup();
-                    }
+
+
+                if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_) { //main sel
 
 
                     if (!_mouseoverZeroPadding_ && _enableAdjustStaticDoctreePadding_) { //主开关打开 && 鼠标悬停零缩进关闭 && 分别缩进开关启用
 
+                        // console.log("主开关打开 && 鼠标悬停零缩进关闭");
 
 
                         const doctreeObserver = new MutationObserver(mutations => {
@@ -709,7 +676,7 @@ export default class siyuan_doctree_compress extends Plugin {
                         const config = { attributes: true, childList: true, subtree: true };
 
                         // doctreeBbserver.observe(document, config);
-
+                        //
                         document.querySelectorAll('.fn__flex-column').forEach(element => {
                             doctreeObserver.observe(element, config);
                         });
@@ -718,29 +685,79 @@ export default class siyuan_doctree_compress extends Plugin {
                         function handleDomChanges() {
 
                             const elements = document.querySelectorAll('.b3-list-item');
-
+                        
                             elements.forEach(element => {
                                 const isCompressed = element.querySelector('.b3-list-item__toggle').getAttribute('data-compressed');
-
+                        
                                 if (!isCompressed) {
                                     const originalPadding = parseFloat(window.getComputedStyle(element.querySelector('.b3-list-item__toggle')).paddingLeft);
-
+                        
                                     const compressedPadding = originalPadding * (1 - _compressionPercentage_ / 100);
-
+                        
                                     if (element.getAttribute('data-type') != 'navigation-root') { //prevent compress notebook
-
+                        
                                         console.dir(element.getAttribute('data-type'));
-
+                        
                                         element.querySelector('.b3-list-item__toggle').style.paddingLeft = `${compressedPadding}px`;
-
+                        
                                         element.querySelector('.b3-list-item__toggle').setAttribute('data-compressed', 'true'); //mark as compressed prevent nested compression
                                     }
                                 }
                             });
                         }
-
+                        
 
                     }
+                    //
+
+                    // if (_mouseoverZeroPadding_) { //主开关打开 && 鼠标悬停零缩进打开 //旧方案，暂时保留！！！
+
+
+                    //     console.log("主开关打开 && 鼠标悬停零缩进打开");
+                    //     function handleDomChanges() {
+                    //         const elements = document.querySelectorAll('.b3-list-item:not(.event-added)');
+
+                    //         elements.forEach(element => {
+                    //             const toggleElement = element.querySelector('.b3-list-item__toggle');
+                    //             if (toggleElement) {
+                    //                 const originalPadding = window.getComputedStyle(toggleElement).paddingLeft;
+                    //                 toggleElement.setAttribute('data-original-padding', originalPadding);
+
+                    //                 element.classList.add('event-added');
+                    //             }
+                    //         });
+                    //     }
+
+                    //     const doctreeObserver = new MutationObserver(mutations => {
+                    //         mutations.forEach(mutation => {
+                    //             if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                    //                 const element = mutation.target;
+                    //                 const toggleElement = element.querySelector('.b3-list-item__toggle');
+                    //                 if (toggleElement) {
+                    //                     const originalPadding = toggleElement.getAttribute('data-original-padding');
+                    //                     if (originalPadding) {
+                    //                         toggleElement.style.paddingLeft = originalPadding;
+                    //                     }
+                    //                 }
+                    //             }
+                    //         });
+
+                    //         handleDomChanges();
+                    //     });
+
+                    //     const config = { attributes: true, childList: true, subtree: true };
+
+                    //     document.querySelectorAll('.fn__flex-1').forEach(element => {
+                    //         doctreeObserver.observe(element, config);
+                    //     });
+
+                    //     handleDomChanges();
+
+                    // }
+
+                    // //
+
+
 
 
                 }
@@ -754,10 +771,30 @@ export default class siyuan_doctree_compress extends Plugin {
 
 
 
+
+
+
+
     async onunload() {
         await this.settingUtils.save();
         window.location.reload();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
