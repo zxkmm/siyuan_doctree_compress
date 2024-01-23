@@ -116,13 +116,13 @@ export default class siyuan_doctree_compress extends Plugin {
     }
 
     addFrontLine(_line_location_, _padding_, _border_) {
-        
-        if (_padding_ >= _line_location_ ){
+
+        if (_padding_ >= _line_location_) {
 
             _padding_ = _line_location_
 
         }
-        
+
         const css = `
 
         .layout-tab-container .b3-list-item > .b3-list-item__toggle {
@@ -307,7 +307,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "highPerformanceZoneHint",
             value: "",
             type: "hint",
-            title: this.i18n.experimentFeatureHintTitle,
+            title: "I. " + this.i18n.experimentFeatureHintTitle,
             description: this.i18n.experimentFeatureHintDesc,
         });
 
@@ -315,7 +315,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "mouseHoverZeroPadding",
             value: false,
             type: "checkbox",
-            title: this.i18n.mouseHoverZeroPadding,
+            title: "I.1. " + this.i18n.mouseHoverZeroPadding,
             description: this.i18n.mouseHoverZeroPaddingDesc,
         });
 
@@ -323,7 +323,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "mouseHoverZeroPaddingForce",
             value: true,
             type: "checkbox",
-            title: this.i18n.mouseHoverZeroPaddingForce,
+            title: "I.1.1. " + this.i18n.mouseHoverZeroPaddingForce,
             description: this.i18n.mouseHoverZeroPaddingForceDesc,
         });
 
@@ -331,7 +331,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "mouseHoverZeroPaddingPx",
             value: 4,
             type: "slider",
-            title: this.i18n.mouseHoverZeroPaddingPx,
+            title: "I.1.2. " + this.i18n.mouseHoverZeroPaddingPx,
             description: this.i18n.mouseHoverZeroPaddingPxDesc,
             slider: {
                 min: 0,
@@ -344,7 +344,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "mouseOverLineUnclamp",
             value: false,
             type: "checkbox",
-            title: this.i18n.mouseOverLineUnclampTitle,
+            title: "I.2. " + this.i18n.mouseOverLineUnclampTitle,
             description: this.i18n.mouseOverLineUnclampDesc,
 
         });
@@ -353,7 +353,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "mouseOverLineUnclampForce",
             value: false,
             type: "checkbox",
-            title: this.i18n.mouseOverLineUnclampForceTitle,
+            title: "I.2.1. " + this.i18n.mouseOverLineUnclampForceTitle,
             description: this.i18n.mouseOverLineUnclampForceDesc,
 
         });
@@ -362,7 +362,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "mouseOverReduceFontSize",
             value: false,
             type: "checkbox",
-            title: this.i18n.mouseOverReduceFontSizeTitle,
+            title: "I.3. " + this.i18n.mouseOverReduceFontSizeTitle,
             description: this.i18n.mouseOverReduceFontSizeDesc,
 
         });
@@ -371,7 +371,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "mouseOverReduceFontSizeForce",
             value: false,
             type: "checkbox",
-            title: this.i18n.mouseOverReduceFontSizeForceTitle,
+            title: "I.3.1. " + this.i18n.mouseOverReduceFontSizeForceTitle,
             description: this.i18n.mouseOverReduceFontSizeForceDesc,
 
         });
@@ -380,7 +380,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "mouseHoverReduceFontSizePx",
             value: 4,
             type: "slider",
-            title: this.i18n.mouseHoverReduceFontSizePx,
+            title: "I.3.2. " + this.i18n.mouseHoverReduceFontSizePx,
             description: this.i18n.mouseHoverReduceFontSizePxDesc,
             slider: {
                 min: 1,
@@ -394,7 +394,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "disable document buttons popup",
             value: false,
             type: "checkbox",
-            title: this.i18n.disableDocumentButtonsPopup,
+            title: "I.4. " + this.i18n.disableDocumentButtonsPopup,
             description: this.i18n.disableDocumentButtonsPopupDesc,
         });
 
@@ -402,7 +402,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "hideContextualLabel",
             value: false,
             type: "checkbox",
-            title: this.i18n.hideContextualLabel,
+            title: "I.5. " + this.i18n.hideContextualLabel,
             description: this.i18n.hideContextualLabelDesc,
         });
 
@@ -410,7 +410,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "hintDangerousZone",
             value: "",
             type: "hint",
-            title: this.i18n.hintDangerousZoneTitle,
+            title: "II. " + this.i18n.hintDangerousZoneTitle,
             description: this.i18n.hintDangerousZoneDesc,
         });
 
@@ -418,7 +418,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "enableAdjustStaticDoctreePadding",
             value: false,
             type: "checkbox",
-            title: this.i18n.enableAdjustStaticDoctreePadding,
+            title: "II.1. " + this.i18n.enableAdjustStaticDoctreePadding,
             description: this.i18n.enableAdjustStaticDoctreePaddingDesc,
         });
 
@@ -426,7 +426,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "Slider",
             value: 50,
             type: "slider",
-            title: this.i18n.compressPercent,
+            title: "II.1.1. " + this.i18n.compressPercent,
             description: this.i18n.compressPercentDesc,
             slider: {
                 min: 0,
@@ -439,7 +439,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "enableDoctreeFrontLine",
             value: false,
             type: "checkbox",
-            title: this.i18n.enableDoctreeFrontLine,
+            title: "II.2. " + this.i18n.enableDoctreeFrontLine,
             description: this.i18n.enableDoctreeFrontLineDesc,
         });
 
@@ -447,7 +447,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "doctreeFrontLinePosition",
             value: 20,
             type: "slider",
-            title: this.i18n.doctreeFrontLinePosition,
+            title: "II.2.1. " + this.i18n.doctreeFrontLinePosition,
             description: this.i18n.doctreeFrontLinePositionDesc,
             slider: {
                 min: 0,
@@ -460,7 +460,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "doctreeFrontLinePadding",
             value: 20,
             type: "slider",
-            title: this.i18n.doctreeFrontLinePadding,
+            title: "II.2.2. " + this.i18n.doctreeFrontLinePadding,
             description: this.i18n.doctreeFrontLinePaddingDesc,
             slider: {
                 min: 6,
@@ -473,7 +473,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "doctreeFrontLineBorder",
             value: 2,
             type: "slider",
-            title: this.i18n.doctreeFrontLineBorder,
+            title: "II.2.3. " + this.i18n.doctreeFrontLineBorder,
             description: this.i18n.doctreeFrontLineBorderDesc,
             slider: {
                 min: 1,
@@ -486,7 +486,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "enableDoctreeSeperateLine",
             value: false,
             type: "checkbox",
-            title: this.i18n.enableDoctreeSeperateLine,
+            title: "II.3. " + this.i18n.enableDoctreeSeperateLine,
             description: this.i18n.enableDoctreeSeperateLineDesc,
         });
 
@@ -494,7 +494,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "doctreeSeperateLineBorder",
             value: 2,
             type: "slider",
-            title: this.i18n.doctreeSeperateLineBorder,
+            title: "II.3.1. " + this.i18n.doctreeSeperateLineBorder,
             description: this.i18n.doctreeSeperateLineBorderDesc,
             slider: {
                 min: 1,
@@ -507,7 +507,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "hideIcon",
             value: false,
             type: "checkbox",
-            title: this.i18n.hideIcon,
+            title: "II.4. " + this.i18n.hideIcon,
             description: this.i18n.hideIconDesc,
         }),
 
@@ -515,7 +515,7 @@ export default class siyuan_doctree_compress extends Plugin {
                 key: "hideIconForce",
                 value: false,
                 type: "checkbox",
-                title: this.i18n.hideIconForce,
+                title: "II.4.1. " + this.i18n.hideIconForce,
                 description: this.i18n.hideIconDescForce,
             }),
 
@@ -523,7 +523,7 @@ export default class siyuan_doctree_compress extends Plugin {
                 key: "displayIconButDisableIconClick",
                 value: false,
                 type: "checkbox",
-                title: this.i18n.displayIconButDisableIconClick,
+                title: "II.5. " + this.i18n.displayIconButDisableIconClick,
                 description: this.i18n.displayIconButDisableIconClickDesc,
             });
 
@@ -531,7 +531,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "overloadFontSizeSwitch",
             value: false,
             type: "checkbox",
-            title: this.i18n.overloadFontSizeSwitch,
+            title: "II.6. " + this.i18n.overloadFontSizeSwitch,
             description: this.i18n.overloadFontSizeSwitchDesc,
         }),
 
@@ -540,7 +540,7 @@ export default class siyuan_doctree_compress extends Plugin {
                 key: "overloadFontSizeForceSwitch",
                 value: false,
                 type: "checkbox",
-                title: this.i18n.overloadFontSizeForceSwitch,
+                title: "II.6.1. " + this.i18n.overloadFontSizeForceSwitch,
                 description: this.i18n.overloadFontSizeForceSwitchDesc,
             }),
 
@@ -548,7 +548,7 @@ export default class siyuan_doctree_compress extends Plugin {
                 key: "overloadFontSizePx",
                 value: 14,
                 type: "slider",
-                title: this.i18n.overloadFontSizePx,
+                title: "II.6.2. " + this.i18n.overloadFontSizePx,
                 description: this.i18n.overloadFontSizePxDesc,
                 slider: {
                     min: 5,
@@ -561,7 +561,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "overloadLineHeight",
             value: false,
             type: "checkbox",
-            title: this.i18n.overloadLineHeight,
+            title: "II.7. " + this.i18n.overloadLineHeight,
             description: this.i18n.overloadLineHeightDesc,
         });
 
@@ -569,7 +569,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "overloadLineHeightForce",
             value: false,
             type: "checkbox",
-            title: this.i18n.overloadLineHeightForce,
+            title: "II.7.1. " + this.i18n.overloadLineHeightForce,
             description: this.i18n.overloadLineHeightForceDesc,
         });
 
@@ -577,7 +577,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "overloadLineHeightPx",
             value: 28,
             type: "slider",
-            title: this.i18n.overloadLineHeightPx,
+            title: "II.7.2. " + this.i18n.overloadLineHeightPx,
             description: this.i18n.overloadLineHeightPxDesc,
             slider: {
                 min: 1,
@@ -590,7 +590,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "hintDeviceSpecificSettings",
             value: "",
             type: "hint",
-            title: this.i18n.hintDeviceSpecificSettingsTitle,
+            title: "III. " + this.i18n.hintDeviceSpecificSettingsTitle,
             description: this.i18n.hintDeviceSpecificSettingsDesc,
         });
 
@@ -598,7 +598,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "onlyEnableListedDevices",
             value: false,
             type: "checkbox",
-            title: this.i18n.onlyEnableListedDevices,
+            title: "III.1. " + this.i18n.onlyEnableListedDevices,
             description: this.i18n.onlyEnableListedDevicesDesc,
         });
 
@@ -606,7 +606,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "enableDeviceList",
             value: "",
             type: "textarea",
-            title: this.i18n.enableDeviceList,
+            title: "III.2. " + this.i18n.enableDeviceList,
             description: this.i18n.enableDeviceListDesc,
         });
 
@@ -614,7 +614,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "addCurrentDeviceIntoList",
             value: "",
             type: "button",
-            title: this.i18n.addCurrentDeviceIntoList,
+            title: "III.3. " + this.i18n.addCurrentDeviceIntoList,
             description: this.i18n.addCurrentDeviceIntoListDesc,
             button: {
                 label: this.i18n.addCurrentDeviceIntoListLabel,
@@ -628,7 +628,7 @@ export default class siyuan_doctree_compress extends Plugin {
             key: "removeCurrentDeviceFromList",
             value: "",
             type: "button",
-            title: this.i18n.removeCurrentDeviceFromList,
+            title: "III.4. " + this.i18n.removeCurrentDeviceFromList,
             description: this.i18n.removeCurrentDeviceFromListDesc,
             button: {
                 label: this.i18n.removeCurrentDeviceFromListLabel,
@@ -789,11 +789,11 @@ export default class siyuan_doctree_compress extends Plugin {
                         this.disableDocumentButtonsPopup();
                     }
 
-                    if(_enableDoctreeFrontLine_ && !_mouseoverZeroPadding_&& !_enableAdjustStaticDoctreePadding_){
+                    if (_enableDoctreeFrontLine_ && !_mouseoverZeroPadding_ && !_enableAdjustStaticDoctreePadding_) {
                         this.addFrontLine(_doctreeFrontLinePosition_, _doctreeFrontLinePadding_, _doctreeFrontLineBorder_);
                     }
 
-                    if(_enableDoctreeSeperateLine_){
+                    if (_enableDoctreeSeperateLine_) {
                         this.addSeperateLine(_doctreeSeperateLineBorder_);
                     }
 
