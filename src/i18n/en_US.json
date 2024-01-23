@@ -73,5 +73,19 @@
   "displayIconButDisableIconClick":"Disable icon click",
 
   "disableDocumentButtonsPopup":"Disable document buttons popup",
-  "disableDocumentButtonsPopupDesc":"Disable document buttons popup when mouse hovering"
+  "disableDocumentButtonsPopupDesc":"Disable document buttons popup when mouse hovering",
+
+  "enableDoctreeFrontLine": "Enable Doctree Front Line",
+  "enableDoctreeFrontLineDesc": "Enable Doctree Front Line, you must turn off custom padding and flow layout to take effect",
+  "doctreeFrontLinePosition": "Doctree Front Line Position",
+  "doctreeFrontLinePositionDesc": "Define doctree Front Line Position, default is 20, unit: px",
+  "doctreeFrontLinePadding": "Doctree Front Line Padding",
+  "doctreeFrontLinePaddingDesc": "Define doctree Front Line Padding, default is 20, unit: px",
+  "doctreeFrontLineBorder": "Doctree Front Line Border",
+  "doctreeFrontLineBorderDesc": "Define doctree Front Line Border, default is 2, unit: px",
+  "enableDoctreeSeperateLine": "Enable Doctree Seperate Line",
+  "enableDoctreeSeperateLineDesc": "Enable Doctree Seperate Line",
+  "doctreeSeperateLineBorder": "Doctree Seperate Line Border",
+  "doctreeSeperateLineBorderDesc": "Define doctree Seperate Line Border, default is 2, unit: px"
+
 }
