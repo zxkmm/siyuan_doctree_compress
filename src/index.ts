@@ -115,25 +115,32 @@ export default class siyuan_doctree_compress extends Plugin {
 
     }
 
-    addFrontLine() {
+    addFrontLine(_line_location_, _padding_, _border_) {
+        
+        if (_padding_ >= _line_location_ ){
+
+            _padding_ = _line_location_
+
+        }
+        
         const css = `
 
         .layout-tab-container .b3-list-item > .b3-list-item__toggle {
             padding-left: 4px !important;
         }
 
-        ul ul:before {
+        .layout-tab-container ul ul:before {
             content: "";
             position: absolute;
             top: 0;
             bottom: 0;
-            left: 20px;
-            border-left: 2px solid var(--b3-theme-background-light);
+            left: ${_line_location_}px;
+            border-left: ${_border_}px solid var(--b3-theme-background-light);
         }
         
-        ul ul {
+        .layout-tab-container ul ul {
             position: relative;
-            padding-left: 20px;
+            padding-left: ${_padding_}px;
         }
         
         `
@@ -141,10 +148,10 @@ export default class siyuan_doctree_compress extends Plugin {
     }
 
 
-    addSeperateLine() {
+    addSeperateLine(_border_) {
         const css = `
         .layout-tab-container .b3-list-item__text {
-            border-top: 1px solid #eaecef;
+            border-top: ${_border_}px solid #eaecef;
         }
         `
         this.applyStyles(css);
@@ -429,6 +436,74 @@ export default class siyuan_doctree_compress extends Plugin {
         });
 
         this.settingUtils.addItem({
+            key: "enableDoctreeFrontLine",
+            value: false,
+            type: "checkbox",
+            title: this.i18n.enableDoctreeFrontLine,
+            description: this.i18n.enableDoctreeFrontLineDesc,
+        });
+
+        this.settingUtils.addItem({
+            key: "doctreeFrontLinePosition",
+            value: 20,
+            type: "slider",
+            title: this.i18n.doctreeFrontLinePosition,
+            description: this.i18n.doctreeFrontLinePositionDesc,
+            slider: {
+                min: 0,
+                max: 60,
+                step: 1,
+            }
+        });
+
+        this.settingUtils.addItem({
+            key: "doctreeFrontLinePadding",
+            value: 20,
+            type: "slider",
+            title: this.i18n.doctreeFrontLinePadding,
+            description: this.i18n.doctreeFrontLinePaddingDesc,
+            slider: {
+                min: 6,
+                max: 60,
+                step: 1,
+            }
+        });
+
+        this.settingUtils.addItem({
+            key: "doctreeFrontLineBorder",
+            value: 2,
+            type: "slider",
+            title: this.i18n.doctreeFrontLineBorder,
+            description: this.i18n.doctreeFrontLineBorderDesc,
+            slider: {
+                min: 1,
+                max: 20,
+                step: 1,
+            }
+        });
+
+        this.settingUtils.addItem({
+            key: "enableDoctreeSeperateLine",
+            value: false,
+            type: "checkbox",
+            title: this.i18n.enableDoctreeSeperateLine,
+            description: this.i18n.enableDoctreeSeperateLineDesc,
+        });
+
+        this.settingUtils.addItem({
+            key: "doctreeSeperateLineBorder",
+            value: 2,
+            type: "slider",
+            title: this.i18n.doctreeSeperateLineBorder,
+            description: this.i18n.doctreeSeperateLineBorderDesc,
+            slider: {
+                min: 1,
+                max: 20,
+                step: 1,
+            }
+        });
+
+        this.settingUtils.addItem({
             key: "hideIcon",
             value: false,
             type: "checkbox",
@@ -619,23 +694,41 @@ export default class siyuan_doctree_compress extends Plugin {
                 const _overloadLineHeight_ = this.settingUtils.get("overloadLineHeight");
                 const _overloadLineHeightForce_ = this.settingUtils.get("overloadLineHeightForce");
                 const _overloadLineHeightPx_ = this.settingUtils.get("overloadLineHeightPx");
+                const _enableDoctreeFrontLine_ = this.settingUtils.get("enableDoctreeFrontLine");
+                const _doctreeFrontLinePosition_ = this.settingUtils.get("doctreeFrontLinePosition");
+                const _doctreeFrontLinePadding_ = this.settingUtils.get("doctreeFrontLinePadding");
+                const _doctreeFrontLineBorder_ = this.settingUtils.get("doctreeFrontLineBorder");
+                const _enableDoctreeSeperateLine_ = this.settingUtils.get("enableDoctreeSeperateLine");
+                const _doctreeSeperateLineBorder_ = this.settingUtils.get("doctreeSeperateLineBorder");
 
-                // console.log({
-                //     mouseoverZeroPadding: _mouseoverZeroPadding_,
-                //     mainSwitchStat: _mainSwitchStat_,
-                //     hideIcon: _hideIcon_,
-                //     compressionPercentage: _compressionPercentage_,
-                //     overloadFontSizeSwitch: _overloadFontSizeSwitch_,
-                //     mouseHoverZeroPaddingForce: _mouseHoverZeroPaddingForce_,
-                //     mouseHoverZeroPaddingPx: _mouseHoverZeroPaddingPx_,
-                //     mouseOverLineUnclamp: _mouseOverLineUnclamp_,
-                //     mouseOverLineUnclampForce: _mouseOverLineUnclampForce_,
-                //     mouseOverReduceFontSize: _mouseOverReduceFontSize_,
-                //     mouseOverReduceFontSizeForce: _mouseOverReduceFontSizeForce_,
-                //     mouseHoverReduceFontSizePx: _mouseHoverReduceFontSizePx_,
-                //     onlyEnableListedDevices: _onlyEnableListedDevices_,
-                //     currentDeviceInList: _currentDeviceInList_
-                // });
+                console.log({
+                    mouseoverZeroPadding: _mouseoverZeroPadding_,
+                    mainSwitchStat: _mainSwitchStat_,
+                    hideIcon: _hideIcon_,
+                    compressionPercentage: _compressionPercentage_,
+                    overloadFontSizeSwitch: _overloadFontSizeSwitch_,
+                    mouseHoverZeroPaddingForce: _mouseHoverZeroPaddingForce_,
+                    mouseHoverZeroPaddingPx: _mouseHoverZeroPaddingPx_,
+                    mouseOverLineUnclamp: _mouseOverLineUnclamp_,
+                    mouseOverLineUnclampForce: _mouseOverLineUnclampForce_,
+                    mouseOverReduceFontSize: _mouseOverReduceFontSize_,
+                    mouseOverReduceFontSizeForce: _mouseOverReduceFontSizeForce_,
+                    mouseHoverReduceFontSizePx: _mouseHoverReduceFontSizePx_,
+                    onlyEnableListedDevices: _onlyEnableListedDevices_,
+                    currentDeviceInList: _currentDeviceInList_,
+                    hideContextualLabel: _hideContextualLabel_,
+                    displayIconButDIsableIconClick: _displayIconButDIsableIconClick_,
+                    disableDocumentButtonsPopup: _disableDocumentButtonsPopup_,
+                    overloadLineHeight: _overloadLineHeight_,
+                    overloadLineHeightForce: _overloadLineHeightForce_,
+                    overloadLineHeightPx: _overloadLineHeightPx_,
+                    enableDoctreeFrontLine: _enableDoctreeFrontLine_,
+                    doctreeFrontLinePosition: _doctreeFrontLinePosition_,
+                    doctreeFrontLinePadding: _doctreeFrontLinePadding_,
+                    doctreeFrontLineBorder: _doctreeFrontLineBorder_,
+                    enableDoctreeSeperateLine: _enableDoctreeSeperateLine_,
+                    doctreeSeperateLineBorder: _doctreeSeperateLineBorder_,
+                });
 
 
                 /*条件列表：
@@ -648,7 +741,6 @@ export default class siyuan_doctree_compress extends Plugin {
 
                 if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_) { //main swtich and per deivce condition selecter
 
-                    this.addFrontLine();
 
                     if (_overloadLineHeight_) { //overload line height sel
                         this.overloadLineHeight(_overloadLineHeightForce_, _overloadLineHeightPx_);
@@ -695,6 +787,14 @@ export default class siyuan_doctree_compress extends Plugin {
 
                     if (_disableDocumentButtonsPopup_) {
                         this.disableDocumentButtonsPopup();
+                    }
+
+                    if(_enableDoctreeFrontLine_ && !_mouseoverZeroPadding_&& !_enableAdjustStaticDoctreePadding_){
+                        this.addFrontLine(_doctreeFrontLinePosition_, _doctreeFrontLinePadding_, _doctreeFrontLineBorder_);
+                    }
+
+                    if(_enableDoctreeSeperateLine_){
+                        this.addSeperateLine(_doctreeSeperateLineBorder_);
                     }
 
 
