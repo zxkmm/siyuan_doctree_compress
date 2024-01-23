@@ -115,6 +115,41 @@ export default class siyuan_doctree_compress extends Plugin {
 
     }
 
+    addFrontLine() {
+        const css = `
+
+        .layout-tab-container .b3-list-item > .b3-list-item__toggle {
+            padding-left: 4px !important;
+        }
+
+        ul ul:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            border-left: 2px solid var(--b3-theme-background-light);
+        }
+        
+        ul ul {
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        `
+        this.applyStyles(css);
+    }
+
+
+    addSeperateLine() {
+        const css = `
+        .layout-tab-container .b3-list-item__text {
+            border-top: 1px solid #eaecef;
+        }
+        `
+        this.applyStyles(css);
+    }
+
     rmvDoctreeIcons(_force_) {
 
         const css = _force_ ? `
@@ -612,6 +647,8 @@ export default class siyuan_doctree_compress extends Plugin {
 
 
                 if ((_currentDeviceInList_ || !_onlyEnableListedDevices_) && _mainSwitchStat_) { //main swtich and per deivce condition selecter
+
+                    this.addFrontLine();
 
                     if (_overloadLineHeight_) { //overload line height sel
                         this.overloadLineHeight(_overloadLineHeightForce_, _overloadLineHeightPx_);
