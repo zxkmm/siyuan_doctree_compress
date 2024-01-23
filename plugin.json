@@ -2,7 +2,7 @@
   "name": "siyuan_doctree_compress",
   "author": "zxkmm",
   "url": "https://github.com/zxkmm/siyuan_doctree_compress",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "minAppVersion": "2.12.1",
   "backends": [
     "windows",
@@ -22,7 +22,7 @@
   },
   "description": {
     "en_US": "(doctree compress) provides up to 12 functions, including flow layout/ indentation adjustment/ hide bubble/ shield button/ font size/ mouse hover, etc., to completely customize your document tree",
-    "zh_CN": "（文档树压缩）提供多达12余项功能，包括 流动布局/ 缩进调节/ 隐藏气泡/ 屏蔽按钮/ 字体大小/ 鼠标悬浮等，完全自定义您的文档树"
+    "zh_CN": "（文档树压缩）提供多达20余项功能，包括 流动布局/ 缩进调节/ 隐藏气泡/ 屏蔽按钮/ 字体大小/ 鼠标悬浮/ 层级竖线/ 分割线/ 等等，完全自定义您的文档树"
   },
   "readme": {
     "en_US": "README.md",
@@ -34,6 +34,6 @@
     ]
   },
   "keywords": [
-    "文档树", "压缩", "自定义", "compress", "doctree", "modify", "zxkmm"
+    "文档树", "压缩", "自定义", "compress", "doctree", "modify", "zxkmm", "文档树压缩", "文档树自定义", "siyuan_doctree_compress"
   ]
 }
