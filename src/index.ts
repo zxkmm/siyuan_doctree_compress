@@ -117,7 +117,7 @@ export default class siyuan_doctree_compress extends Plugin {
 
     addFrontLine(_line_location_, _padding_, _border_) {
 
-        if (_padding_ >= _line_location_) {
+        if (Number(_padding_) >= Number(_line_location_)) {
 
             _padding_ = _line_location_
 
