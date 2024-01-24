@@ -11,7 +11,7 @@
   "hideIconDescForce": "上面开关没有作用时再启用，且仅在上一个开关启用时有效",
   "hintTitle": "关于",
   "hintDesc": "<ul><li>● 由<a href='https://github.com/zxkmm'>zxkmm</a>制作， MIT 协议开源。</li><li>● 如果您喜欢这个插件，请给我的 GitHub 仓库点亮免费的星星⭐（Star）。</li><li>● 链接：<a href='https://github.com/zxkmm/siyuan_doctree_compress'>https://github.com/zxkmm/siyuan_doctree_compress</a></li><li>",
-  "experimentFeatureHintDesc": "设置文档树的静态外观（可能和第三方主题不兼容）",
+  "experimentFeatureHintDesc": "设置文档树的动态外观（可能和第三方主题不兼容）",
   "experimentFeatureHintTitle": "<hr style='border: none; border-top: 2px solid;'>● 动态文档树布局设置",
   "hintDangerousZoneTitle": "<hr style='border: none; border-top: 2px solid;'>● 静态文档树布局设置",
   "hintDangerousZoneDesc": "设置文档树的静态外观（可能和第三方主题不兼容）",

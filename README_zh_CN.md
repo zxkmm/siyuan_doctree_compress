@@ -28,11 +28,13 @@
 
 
 
- ## changelog 0.1.2
- - add support for mobile serving mode
- - add support for mouse hoving font size overload
- - add support for unclamp when mouse hoving
- - fix influenced setting panel
+## 0.3.0
+- 添加了VSCode风格的文档树层级竖线
+- 添加了隐藏文档树图标气泡的功能
+- 添加了隐藏文档树项目详情气泡的功能
+- 添加了文档树项目分隔符
+- 添加了禁用图标点击但保留图标的功能
+- 添加了行高设置功能
 
 
 ## 链接

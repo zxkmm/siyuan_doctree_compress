@@ -21,11 +21,13 @@ This makes it difficult or even impossible to click on multi-level subdirectorie
 ![static_area](https://tvax3.sinaimg.cn/large/0089YRx6gy1hlvq6uhx16j30z00oik89.jpg)
 
 
-## changelog 0.1.2
-- add support for mobile serving mode
-- add support for mouse hoving font size overload
-- add support for unclamp when mouse hoving
-- fix influenced setting panel
+## 0.3.0
+- add vscode style doctree front line
+- add hide doctree icon label
+- add hide doctree item content
+- add doctree item seperator
+- add disable icon click but keep icon
+- add line height setting
 
 
 ## Links

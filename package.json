@@ -1,11 +1,11 @@
 {
   "name": "siyuan_doctree_compress",
-  "version": "0.2.0",
+  "version": "0.3.1",
   "type": "module",
   "description": "fully customs your doctree",
-  "repository": "",
-  "homepage": "",
-  "author": "",
+  "repository": "https://github.com/zxkmm/siyuan_doctree_compress",
+  "homepage": "https://github.com/zxkmm/siyuan_doctree_compress",
+  "author": "zxkmm",
   "license": "MIT",
   "scripts": {
     "make-link": "node  --no-warnings ./scripts/make_dev_link.js",

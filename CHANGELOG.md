@@ -19,3 +19,12 @@
 
 ## 0.2.0
 - add per device selection
+
+## 0.3.0
+- add vscode style doctree front line
+- add hide doctree icon label
+- add hide doctree item content
+- add doctree item seperator
+- add disable icon click but keep icon
+- add line height setting
+
