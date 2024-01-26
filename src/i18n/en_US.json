@@ -54,7 +54,7 @@
   "overloadLineHeightPxDesc": "Must check the above switch to take effect, default: 28 unit: px",
 
   "addCurrentDeviceIntoListLabel":"Add",
-  "addCurrentDeviceIntoListDesc":"",
+  "addCurrentDeviceIntoListDesc":"When you click the button, the interface will be reloaded, and unsaved configurations will be lost, so please save other configuration items before clicking the button",
   "addCurrentDeviceIntoList":"Add current device into the list",
   "enableDeviceListDesc":"This list is used to control which device should enable this plugin on, please try not to modify it manually",
   "enableDeviceList":"Enable Device List",
@@ -63,7 +63,7 @@
   "hintDeviceSpecificSettingsTitle":"<hr style='border: none; border-top: 3px solid;'>● Devices Specific Options",
   "onlyEnableListedDevices":"Only Enable on Listed Devices",
   "removeCurrentDeviceFromList":"Remove current device from the list",
-  "removeCurrentDeviceFromListDesc":"",
+  "removeCurrentDeviceFromListDesc":"When you click the button, the interface will be reloaded, and unsaved configurations will be lost, so please save other configuration items before clicking the button",
   "removeCurrentDeviceFromListLabel":"Remove",
  
   "hideContextualLabel": "Hide Contextual Label",
