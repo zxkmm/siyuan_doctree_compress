@@ -75,5 +75,7 @@
   "enableDoctreeSeperateLine": "文档项目树分隔线",
   "enableDoctreeSeperateLineDesc": "启用项目间分割线",
   "doctreeSeperateLineBorder": "文档树分隔线厚度",
-  "doctreeSeperateLineBorderDesc": "定义文档树分隔线厚度，默认为2，单位：像素"
+  "doctreeSeperateLineBorderDesc": "定义文档树分隔线厚度，默认为2，单位：像素",
+  "addNotebookOutline": "笔记本外框",
+  "addNotebookOutlineDesc": "在笔记本和其覆盖范围内增加外框，方便区分笔记本"
 }

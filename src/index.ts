@@ -157,6 +157,18 @@ export default class siyuan_doctree_compress extends Plugin {
         this.applyStyles(css);
     }
 
+    addNotebookOutline(){ //by https://github.com/TCOTC aka @Jeffrey Chen
+        const css = `
+        .sy__file ul.b3-list.b3-list--background {
+            border-radius: 0.3em;
+            margin: 6px 10px 6px 12px;
+            outline: 1.5px double #8e9ba3;
+            overflow: hidden;
+        }
+        `
+        this.applyStyles(css);
+    }
+
     rmvDoctreeIcons(_force_) {
 
         const css = _force_ ? `
@@ -586,6 +598,14 @@ export default class siyuan_doctree_compress extends Plugin {
             }
         });
 
+        this.settingUtils.addItem({ //by https://github.com/TCOTC aka @Jeffrey Chen
+            key: "addNotebookOutline",
+            value: false,
+            type: "checkbox",
+            title: "II.8. " + this.i18n.addNotebookOutline,
+            description: this.i18n.addNotebookOutlineDesc,
+        });
+
         this.settingUtils.addItem({
             key: "hintDeviceSpecificSettings",
             value: "",
@@ -700,6 +720,7 @@ export default class siyuan_doctree_compress extends Plugin {
                 const _doctreeFrontLineBorder_ = this.settingUtils.get("doctreeFrontLineBorder");
                 const _enableDoctreeSeperateLine_ = this.settingUtils.get("enableDoctreeSeperateLine");
                 const _doctreeSeperateLineBorder_ = this.settingUtils.get("doctreeSeperateLineBorder");
+                const _addNotebookOutline_ = this.settingUtils.get("addNotebookOutline");
 
                 console.log({
                     mouseoverZeroPadding: _mouseoverZeroPadding_,
@@ -795,6 +816,10 @@ export default class siyuan_doctree_compress extends Plugin {
 
                     if (_enableDoctreeSeperateLine_) {
                         this.addSeperateLine(_doctreeSeperateLineBorder_);
+                    }
+
+                    if (_addNotebookOutline_) {
+                        this.addNotebookOutline();
                     }
 
 
