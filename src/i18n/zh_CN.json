@@ -46,7 +46,7 @@
   "overloadLineHeightPxDesc": "必须勾选上面的开关才能生效，默认值：28 单位：像素",
 
   "addCurrentDeviceIntoListLabel": "添加",
-  "addCurrentDeviceIntoListDesc": "",
+  "addCurrentDeviceIntoListDesc": "点击按钮时将重新加载界面，没有保存的配置将丢失，所以请在保存好其他配置项之后再点击按钮",
   "addCurrentDeviceIntoList": "将当前设备添加到列表中",
   "enableDeviceListDesc": "此列表用于控制该插件在哪些设备上启用，请尽量不要手动修改",
   "enableDeviceList": "启用的设备列表",
@@ -55,7 +55,7 @@
   "hintDeviceSpecificSettingsTitle": "<hr style='border: none; border-top: 3px solid;'>● 设备特定选项",
   "onlyEnableListedDevices": "仅在列表中的设备上启用",
   "removeCurrentDeviceFromList": "从列表中移除当前设备",
-  "removeCurrentDeviceFromListDesc": "",
+  "removeCurrentDeviceFromListDesc": "点击按钮时将重新加载界面，没有保存的配置将丢失，所以请在保存好其他配置项之后再点击按钮",
   "removeCurrentDeviceFromListLabel": "移除",
   "hideContextualLabel": "隐藏文档详情标签",
   "hideContextualLabelDesc": "隐藏文档树中当前文档的悬停标签（创建时间等弹出式标签）",
