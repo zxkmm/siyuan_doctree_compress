@@ -28,3 +28,8 @@
 - add disable icon click but keep icon
 - add line height setting
 
+## 0.3.3
+- add notebook outline by @TCOTC
+- fix deadly bug 
+- textual/ interface change
+

@@ -36,6 +36,11 @@
 - 添加了禁用图标点击但保留图标的功能
 - 添加了行高设置功能
 
+## 0.3.3
+- add notebook outline by @TCOTC
+- fix deadly bug 
+- textual/ interface change
+
 
 ## 链接
  - repo/Source Code：https://github.com/zxkmm/siyuan_doctree_compress 

@@ -29,6 +29,11 @@ This makes it difficult or even impossible to click on multi-level subdirectorie
 - add disable icon click but keep icon
 - add line height setting
 
+## 0.3.3
+- add notebook outline by @TCOTC
+- fix deadly bug 
+- textual/ interface change
+
 
 ## Links
  - Repo/Source Code: https://github.com/zxkmm/siyuan_doctree_compress 
