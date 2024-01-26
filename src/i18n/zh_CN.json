@@ -29,8 +29,8 @@
   "mouseHoverZeroPaddingPxDesc": "默认值是4，也是一级笔记本条目的默认缩进值，单位：像素",
   "mouseOverLineUnclampDesc": "方便点击和查看标题,不建议和本栏目其他功能一起启用",
   "mouseOverLineUnclampTitle": "鼠标悬停时自动换行文档树项目",
-  "mouseOverLineUnclampForceDesc": "强制自动换行模式",
-  "mouseOverLineUnclampForceTitle": "上面开关没有作用时再启用，且仅在上一个开关启用时有效",
+  "mouseOverLineUnclampForceDesc": "上面开关没有作用时再启用，且仅在上一个开关启用时有效",
+  "mouseOverLineUnclampForceTitle": "强制自动换行模式",
   "mouseOverReduceFontSizeDesc": "方便查看标题,不建议和本栏目其他功能一起启用",
   "mouseOverReduceFontSizeTitle": "鼠标悬停时重载字体大小",
   "mouseOverReduceFontSizeForceDesc": "上面开关没有作用时再启用，且仅在上一个开关启用时有效",
@@ -77,5 +77,5 @@
   "doctreeSeperateLineBorder": "文档树分隔线厚度",
   "doctreeSeperateLineBorderDesc": "定义文档树分隔线厚度，默认为2，单位：像素",
   "addNotebookOutline": "笔记本外框",
-  "addNotebookOutlineDesc": "在笔记本和其覆盖范围内增加外框，方便区分笔记本"
+  "addNotebookOutlineDesc": "在笔记本和其覆盖范围内增加外框，方便区分笔记本 <br>此功能由 https://github.com/TCOTC 也就是 @Jeffrey Chen 设计"
 }
