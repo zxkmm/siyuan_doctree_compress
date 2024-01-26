@@ -46,6 +46,9 @@
 
  - Forum / thread (Chinese)：https://ld246.com/article/1705326690352 https://ld246.com/article/1705227991331
 
+# 鸣谢
+[@TCOTC](https://github.com/TCOTC)   ([in b3log](https://ld246.com/member/a2930610542))
+
 ## 申明
  - 本插件在MIT协议下完全开源，没有联网行为，也没有从远端fetch并植入恶意代码的能力
 

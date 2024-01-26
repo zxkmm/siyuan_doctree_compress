@@ -86,6 +86,8 @@
   "enableDoctreeSeperateLine": "Enable Doctree Seperate Line",
   "enableDoctreeSeperateLineDesc": "Enable Doctree Seperate Line",
   "doctreeSeperateLineBorder": "Doctree Seperate Line Border",
-  "doctreeSeperateLineBorderDesc": "Define doctree Seperate Line Border, default is 2, unit: px"
+  "doctreeSeperateLineBorderDesc": "Define doctree Seperate Line Border, default is 2, unit: px",
+  "addNotebookOutline": "Notebook Outline",
+  "addNotebookOutlineDesc": "Add notebook outline to the document tree"
 
 }
