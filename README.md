@@ -29,10 +29,11 @@ This makes it difficult or even impossible to click on multi-level subdirectorie
 - add disable icon click but keep icon
 - add line height setting
 
-## 0.3.3
-- add notebook outline by @TCOTC
-- fix deadly bug 
-- textual/ interface change
+## 0.3.4
+- notebook outline support tight mode
+- notebook outline support dark/ night theme
+- fix fetching null in setting dialog
+- fix unexpected console print
 
 
 ## Links

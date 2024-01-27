@@ -8,7 +8,8 @@ zxkmm naming style:
 _inFuncMember_
 _funcArgument_
 funcName
-_privateClassMember
+privateClassMember_
+_publicClassMember
 */
 
 
@@ -157,12 +158,19 @@ export default class siyuan_doctree_compress extends Plugin {
         this.applyStyles(css);
     }
 
-    addNotebookOutline(){ //by https://github.com/TCOTC aka @Jeffrey Chen
-        const css = `
+    addNotebookOutline(_tight_){ //by https://github.com/TCOTC aka @Jeffrey Chen
+        const css = _tight_ ? `
+        .sy__file ul.b3-list.b3-list--background {
+            border-radius: 0.1em;
+            margin: 7px 4px 7px 4px;
+            outline: 1.9px solid var(--b3-theme-background-light);
+            overflow: hidden;
+        }
+        ` : `
         .sy__file ul.b3-list.b3-list--background {
             border-radius: 0.3em;
-            margin: 6px 10px 6px 12px;
-            outline: 1.5px double #8e9ba3;
+            margin: 7px 10px 6px 10px;
+            outline: 2px solid var(--b3-theme-background-light);
             overflow: hidden;
         }
         `
@@ -607,6 +615,14 @@ export default class siyuan_doctree_compress extends Plugin {
         });
 
         this.settingUtils.addItem({
+            key: "notebookOutlineTightMode",
+            value: false,
+            type: "checkbox",
+            title: "🖼️ " + this.i18n.notebookOutlineTightMode,
+            description: this.i18n.notebookOutlineTightModeDesc,
+        });
+
+        this.settingUtils.addItem({
             key: "hintDeviceSpecificSettings",
             value: "",
             type: "hint",
@@ -721,35 +737,38 @@ export default class siyuan_doctree_compress extends Plugin {
                 const _enableDoctreeSeperateLine_ = this.settingUtils.get("enableDoctreeSeperateLine");
                 const _doctreeSeperateLineBorder_ = this.settingUtils.get("doctreeSeperateLineBorder");
                 const _addNotebookOutline_ = this.settingUtils.get("addNotebookOutline");
+                const _notebookOutlineTightMode_ = this.settingUtils.get("notebookOutlineTightMode");
 
-                console.log({
-                    mouseoverZeroPadding: _mouseoverZeroPadding_,
-                    mainSwitchStat: _mainSwitchStat_,
-                    hideIcon: _hideIcon_,
-                    compressionPercentage: _compressionPercentage_,
-                    overloadFontSizeSwitch: _overloadFontSizeSwitch_,
-                    mouseHoverZeroPaddingForce: _mouseHoverZeroPaddingForce_,
-                    mouseHoverZeroPaddingPx: _mouseHoverZeroPaddingPx_,
-                    mouseOverLineUnclamp: _mouseOverLineUnclamp_,
-                    mouseOverLineUnclampForce: _mouseOverLineUnclampForce_,
-                    mouseOverReduceFontSize: _mouseOverReduceFontSize_,
-                    mouseOverReduceFontSizeForce: _mouseOverReduceFontSizeForce_,
-                    mouseHoverReduceFontSizePx: _mouseHoverReduceFontSizePx_,
-                    onlyEnableListedDevices: _onlyEnableListedDevices_,
-                    currentDeviceInList: _currentDeviceInList_,
-                    hideContextualLabel: _hideContextualLabel_,
-                    displayIconButDIsableIconClick: _displayIconButDIsableIconClick_,
-                    disableDocumentButtonsPopup: _disableDocumentButtonsPopup_,
-                    overloadLineHeight: _overloadLineHeight_,
-                    overloadLineHeightForce: _overloadLineHeightForce_,
-                    overloadLineHeightPx: _overloadLineHeightPx_,
-                    enableDoctreeFrontLine: _enableDoctreeFrontLine_,
-                    doctreeFrontLinePosition: _doctreeFrontLinePosition_,
-                    doctreeFrontLinePadding: _doctreeFrontLinePadding_,
-                    doctreeFrontLineBorder: _doctreeFrontLineBorder_,
-                    enableDoctreeSeperateLine: _enableDoctreeSeperateLine_,
-                    doctreeSeperateLineBorder: _doctreeSeperateLineBorder_,
-                });
+                // console.log({
+                //     mouseoverZeroPadding: _mouseoverZeroPadding_,
+                //     mainSwitchStat: _mainSwitchStat_,
+                //     hideIcon: _hideIcon_,
+                //     compressionPercentage: _compressionPercentage_,
+                //     overloadFontSizeSwitch: _overloadFontSizeSwitch_,
+                //     mouseHoverZeroPaddingForce: _mouseHoverZeroPaddingForce_,
+                //     mouseHoverZeroPaddingPx: _mouseHoverZeroPaddingPx_,
+                //     mouseOverLineUnclamp: _mouseOverLineUnclamp_,
+                //     mouseOverLineUnclampForce: _mouseOverLineUnclampForce_,
+                //     mouseOverReduceFontSize: _mouseOverReduceFontSize_,
+                //     mouseOverReduceFontSizeForce: _mouseOverReduceFontSizeForce_,
+                //     mouseHoverReduceFontSizePx: _mouseHoverReduceFontSizePx_,
+                //     onlyEnableListedDevices: _onlyEnableListedDevices_,
+                //     currentDeviceInList: _currentDeviceInList_,
+                //     hideContextualLabel: _hideContextualLabel_,
+                //     displayIconButDIsableIconClick: _displayIconButDIsableIconClick_,
+                //     disableDocumentButtonsPopup: _disableDocumentButtonsPopup_,
+                //     overloadLineHeight: _overloadLineHeight_,
+                //     overloadLineHeightForce: _overloadLineHeightForce_,
+                //     overloadLineHeightPx: _overloadLineHeightPx_,
+                //     enableDoctreeFrontLine: _enableDoctreeFrontLine_,
+                //     doctreeFrontLinePosition: _doctreeFrontLinePosition_,
+                //     doctreeFrontLinePadding: _doctreeFrontLinePadding_,
+                //     doctreeFrontLineBorder: _doctreeFrontLineBorder_,
+                //     enableDoctreeSeperateLine: _enableDoctreeSeperateLine_,
+                //     doctreeSeperateLineBorder: _doctreeSeperateLineBorder_,
+                //     addNotebookOutline: _addNotebookOutline_,
+                //     notebookOutlineTightMode: _notebookOutlineTightMode_,
+                // });
 
 
                 /*条件列表：
@@ -819,7 +838,7 @@ export default class siyuan_doctree_compress extends Plugin {
                     }
 
                     if (_addNotebookOutline_) {
-                        this.addNotebookOutline();
+                        this.addNotebookOutline(_notebookOutlineTightMode_);
                     }
 
 
@@ -841,24 +860,21 @@ export default class siyuan_doctree_compress extends Plugin {
                         //
 
                         function handleDomChanges() {
-
-                            const elements = document.querySelectorAll('.b3-list-item');
-
-                            elements.forEach(element => {
-                                const isCompressed = element.querySelector('.b3-list-item__toggle').getAttribute('data-compressed');
-
-                                if (!isCompressed) {
-                                    const originalPadding = parseFloat(window.getComputedStyle(element.querySelector('.b3-list-item__toggle')).paddingLeft);
-
-                                    const compressedPadding = originalPadding * (1 - _compressionPercentage_ / 100);
-
-                                    if (element.getAttribute('data-type') != 'navigation-root') { //prevent compress notebook
-
-                                        console.dir(element.getAttribute('data-type'));
-
-                                        element.querySelector('.b3-list-item__toggle').style.paddingLeft = `${compressedPadding}px`;
-
-                                        element.querySelector('.b3-list-item__toggle').setAttribute('data-compressed', 'true'); //mark as compressed prevent nested compression
+                            const _elements_ = document.querySelectorAll('.b3-list-item');
+                        
+                            _elements_.forEach(element => {
+                                const _toggleElement_ = element.querySelector('.b3-list-item__toggle');
+                                if (_toggleElement_) { // Check if the element exists
+                                    const _isCompressed_ = _toggleElement_.getAttribute('data-compressed');
+                        
+                                    if (!_isCompressed_) {
+                                        const _originalPadding_ = parseFloat(window.getComputedStyle(_toggleElement_).paddingLeft);
+                                        const _compressedPadding_ = _originalPadding_ * (1 - _compressionPercentage_ / 100);
+                        
+                                        if (element.getAttribute('data-type') != 'navigation-root') { //prevent compress notebook
+                                            _toggleElement_.style.paddingLeft = `${_compressedPadding_}px`;
+                                            _toggleElement_.setAttribute('data-compressed', 'true'); //mark as compressed prevent nested compression
+                                        }
                                     }
                                 }
                             });

@@ -88,6 +88,8 @@
   "doctreeSeperateLineBorder": "Doctree Seperate Line Border",
   "doctreeSeperateLineBorderDesc": "Define doctree Seperate Line Border, default is 2, unit: px",
   "addNotebookOutline": "Notebook Outline",
-  "addNotebookOutlineDesc": "Add notebook outline to the document tree. <br>by https://github.com/TCOTC aka @Jeffrey Chen"
+  "addNotebookOutlineDesc": "Add notebook outline to the document tree. <br>by https://github.com/TCOTC aka @Jeffrey Chen",
+  "notebookOutlineTightMode": "Notebook Outline Tight Mode",
+  "notebookOutlineTightModeDesc": "Tight mode for notebook outline"
 
 }

@@ -33,3 +33,9 @@
 - fix deadly bug 
 - textual/ interface change
 
+## 0.3.4
+- notebook outline support tight mode
+- notebook outline support dark/ night theme
+- fix fetching null in setting dialog
+- fix unexpected console print
+

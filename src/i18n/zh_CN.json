@@ -77,5 +77,7 @@
   "doctreeSeperateLineBorder": "文档树分隔线厚度",
   "doctreeSeperateLineBorderDesc": "定义文档树分隔线厚度，默认为2，单位：像素",
   "addNotebookOutline": "笔记本外框",
-  "addNotebookOutlineDesc": "在笔记本和其覆盖范围内增加外框，方便区分笔记本 <br>此功能由 https://github.com/TCOTC 也就是 @Jeffrey Chen 设计"
+  "addNotebookOutlineDesc": "在笔记本和其覆盖范围内增加外框，方便区分笔记本 <br>此功能由 https://github.com/TCOTC 也就是 @Jeffrey Chen 设计",
+  "notebookOutlineTightMode": "笔记本外框紧凑模式",
+  "notebookOutlineTightModeDesc": "启用后，笔记本外框将会更加紧凑"
 }

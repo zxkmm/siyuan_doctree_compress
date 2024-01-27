@@ -36,10 +36,11 @@
 - 添加了禁用图标点击但保留图标的功能
 - 添加了行高设置功能
 
-## 0.3.3
-- add notebook outline by @TCOTC
-- fix deadly bug 
-- textual/ interface change
+## 0.3.4
+- notebook outline support tight mode
+- notebook outline support dark/ night theme
+- fix fetching null in setting dialog
+- fix unexpected console print
 
 
 ## 链接
