@@ -158,23 +158,39 @@ export default class siyuan_doctree_compress extends Plugin {
         this.applyStyles(css);
     }
 
-    addNotebookOutline(_tight_){ //by https://github.com/TCOTC aka @Jeffrey Chen
-        const css = _tight_ ? `
+    addNotebookOutline(_mode_) { //by https://github.com/TCOTC aka @Jeffrey Chen
+        const css_tight_ = `
         .sy__file ul.b3-list.b3-list--background {
             border-radius: 0.1em;
             margin: 7px 4px 7px 4px;
             outline: 1.9px solid var(--b3-theme-background-light);
             overflow: hidden;
         }
-        ` : `
+        `;
+        const css_normal_ = `
         .sy__file ul.b3-list.b3-list--background {
             border-radius: 0.3em;
             margin: 7px 10px 6px 10px;
             outline: 2px solid var(--b3-theme-background-light);
             overflow: hidden;
         }
+        `;
+
+        const css_high_contrast_ = `
+        .sy__file ul.b3-list.b3-list--background {
+            border-radius: 0.3em;
+            margin: 6px 10px 6px 12px;
+            outline: 1.5px double #8e9ba3;
+            overflow: hidden;
+        }
         `
-        this.applyStyles(css);
+        if (_mode_ == 1) {
+            this.applyStyles(css_normal_);
+        } else if (_mode_ == 2) {
+            this.applyStyles(css_tight_);
+        } else if (_mode_ == 3) {
+            this.applyStyles(css_high_contrast_);
+        }
     }
 
     rmvDoctreeIcons(_force_) {
@@ -614,12 +630,25 @@ export default class siyuan_doctree_compress extends Plugin {
             description: this.i18n.addNotebookOutlineDesc,
         });
 
+        // this.settingUtils.addItem({ //moved to notebookOutlineMode
+        //     key: "notebookOutlineTightMode",
+        //     value: false,
+        //     type: "checkbox",
+        //     title: "🖼️ " + this.i18n.notebookOutlineTightMode,
+        //     description: this.i18n.notebookOutlineTightModeDesc,
+        // });
+
         this.settingUtils.addItem({
-            key: "notebookOutlineTightMode",
-            value: false,
-            type: "checkbox",
-            title: "🖼️ " + this.i18n.notebookOutlineTightMode,
-            description: this.i18n.notebookOutlineTightModeDesc,
+            key: "notebookOutlineMode",
+            value: 1,
+            type: "select",
+            title: "🖼️ " + this.i18n.notebookOutlineMode,
+            description: this.i18n.notebookOutlineModeDesc,
+            options: {
+                1: "normal",
+                2: "tight",
+                3: "high contrast AKA TCOTC style",
+            }
         });
 
         this.settingUtils.addItem({
@@ -737,7 +766,8 @@ export default class siyuan_doctree_compress extends Plugin {
                 const _enableDoctreeSeperateLine_ = this.settingUtils.get("enableDoctreeSeperateLine");
                 const _doctreeSeperateLineBorder_ = this.settingUtils.get("doctreeSeperateLineBorder");
                 const _addNotebookOutline_ = this.settingUtils.get("addNotebookOutline");
-                const _notebookOutlineTightMode_ = this.settingUtils.get("notebookOutlineTightMode");
+                // const _notebookOutlineTightMode_ = this.settingUtils.get("notebookOutlineTightMode"); //moved to notebookOutlineMode
+                const _notebookOutlinemode_ = this.settingUtils.get("notebookOutlineMode");
 
                 // console.log({
                 //     mouseoverZeroPadding: _mouseoverZeroPadding_,
@@ -838,7 +868,7 @@ export default class siyuan_doctree_compress extends Plugin {
                     }
 
                     if (_addNotebookOutline_) {
-                        this.addNotebookOutline(_notebookOutlineTightMode_);
+                        this.addNotebookOutline(_notebookOutlinemode_);
                     }
 
 
@@ -861,16 +891,16 @@ export default class siyuan_doctree_compress extends Plugin {
 
                         function handleDomChanges() {
                             const _elements_ = document.querySelectorAll('.b3-list-item');
-                        
+
                             _elements_.forEach(element => {
                                 const _toggleElement_ = element.querySelector('.b3-list-item__toggle');
                                 if (_toggleElement_) { // Check if the element exists
                                     const _isCompressed_ = _toggleElement_.getAttribute('data-compressed');
-                        
+
                                     if (!_isCompressed_) {
                                         const _originalPadding_ = parseFloat(window.getComputedStyle(_toggleElement_).paddingLeft);
                                         const _compressedPadding_ = _originalPadding_ * (1 - _compressionPercentage_ / 100);
-                        
+
                                         if (element.getAttribute('data-type') != 'navigation-root') { //prevent compress notebook
                                             _toggleElement_.style.paddingLeft = `${_compressedPadding_}px`;
                                             _toggleElement_.setAttribute('data-compressed', 'true'); //mark as compressed prevent nested compression
