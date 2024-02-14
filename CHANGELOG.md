@@ -39,3 +39,6 @@
 - fix fetching null in setting dialog
 - fix unexpected console print
 
+## 0.3.5
+- support multiple color for outline
+

@@ -42,6 +42,9 @@
 - fix fetching null in setting dialog
 - fix unexpected console print
 
+## 0.3.5
+- support multiple color for outline
+
 
 ## 链接
  - repo/Source Code：https://github.com/zxkmm/siyuan_doctree_compress 
