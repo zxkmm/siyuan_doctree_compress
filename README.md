@@ -35,7 +35,7 @@ This makes it difficult or even impossible to click on multi-level subdirectorie
 - fix fetching null in setting dialog
 - fix unexpected console print
 
-## 0.3.5
+## 0.3.6
 - support multiple color for outline
 
 
