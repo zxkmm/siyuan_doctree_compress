@@ -51,6 +51,9 @@
 ## 0.3.6
 - support multiple color for outline
 
+## 0.3.7
+- add multiple front line style
+
 
 ## 链接
  - repo/Source Code：https://github.com/zxkmm/siyuan_doctree_compress 

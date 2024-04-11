@@ -38,6 +38,9 @@ This makes it difficult or even impossible to click on multi-level subdirectorie
 ## 0.3.6
 - support multiple color for outline
 
+## 0.3.7
+- add multiple front line style
+
 
 ## Links
  - Repo/Source Code: https://github.com/zxkmm/siyuan_doctree_compress 
