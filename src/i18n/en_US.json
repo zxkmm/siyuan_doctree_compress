@@ -83,6 +83,8 @@
   "doctreeFrontLinePaddingDesc": "Define doctree Front Line Padding, default is 20, unit: px",
   "doctreeFrontLineBorder": "Doctree Front Line Border",
   "doctreeFrontLineBorderDesc": "Define doctree Front Line Border, default is 2, unit: px",
+  "docTreeFrontLineImplememtation": "Doctree front line style",
+  "docTreeFrontLineImplememtationDesc":"Define the doctree front line style",
   "enableDoctreeSeperateLine": "Enable Doctree Seperate Line",
   "enableDoctreeSeperateLineDesc": "Enable Doctree Seperate Line",
   "doctreeSeperateLineBorder": "Doctree Seperate Line Border",

@@ -116,7 +116,9 @@ export default class siyuan_doctree_compress extends Plugin {
 
     }
 
-    addFrontLine(_line_location_, _padding_, _border_) {
+    addFrontLine(_implementation_,_line_location_, _padding_, _border_) {
+        console.log(_implementation_);
+
 
         if (Number(_padding_) >= Number(_line_location_)) {
 
@@ -124,27 +126,105 @@ export default class siyuan_doctree_compress extends Plugin {
 
         }
 
-        const css = `
+        var css;
 
-        .layout-tab-container .b3-list-item > .b3-list-item__toggle {
-            padding-left: 4px !important;
+        switch(_implementation_){
+
+            case "1":
+                css = `
+                .layout-tab-container .b3-list-item > .b3-list-item__toggle {
+                    padding-left: 4px !important;
+                }
+        
+                .layout-tab-container ul ul:before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: ${_line_location_}px;
+                    border-left: ${_border_}px solid var(--b3-theme-background-light);
+                }
+                
+                .layout-tab-container ul ul {
+                    position: relative;
+                    padding-left: ${_padding_}px;
+                }
+        
+                .layout-tab-container ul ul:hover:before {
+                    border-left-color: var(--b3-theme-on-primary);
+                }
+                `
+                break;
+                
+            case "2":
+
+                css = `
+                .layout-tab-container .b3-list-item > .b3-list-item__toggle {
+                    position: relative; 
+                    padding-left: 4px !important;
+                }
+                
+                .layout-tab-container ul ul::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: ${_line_location_}px;
+                    border-left: ${_border_}px solid var(--b3-theme-background-light);
+                }
+                
+                .layout-tab-container ul ul {
+                    position: relative;
+                    padding-left: ${_padding_}px;
+                }
+                
+                .layout-tab-container ul ul::after {
+                    content: "";
+                    position: absolute;
+                    left: ${_line_location_}px;
+                    border-bottom: var(--custom-block-list-guides-line-width) solid var(--b3-theme-on-surface) !important;
+                    width: 0px; //dunno what's this currently
+                    height: 0;
+                }
+                
+                .layout-tab-container ul ul::before {
+                    content: "";
+                    position: absolute;
+                    top: 0px; // make the line go down for x px.
+                    left: ${_line_location_}px;
+                    border-top: var(--custom-block-list-guides-line-width) solid var(--b3-theme-on-surface);
+                }
+                
+                `
+                break;
+
+            case "3":
+
+                css  = `
+
+                .layout-tab-container .b3-list-item > .b3-list-item__toggle {
+                    padding-left: 4px !important;
+                }
+        
+                .layout-tab-container ul ul:before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: ${_line_location_}px;
+                    border-left: ${_border_}px solid var(--b3-theme-background-light);
+                }
+                
+                .layout-tab-container ul ul {
+                    position: relative;
+                    padding-left: ${_padding_}px;
+                }
+                
+                `
+
         }
 
-        .layout-tab-container ul ul:before {
-            content: "";
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: ${_line_location_}px;
-            border-left: ${_border_}px solid var(--b3-theme-background-light);
-        }
         
-        .layout-tab-container ul ul {
-            position: relative;
-            padding-left: ${_padding_}px;
-        }
-        
-        `
         this.applyStyles(css);
     }
 
@@ -519,6 +599,20 @@ export default class siyuan_doctree_compress extends Plugin {
         });
 
         this.settingUtils.addItem({
+            key: "docTreeFrontLineImplememtation",
+            value: 1,
+            type: "select",
+            title: this.i18n.docTreeFrontLineImplememtation,
+            description: this.i18n.docTreeFrontLineImplememtationDesc,
+            options: {
+                1: "1",
+                2: "2",
+                3: "3"
+            }
+
+        });
+
+        this.settingUtils.addItem({
             key: "enableDoctreeSeperateLine",
             value: false,
             type: "checkbox",
@@ -712,6 +806,7 @@ export default class siyuan_doctree_compress extends Plugin {
         });
 
 
+
     }
 
 
@@ -763,6 +858,7 @@ export default class siyuan_doctree_compress extends Plugin {
                 const _doctreeFrontLinePosition_ = this.settingUtils.get("doctreeFrontLinePosition");
                 const _doctreeFrontLinePadding_ = this.settingUtils.get("doctreeFrontLinePadding");
                 const _doctreeFrontLineBorder_ = this.settingUtils.get("doctreeFrontLineBorder");
+                const _doctreeFrontLineImplememtation_ = this.settingUtils.get("docTreeFrontLineImplememtation");
                 const _enableDoctreeSeperateLine_ = this.settingUtils.get("enableDoctreeSeperateLine");
                 const _doctreeSeperateLineBorder_ = this.settingUtils.get("doctreeSeperateLineBorder");
                 const _addNotebookOutline_ = this.settingUtils.get("addNotebookOutline");
@@ -860,7 +956,7 @@ export default class siyuan_doctree_compress extends Plugin {
                     }
 
                     if (_enableDoctreeFrontLine_ && !_mouseoverZeroPadding_ && !_enableAdjustStaticDoctreePadding_) {
-                        this.addFrontLine(_doctreeFrontLinePosition_, _doctreeFrontLinePadding_, _doctreeFrontLineBorder_);
+                        this.addFrontLine(_doctreeFrontLineImplememtation_,_doctreeFrontLinePosition_, _doctreeFrontLinePadding_, _doctreeFrontLineBorder_);
                     }
 
                     if (_enableDoctreeSeperateLine_) {
