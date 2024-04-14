@@ -71,17 +71,138 @@ export default class siyuan_doctree_compress extends Plugin {
 
     }
 
-    mouseOverZeroPadding(_force_, _px_) {
-        const css = _force_ ? `
-        .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
-            padding-left: ${_px_}px !important;
-        }
-        ` : `
-        .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
-            padding-left: ${_px_}px;
-        }`
+    mouseOverZeroPadding(_force_, _px_, _style_) {
+        switch (_style_) {
+            case "1":
+                const css_padding_toggle = _force_ ? `
+                .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
+                    padding-left: ${_px_}px !important;
+                }
+                ` : `
+                .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
+                    padding-left: ${_px_}px;
+                }`
+                this.applyStyles(css_padding_toggle);
+                break;
 
-        this.applyStyles(css);
+            case "2":
+                const css_padding_icon = _force_ ? `
+                .layout-tab-container .b3-list-item:hover > .b3-list-item__icon {
+                    padding-left: ${_px_}px !important;
+                }
+                ` : `
+                .layout-tab-container .b3-list-item:hover > .b3-list-item__icon {
+                    padding-left: ${_px_}px;
+                }`
+                this.applyStyles(css_padding_icon);
+
+
+                ///worker moving padding from toggle into icon
+                function moving_padding_from_toggle_into_icon() {
+                    var toggles = document.getElementsByClassName('b3-list-item__toggle');
+                    for (var i = 0; i < toggles.length; i++) {
+                        var paddingLeft = window.getComputedStyle(toggles[i], null).getPropertyValue('padding-left');
+                        var icon = toggles[i].parentNode.getElementsByClassName('b3-list-item__icon')[0];
+                        if (icon && paddingLeft !== _px_ + 'px') {
+                            icon.style.paddingLeft = paddingLeft;
+                            toggles[i].style.paddingLeft = _px_ + 'px'; // 将 padding-left 设为 0
+                        }
+                    }
+                }
+
+                moving_padding_from_toggle_into_icon();
+
+                var observer = new MutationObserver(function (mutations) {
+                    moving_padding_from_toggle_into_icon();
+                });
+
+                var config = { childList: true, subtree: true };
+
+                observer.observe(document, config);
+
+                break;
+
+            case "3":
+
+                ///worker moving left padding of toggle into right
+
+                function moving_left_padding_into_right() {
+                    var toggles = document.getElementsByClassName('b3-list-item__toggle');
+                    for (var i = 0; i < toggles.length; i++) {
+                        var paddingLeft = window.getComputedStyle(toggles[i], null).getPropertyValue('padding-left');
+                        if (paddingLeft !== _px_ + 'px') {
+                            toggles[i].style.paddingRight = paddingLeft;
+                            toggles[i].style.paddingLeft = _px_ + 'px';
+                        }
+                    }
+                }
+
+                moving_left_padding_into_right();
+
+                var observer = new MutationObserver(function (mutations) {
+                    moving_left_padding_into_right();
+                });
+
+                var config = { childList: true, subtree: true };
+
+                observer.observe(document, config);
+
+                const css_padding_icon_LR = _force_ ? `
+                .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
+                    padding-right: ${_px_}px !important;
+                }
+                ` : `
+                .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
+                    padding-right: ${_px_}px;
+                }`
+                this.applyStyles(css_padding_icon_LR);
+
+                break;
+
+            case "4":
+                const css_padding_text = _force_ ? `
+                .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
+                    padding-left: ${_px_}px !important;
+                }
+                ` : `
+                .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
+                    padding-left: ${_px_}px;
+                }`
+                this.applyStyles(css_padding_text);
+
+                /// worker padding text
+
+                function moving_padding_from_toggle_into_text() {
+                    var toggles = document.getElementsByClassName('b3-list-item__toggle');
+                    for (var i = 0; i < toggles.length; i++) {
+                        var paddingLeft = window.getComputedStyle(toggles[i], null).getPropertyValue('padding-left');
+                        var text = toggles[i].parentNode.getElementsByClassName('b3-list-item__text')[0];
+                        if (text && paddingLeft !== _px_ + 'px') {
+                            text.style.paddingLeft = paddingLeft;
+                            toggles[i].style.paddingLeft = _px_ + 'px'; // 将 padding-left 设为 0
+                        }
+                    }
+                }
+
+                moving_padding_from_toggle_into_text();
+
+                var observer = new MutationObserver(function (mutations) {
+                    moving_padding_from_toggle_into_text();
+                });
+
+                var config = { childList: true, subtree: true };
+
+                observer.observe(document, config);
+
+
+
+        }
+
+
+
+
+
+
     }
 
 
@@ -116,7 +237,7 @@ export default class siyuan_doctree_compress extends Plugin {
 
     }
 
-    addFrontLine(_implementation_,_line_location_, _padding_, _border_) {
+    addFrontLine(_implementation_, _line_location_, _padding_, _border_) {
         console.log(_implementation_);
 
 
@@ -128,7 +249,7 @@ export default class siyuan_doctree_compress extends Plugin {
 
         var css;
 
-        switch(_implementation_){
+        switch (_implementation_) {
 
             case "1":
                 css = `
@@ -155,7 +276,7 @@ export default class siyuan_doctree_compress extends Plugin {
                 }
                 `
                 break;
-                
+
             case "2":
 
                 css = `
@@ -200,7 +321,7 @@ export default class siyuan_doctree_compress extends Plugin {
 
             case "3":
 
-                css  = `
+                css = `
 
                 .layout-tab-container .b3-list-item > .b3-list-item__toggle {
                     padding-left: 4px !important;
@@ -224,7 +345,7 @@ export default class siyuan_doctree_compress extends Plugin {
 
         }
 
-        
+
         this.applyStyles(css);
     }
 
@@ -441,6 +562,20 @@ export default class siyuan_doctree_compress extends Plugin {
             type: "checkbox",
             title: "🌊 " + this.i18n.mouseHoverZeroPaddingForce,
             description: this.i18n.mouseHoverZeroPaddingForceDesc,
+        });
+
+        this.settingUtils.addItem({
+            key: "mouseHoverZeroPaddingStyle",
+            value: 1,
+            type: "select",
+            title: "🌊 " + this.i18n.mouseHoverZeroPaddingStyle,
+            description: this.i18n.mouseHoverZeroPaddingStyledesc,
+            options: {
+                1: this.i18n.mouseHoverZeroPaddingStylePaddingToggle,
+                2: this.i18n.mouseHoverZeroPaddingStylePaddingIcon,
+                3: this.i18n.mouseHoverZeroPaddingStylePaddingIconButMoveLR,
+                4: this.i18n.mouseHoverZeroPaddingStylePaddingText,
+            }
         });
 
         this.settingUtils.addItem({
@@ -840,6 +975,7 @@ export default class siyuan_doctree_compress extends Plugin {
                 const _overloadFontSizeForceSwitch_ = this.settingUtils.get("overloadFontSizeForceSwitch");
                 const _overloadFontSizePx_ = this.settingUtils.get("overloadFontSizePx");
                 const _mouseHoverZeroPaddingForce_ = this.settingUtils.get("mouseHoverZeroPaddingForce");
+                const _mouseHoverZeroPaddingStyle_ = this.settingUtils.get("mouseHoverZeroPaddingStyle");
                 const _mouseHoverZeroPaddingPx_ = this.settingUtils.get("mouseHoverZeroPaddingPx");
                 const _mouseOverLineUnclamp_ = this.settingUtils.get("mouseOverLineUnclamp");
                 const _mouseOverLineUnclampForce_ = this.settingUtils.get("mouseOverLineUnclampForce");
@@ -926,7 +1062,11 @@ export default class siyuan_doctree_compress extends Plugin {
 
                     if (_mouseoverZeroPadding_) { //TODO: 希望能更优雅一些。。。
 
-                        this.mouseOverZeroPadding(_mouseHoverZeroPaddingForce_, _mouseHoverZeroPaddingPx_);
+                        this.mouseOverZeroPadding(
+                            _mouseHoverZeroPaddingForce_,
+                            _mouseHoverZeroPaddingPx_,
+                            _mouseHoverZeroPaddingStyle_
+                        );
 
                     }
 
@@ -956,7 +1096,7 @@ export default class siyuan_doctree_compress extends Plugin {
                     }
 
                     if (_enableDoctreeFrontLine_ && !_mouseoverZeroPadding_ && !_enableAdjustStaticDoctreePadding_) {
-                        this.addFrontLine(_doctreeFrontLineImplememtation_,_doctreeFrontLinePosition_, _doctreeFrontLinePadding_, _doctreeFrontLineBorder_);
+                        this.addFrontLine(_doctreeFrontLineImplememtation_, _doctreeFrontLinePosition_, _doctreeFrontLinePadding_, _doctreeFrontLineBorder_);
                     }
 
                     if (_enableDoctreeSeperateLine_) {

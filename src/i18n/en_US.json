@@ -31,6 +31,12 @@
   "mouseHoverZeroPaddingDesc": "Convenient for clicking and viewing titles. <br>  <a href=\"https://github.com/zxkmm/siyuan_doctree_compress#what-is-flow-layout\">Read more details here</a>\n",
   "mouseHoverZeroPaddingForce": "Force Flow Layout Mode",
   "mouseHoverZeroPaddingForceDesc": "Enable when the above switch is not effective, and only effective when the previous switch is on",
+  "mouseHoverZeroPaddingStyle": "Flow layout style",
+  "mouseHoverZeroPaddingStyledesc": "",
+  "mouseHoverZeroPaddingStylePaddingToggle":"Flow layout all element",
+  "mouseHoverZeroPaddingStylePaddingIcon":"Don't flow layout toggle",
+  "mouseHoverZeroPaddingStylePaddingText":"Only flow layout text",
+  "mouseHoverZeroPaddingStylePaddingIconButMoveLR":"Don't flow layout toggle, method 2",
   "mouseHoverZeroPaddingPx": "Flow Layout Padding",
   "mouseHoverZeroPaddingPxDesc": "default value is 4 which is the default padding of the first level notbooks",
  
