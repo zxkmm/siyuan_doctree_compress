@@ -41,6 +41,9 @@ This makes it difficult or even impossible to click on multi-level subdirectorie
 ## 0.3.7
 - add multiple front line style
 
+## 0.3.8 
+- add four styles for flow layout
+
 
 ## Links
  - Repo/Source Code: https://github.com/zxkmm/siyuan_doctree_compress 

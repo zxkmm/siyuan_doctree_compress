@@ -54,6 +54,8 @@
 ## 0.3.7
 - add multiple front line style
 
+## 0.3.8 
+- add four styles for flow layout
 
 ## 链接
  - repo/Source Code：https://github.com/zxkmm/siyuan_doctree_compress 
