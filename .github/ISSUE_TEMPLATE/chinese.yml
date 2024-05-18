@@ -17,8 +17,8 @@ body:
 - type: textarea
   id: description
   attributes:
-    label: Feature request | 功能请求
-    description: "Fill the blank below if you are submitting a featire request | 如果是（添加）功能请求，请在下面填写"
+    label: Feature request \| 功能请求
+    description: "Fill the blank below if you are submitting a featire request \| 如果是（添加）功能请求，请在下面填写"
     placeholder: |
       Please Start mt repo before submitting an issue ticket.
       在提交之前请给我的GitHub仓库点一个免费的星星
@@ -27,8 +27,8 @@ body:
 - type: textarea
   id: repro
   attributes: 
-    label: Report bug | 汇报Bug
-    description: "Please carefully describe how to reproduce the bug. attach log and the document you are having bug would be better | 请仔细描述bug的复现步骤，最好同时上传你发现问题的文档和思源的日志"
+    label: Report bug \| 汇报Bug
+    description: "Please carefully describe how to reproduce the bug. attach log and the document you are having bug would be better \| 请仔细描述bug的复现步骤，最好同时上传你发现问题的文档和思源的日志"
     placeholder: |
       Please Start mt repo before submitting an issue ticket.
       在提交之前请给我的GitHub仓库点一个免费的星星
