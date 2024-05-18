@@ -1,5 +1,5 @@
-name: chinese
-description: File a bug reports regarding the firmware.
+name: Chinese
+description: 中文
 labels:
   - bug
 body:
