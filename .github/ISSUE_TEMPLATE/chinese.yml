@@ -4,6 +4,12 @@ body:
 - type: markdown
   attributes:
     value: |
+    > A Message from the Developer:
+      > Hello! Thank you for using my plugin. Unlike many other Obsidian plugins, my plugin is 100% free and 100% open source, which should give you more confidence in using it.
+      > Also, because this plugin is 100% open source and free, the only thing I can gain from maintaining and writing this plugin is your encouragement.
+      > Therefore, before you continue to submit issues, I hope you could give this repository a free ⭐ star. ([How to star?](https://docs.github.com/zh/get-started/exploring-projects-on-github/saving-repositories-with-stars#starring-a-repository))
+      >
+      >
       > 来自开发者的话：
       > 您好！感谢使用我的插件。不像很多其他思源插件，我的插件是100%免费且100%开源的，这会让您更放心的使用我的插件。
       > 同时，由于该插件的100%开源免费，我从维护和编写这个插件中，唯一能得到的只有您的鼓励。
@@ -11,19 +17,20 @@ body:
 - type: textarea
   id: description
   attributes:
-    label: 功能请求
-    description: "如果是（添加）功能请求，请在下面填写"
+    label: Feature request | 功能请求
+    description: "Fill the blank below if you are submitting a featire request | 如果是（添加）功能请求，请在下面填写"
+    placeholder: |
+      Please Start mt repo before submitting an issue ticket.
+      在提交之前请给我的GitHub仓库点一个免费的星星
   validations:
     required: false
 - type: textarea
   id: repro
   attributes: 
-    label: 汇报Bug
-    description: "请仔细描述bug的复现步骤，最好同时上传你发现问题的文档和思源的日志"
+    label: Report bug | 汇报Bug
+    description: "Please carefully describe how to reproduce the bug. attach log and the document you are having bug would be better | 请仔细描述bug的复现步骤，最好同时上传你发现问题的文档和思源的日志"
     placeholder: |
-      1. Switch on...
-      2. Press button '....'
-      3. Wait for the end of the universe
-      4. It burns
+      Please Start mt repo before submitting an issue ticket.
+      在提交之前请给我的GitHub仓库点一个免费的星星
   validations:
     required: false
