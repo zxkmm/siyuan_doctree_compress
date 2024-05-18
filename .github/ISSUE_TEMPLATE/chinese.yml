@@ -13,39 +13,19 @@ body:
 - type: textarea
   id: description
   attributes:
-    label: 描述问题
-    description: "A clear and concise description of what the bug is."
+    label: 功能请求
+    description: "如果是（添加）功能请求，请在下面填写"
   validations:
-    required: true
+    required: false
 - type: textarea
   id: repro
   attributes: 
-    label: Reproduction
-    description: "How can this bug be reproduced?"
+    label: 汇报Bug
+    description: "请仔细描述bug的复现步骤，最好同时上传你发现问题的文档和思源的日志"
     placeholder: |
       1. Switch on...
       2. Press button '....'
       3. Wait for the end of the universe
       4. It burns
   validations:
-    required: true
-- type: textarea
-  id: expected
-  attributes: 
-    label: Expected behavior
-    description: "A clear and concise description of what you expected to happen"
-    placeholder: |
-      1. Generates file on...
-      2. I get a cheeseburger...
-  validations:
-    required: true
-- type: input
-  id: target
-  attributes:
-    label: Environment/versions
-    description: Specify extra details about versions and environments affected
-- type: textarea
-  id: anything-else
-  attributes:
-    label: Anything else?
-    description: Let us know if you have anything else to share.
+    required: false
