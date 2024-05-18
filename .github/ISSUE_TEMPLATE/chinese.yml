@@ -1,5 +1,5 @@
-name: Chinese
-description: Submit issue with chinese
+name: Issue
+description: Add a new issue, click the green button         ---->
 body:
 - type: markdown
   attributes:
