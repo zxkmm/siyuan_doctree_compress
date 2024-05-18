@@ -1,0 +1,20 @@
+name: 中文
+description: 用中文提交issue
+blank_issues_enabled: false
+
+body:
+- type: markdown
+  attributes:
+    value: |
+    来自开发者的话：
+    您好！感谢使用我的插件。不像很多其他思源插件，我的插件是100%免费且100%开源的，这会让您更放心的使用我的插件。
+    同时，由于该插件的100%开源免费，我从维护和编写这个插件中，唯一能得到的只有您的鼓励。
+    所以，在您继续提交issue之前，希望您能给这个仓库点击一个免费的⭐星星（star）。（[怎么点？](https://docs.github.com/zh/get-started/exploring-projects-on-github/saving-repositories-with-stars#starring-a-repository)）
+
+- type: textarea
+  id: description
+  attributes:
+    label: Describe the bug.
+    description: "A clear and concise description of what the bug is."
+  validations:
+    required: true
