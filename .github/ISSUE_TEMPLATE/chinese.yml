@@ -1,5 +1,5 @@
 name: Issue
-description: Add a new issue, click the green button         ---->
+description: Add a new issue
 body:
 - type: markdown
   attributes:
