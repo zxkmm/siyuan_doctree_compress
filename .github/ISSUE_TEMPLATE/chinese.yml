@@ -1,7 +1,5 @@
 name: Chinese
 description: Submit issue with chinese
-labels:
-  - bug
 body:
 - type: markdown
   attributes:
