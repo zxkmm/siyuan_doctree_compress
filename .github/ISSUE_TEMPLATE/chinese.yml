@@ -4,7 +4,7 @@ body:
 - type: markdown
   attributes:
     value: |
-    > A Message from the Developer:
+      > A Message from the Developer:
       > Hello! Thank you for using my plugin. Unlike many other Obsidian plugins, my plugin is 100% free and 100% open source, which should give you more confidence in using it.
       > Also, because this plugin is 100% open source and free, the only thing I can gain from maintaining and writing this plugin is your encouragement.
       > Therefore, before you continue to submit issues, I hope you could give this repository a free ⭐ star. ([How to star?](https://docs.github.com/zh/get-started/exploring-projects-on-github/saving-repositories-with-stars#starring-a-repository))
