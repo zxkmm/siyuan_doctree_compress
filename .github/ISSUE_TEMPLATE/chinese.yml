@@ -4,6 +4,7 @@ body:
 - type: markdown
   attributes:
     value: |
+      > [!IMPORTANT]  
       > A Message from the Developer:
       > Hello! Thank you for using my plugin. Unlike many other Obsidian plugins, my plugin is 100% free and 100% open source, which should give you more confidence in using it.
       > Also, because this plugin is 100% open source and free, the only thing I can gain from maintaining and writing this plugin is your encouragement.
