@@ -42,3 +42,6 @@
 ## 0.3.5
 - support multiple color for outline
 
+## 0.3.9
+- Support Docker
+

@@ -57,6 +57,9 @@
 ## 0.3.8 
 - add four styles for flow layout
 
+## 0.3.9
+- support Docker
+
 ## 链接
  - repo/Source Code：https://github.com/zxkmm/siyuan_doctree_compress 
 
