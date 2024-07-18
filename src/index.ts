@@ -75,8 +75,10 @@ export default class siyuan_doctree_compress extends Plugin {
         switch (_style_) {
             case "1":
                 const css_padding_toggle = _force_ ? `
-                .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
-                    padding-left: ${_px_}px !important;
+                @media screen and (hover: hover) {
+                    .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
+                        padding-left: ${_px_}px !important;
+                    }
                 }
                 ` : `
                 .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
