@@ -1162,7 +1162,7 @@ export default class siyuan_doctree_compress extends Plugin {
 
 
     async onunload() {
-        await this.settingUtils.save();
+        // await this.settingUtils.save();
         // window.location.reload();
     }
 
