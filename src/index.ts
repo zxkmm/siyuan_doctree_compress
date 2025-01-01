@@ -41,12 +41,18 @@ export default class SiyuanDoctreeCompress extends Plugin {
   mouseOverReduceFontSize(_force_, _px_) {
     const css = _force_
       ? `
+        .layout-tab-container .b3-list-item__text {
+            transition: font-size 0.2s ease;
+        }
         .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
             font-size: ${_px_}px !important;
          }
          `
       : `
-         .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
+        .layout-tab-container .b3-list-item__text {
+            transition: font-size 0.2s ease;
+        }
+        .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
             font-size: ${_px_}px;
          }`;
     this.applyStyles(css);
@@ -74,11 +80,17 @@ export default class SiyuanDoctreeCompress extends Plugin {
       case "1":
         const css_padding_toggle = _force_
           ? `
+                .layout-tab-container .b3-list-item__toggle {
+                    transition: padding-left 0.2s ease;
+                }
                 .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
                     padding-left: ${_px_}px !important;
                 }
                 `
           : `
+                .layout-tab-container .b3-list-item__toggle {
+                    transition: padding-left 0.2s ease;
+                }
                 .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
                     padding-left: ${_px_}px;
                 }`;
@@ -88,11 +100,17 @@ export default class SiyuanDoctreeCompress extends Plugin {
       case "2":
         const css_padding_icon = _force_
           ? `
+                .layout-tab-container .b3-list-item__icon {
+                    transition: padding-left 0.2s ease;
+                }
                 .layout-tab-container .b3-list-item:hover > .b3-list-item__icon {
                     padding-left: ${_px_}px !important;
                 }
                 `
           : `
+                .layout-tab-container .b3-list-item__icon {
+                    transition: padding-left 0.2s ease;
+                }
                 .layout-tab-container .b3-list-item:hover > .b3-list-item__icon {
                     padding-left: ${_px_}px;
                 }`;
@@ -156,11 +174,17 @@ export default class SiyuanDoctreeCompress extends Plugin {
 
         const css_padding_icon_LR = _force_
           ? `
+                .layout-tab-container .b3-list-item__toggle {
+                    transition: padding-right 0.2s ease;
+                }
                 .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
                     padding-right: ${_px_}px !important;
                 }
                 `
           : `
+                .layout-tab-container .b3-list-item__toggle {
+                    transition: padding-right 0.2s ease;
+                }
                 .layout-tab-container .b3-list-item:hover > .b3-list-item__toggle {
                     padding-right: ${_px_}px;
                 }`;
@@ -171,11 +195,17 @@ export default class SiyuanDoctreeCompress extends Plugin {
       case "4":
         const css_padding_text = _force_
           ? `
+                .layout-tab-container .b3-list-item__text {
+                    transition: padding-left 0.2s ease;
+                }
                 .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
                     padding-left: ${_px_}px !important;
                 }
                 `
           : `
+                .layout-tab-container .b3-list-item__text {
+                    transition: padding-left 0.2s ease;
+                }
                 .layout-tab-container .b3-list-item:hover > .b3-list-item__text {
                     padding-left: ${_px_}px;
                 }`;
@@ -248,27 +278,115 @@ export default class SiyuanDoctreeCompress extends Plugin {
 
     switch (_implementation_) {
       case "1":
-        css = `
-                .layout-tab-container .b3-list-item > .b3-list-item__toggle {
-                    padding-left: 4px !important;
+        css = ` .b3-list ul {
+                position: relative;
                 }
-        
-                .layout-tab-container ul ul:before {
-                    content: "";
-                    position: absolute;
-                    top: 0;
-                    bottom: 0;
-                    left: ${_line_location_}px;
-                    border-left: ${_border_}px solid var(--b3-theme-background-light);
+
+                /* main */
+                .b3-list ul::before {
+                content: '';
+                position: absolute;
+                left: 20px;
+                top: 0;
+                height: 100%;
+                border-left: ${_border_}px solid var(--b3-theme-background-light);
+                z-index: 1;
                 }
-                
-                .layout-tab-container ul ul {
-                    position: relative;
-                    padding-left: ${_padding_}px;
+
+                .b3-list ul ul::before {
+                left: 38px;
                 }
-        
-                .layout-tab-container ul ul:hover:before {
-                    border-left-color: var(--b3-theme-on-primary);
+
+                .b3-list ul ul ul::before {
+                left: 56px;
+                }
+
+                .b3-list ul ul ul ul::before {
+                left: 74px;
+                }
+
+                .b3-list ul ul ul ul ul::before {
+                left: 92px;
+                }
+
+                .b3-list ul ul ul ul ul ul::before {
+                left: 110px;
+                }
+
+                .b3-list ul ul ul ul ul ul ul::before {
+                left: 128px;
+                }
+
+                .b3-list ul ul ul ul ul ul ul ul::before {
+                left: 146px;
+                }
+
+                .b3-list ul ul ul ul ul ul ul ul ul::before {
+                left: 164px;
+                }
+
+                .b3-list ul ul ul ul ul ul ul ul ul ul::before {
+                left: 182px;
+                }
+
+                .b3-list ul ul ul ul ul ul ul ul ul ul ul::before {
+                left: 200px;
+                }
+
+                .b3-list ul ul ul ul ul ul ul ul ul ul ul ul::before {
+                left: 218px;
+                }
+
+                .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
+                left: 236px;
+                }
+
+                .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
+                left: 254px;
+                }
+
+                .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
+                left: 272px;
+                }
+
+                .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
+                left: 290px;
+                }
+
+                .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
+                left: 308px;
+                }
+
+                .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
+                left: 326px;
+                }
+
+                .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
+                left: 344px;
+                }
+
+                .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
+                left: 362px;
+                }
+
+                .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
+                left: 380px;
+                }
+
+                .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
+                left: 398px;
+                }
+
+                .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
+                left: 416px;
+                }
+
+                .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
+                left: 434px;
+                }
+
+                .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
+                left: 452px;
                 }
                 `;
         break;
@@ -336,6 +454,32 @@ export default class SiyuanDoctreeCompress extends Plugin {
                 }
                 
                 `;
+
+      case "4":
+        css = `
+                .layout-tab-container .b3-list-item > .b3-list-item__toggle {
+                    padding-left: 4px !important;
+                }
+        
+                .layout-tab-container ul ul:before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: ${_line_location_}px;
+                    border-left: ${_border_}px solid var(--b3-theme-background-light);
+                }
+                
+                .layout-tab-container ul ul {
+                    position: relative;
+                    padding-left: ${_padding_}px;
+                }
+        
+                .layout-tab-container ul ul:hover:before {
+                    border-left-color: var(--b3-theme-on-primary);
+                }
+                `;
+        break;
     }
 
     this.applyStyles(css);
@@ -737,6 +881,7 @@ export default class SiyuanDoctreeCompress extends Plugin {
         1: "1",
         2: "2",
         3: "3",
+        4: "4",
       },
     });
 
