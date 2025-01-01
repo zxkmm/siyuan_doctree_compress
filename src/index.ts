@@ -14,7 +14,7 @@ import { SettingUtils } from "./libs/setting-utils";
 
 const STORAGE_NAME = "menu-config";
 
-export default class siyuan_doctree_compress extends Plugin {
+export default class SiyuanDoctreeCompress extends Plugin {
   private settingUtils: SettingUtils;
 
   disableDocumentButtonsPopup() {
