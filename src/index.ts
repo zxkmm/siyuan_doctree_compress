@@ -28,7 +28,7 @@ export default class SiyuanDoctreeCompress extends Plugin {
     this.applyStyles(css);
   }
 
-  displayIconButDIsableIconClick() {
+  displayIconButDisableIconClick() {
     const css = `
         .b3-list-item__icon.b3-tooltips.b3-tooltips__n[aria-label="修改图标"],
         .b3-list-item__icon.b3-tooltips.b3-tooltips__n[aria-label="Change icon"] {
@@ -1125,7 +1125,7 @@ export default class SiyuanDoctreeCompress extends Plugin {
 
           if (_displayIconButDIsableIconClick_) {
             // display icon but disable icon click sel
-            this.displayIconButDIsableIconClick();
+            this.displayIconButDisableIconClick();
           }
 
           if (_disableDocumentButtonsPopup_) {
