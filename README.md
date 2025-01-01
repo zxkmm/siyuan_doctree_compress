@@ -20,31 +20,6 @@ This makes it difficult or even impossible to click on multi-level subdirectorie
 
 ![static_area](https://tvax3.sinaimg.cn/large/0089YRx6gy1hlvq6uhx16j30z00oik89.jpg)
 
-
-## 0.3.0
-- add vscode style doctree front line
-- add hide doctree icon label
-- add hide doctree item content
-- add doctree item seperator
-- add disable icon click but keep icon
-- add line height setting
-
-## 0.3.4
-- notebook outline support tight mode
-- notebook outline support dark/ night theme
-- fix fetching null in setting dialog
-- fix unexpected console print
-
-## 0.3.6
-- support multiple color for outline
-
-## 0.3.7
-- add multiple front line style
-
-## 0.3.8 
-- add four styles for flow layout
-
-
 ## Links
  - Repo/Source Code: https://github.com/zxkmm/siyuan_doctree_compress 
  - Download: https://github.com/zxkmm/siyuan_doctree_compress/releases or search `siyuan_doctree_compress` in SiYuan market
