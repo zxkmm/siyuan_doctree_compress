@@ -1,7 +1,6 @@
 .idea
 .vscode
 .DS_Store
-pnpm-lock.yaml
 package.zip
 node_modules
 dev
