@@ -674,6 +674,14 @@ export default class SiyuanDoctreeCompress extends Plugin {
     this.settingUtils.load();
 
     this.settingUtils.addItem({
+      key: "begging",
+      value: "",
+      type: "hint",
+      title: this.i18n.beggingTitle,
+      description: this.i18n.beggingDesc,
+    });
+
+    this.settingUtils.addItem({
       key: "mainSwitch",
       value: false,
       type: "checkbox",

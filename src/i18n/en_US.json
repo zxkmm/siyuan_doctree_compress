@@ -98,6 +98,10 @@
   "addNotebookOutline": "Notebook Outline",
   "addNotebookOutlineDesc": "Add notebook outline to the document tree. <br>by https://github.com/TCOTC aka @Jeffrey Chen",
   "notebookOutlineMode": "Notebook Outline Mode",
-  "notebookOutlineModeDesc": ""
+  "notebookOutlineModeDesc": "",
+
+
+  "beggingTitle": "🙏 Begging 🙏",
+  "beggingDesc": "This plugin is open source and free, so I need your encouragement.<br>If you like the features this plugin brings you, you can consider donating to help me with basic living expenses 🍚: <a href='https://pipe.b3log.org/blogs/zxkmm/articles/2025/02/08/1738993480704'>Donate</a>. (Donations won't unlock additional features)<br>If you're not financially comfortable, you can encourage me by giving a free ⭐ star to <a href='https://github.com/zxkmm/siyuan_doctree_compress'>my GitHub repository</a>.<br>If you or someone you know needs my skills, feel free to hire me anytime."
 
 }
