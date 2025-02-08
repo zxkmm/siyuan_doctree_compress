@@ -1,6 +1,6 @@
 # 文档树自定义
 
-## 乞讨：
+## 乞讨
 这款插件是开源免费的，因此我需要您的鼓励。  
 如果您喜欢这款插件为您带来的功能，您可以考虑捐款给我，帮助我解决温饱问题：[捐款](https://pipe.b3log.org/blogs/zxkmm/articles/2025/02/08/1738993480704)。（捐款不会解锁更多功能）  
 如果您经济不宽裕，您可以考虑给[我的GitHub仓库](https://github.com/zxkmm/siyuan_doctree_compress)点一下免费的星星鼓励我。  
