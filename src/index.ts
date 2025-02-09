@@ -27,90 +27,16 @@ import {
   displayIconButDisableIconClick,
 } from "./style_injection";
 
+import {
+  currentDeviceInList,
+  removeCurrentDeviceFromList,
+  appendCurrentDeviceIntoList,
+} from "./device_specific_helpers";
+
 const STORAGE_NAME = "menu-config";
 
 export default class SiyuanDoctreeCompress extends Plugin {
   private settingUtils: SettingUtils;
-
-  async appendCurrentDeviceIntoList() {
-    try {
-      // await!!!!!
-      var current_device_info = await this.fetchCurrentDeviceInfo();
-
-      var enableDeviceList = this.settingUtils.get("enableDeviceList");
-      var enableDeviceListArray = enableDeviceList.split("\n");
-      var enableDeviceListArrayLength = enableDeviceListArray.length;
-      var enableDeviceListArrayLast =
-        enableDeviceListArray[enableDeviceListArrayLength - 1];
-
-      // remove empty line
-      if (enableDeviceListArrayLast === "") {
-        enableDeviceListArray.pop();
-      }
-
-      enableDeviceListArray.push(current_device_info);
-
-      var enableDeviceListArrayString = enableDeviceListArray.join("\n");
-
-      this.settingUtils.assignValue(
-        "enableDeviceList",
-        enableDeviceListArrayString
-      );
-      this.settingUtils.save();
-    } catch (error) {
-      console.error("Error appending current device into list:", error);
-    }
-  }
-
-  async removeCurrentDeviceFromList() {
-    try {
-      var current_device_info = await this.fetchCurrentDeviceInfo();
-
-      var enableDeviceList = this.settingUtils.get("enableDeviceList");
-      var enableDeviceListArray = enableDeviceList.split("\n");
-
-      // make sure visited the entire list
-      for (var i = enableDeviceListArray.length - 1; i >= 0; i--) {
-        var deviceInfo = enableDeviceListArray[i];
-
-        if (deviceInfo === current_device_info) {
-          enableDeviceListArray.splice(i, 1);
-        }
-      }
-
-      // reassemble list
-      var enableDeviceListArrayString = enableDeviceListArray.join("\n");
-
-      this.settingUtils.assignValue(
-        "enableDeviceList",
-        enableDeviceListArrayString
-      );
-      this.settingUtils.save();
-    } catch (error) {
-      console.error("Error removing current device from list:", error);
-    }
-  }
-
-  fetchCurrentDeviceInfo(): Promise<string> {
-    var current_device_uuid = window.siyuan.config.system.id;
-    var current_device_name = window.siyuan.config.system.name;
-    var current_device_info = current_device_uuid + " " + current_device_name;
-
-    return Promise.resolve(current_device_info.toString());
-  }
-
-  async currentDeviceInList() {
-    try {
-      var current_device_info = await this.fetchCurrentDeviceInfo();
-
-      var enableDeviceList = await this.settingUtils.get("enableDeviceList");
-      var enableDeviceListArray = enableDeviceList.split("\n");
-
-      return enableDeviceListArray.includes(current_device_info);
-    } catch (error) {
-      console.error("Error checking if current device is enabled:", error);
-    }
-  }
 
   async onload() {
     this.data[STORAGE_NAME] = { readonlyText: "Readonly" };
@@ -501,7 +427,7 @@ export default class SiyuanDoctreeCompress extends Plugin {
       button: {
         label: this.i18n.addCurrentDeviceIntoListLabel,
         callback: () => {
-          this.appendCurrentDeviceIntoList();
+          appendCurrentDeviceIntoList(this.settingUtils);
         },
       },
     });
@@ -515,7 +441,7 @@ export default class SiyuanDoctreeCompress extends Plugin {
       button: {
         label: this.i18n.removeCurrentDeviceFromListLabel,
         callback: () => {
-          this.removeCurrentDeviceFromList();
+          removeCurrentDeviceFromList(this.settingUtils);
         },
       },
     });
@@ -581,7 +507,9 @@ export default class SiyuanDoctreeCompress extends Plugin {
         const _onlyEnableListedDevices_ = this.settingUtils.get(
           "onlyEnableListedDevices"
         );
-        const _currentDeviceInList_ = await this.currentDeviceInList();
+        const _currentDeviceInList_ = await currentDeviceInList(
+          this.settingUtils
+        );
         const _hideContextualLabel_ = this.settingUtils.get(
           "hideContextualLabel"
         );
