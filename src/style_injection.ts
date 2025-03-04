@@ -192,99 +192,99 @@ export function addFrontLine(
                 }
 
                 .b3-list ul ul::before {
-                left: 38px;
+                left: 34px;
                 }
 
                 .b3-list ul ul ul::before {
-                left: 56px;
+                left: 52px;
                 }
 
                 .b3-list ul ul ul ul::before {
-                left: 74px;
+                left: 70px;
                 }
 
                 .b3-list ul ul ul ul ul::before {
-                left: 92px;
+                left: 88px;
                 }
 
                 .b3-list ul ul ul ul ul ul::before {
-                left: 110px;
+                left: 106px;
                 }
 
                 .b3-list ul ul ul ul ul ul ul::before {
-                left: 128px;
+                left: 124px;
                 }
 
                 .b3-list ul ul ul ul ul ul ul ul::before {
-                left: 146px;
+                left: 142px;
                 }
 
                 .b3-list ul ul ul ul ul ul ul ul ul::before {
-                left: 164px;
+                left: 160px;
                 }
 
                 .b3-list ul ul ul ul ul ul ul ul ul ul::before {
-                left: 182px;
+                left: 178px;
                 }
 
                 .b3-list ul ul ul ul ul ul ul ul ul ul ul::before {
-                left: 200px;
+                left: 196px;
                 }
 
                 .b3-list ul ul ul ul ul ul ul ul ul ul ul ul::before {
-                left: 218px;
+                left: 214px;
                 }
 
                 .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
-                left: 236px;
+                left: 232px;
                 }
 
                 .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
-                left: 254px;
+                left: 250px;
                 }
 
                 .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
-                left: 272px;
+                left: 268px;
                 }
 
                 .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
-                left: 290px;
+                left: 286px;
                 }
 
                 .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
-                left: 308px;
+                left: 304px;
                 }
 
                 .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
-                left: 326px;
+                left: 322px;
                 }
 
                 .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
-                left: 344px;
+                left: 340px;
                 }
 
                 .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
-                left: 362px;
+                left: 358px;
                 }
 
                 .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
-                left: 380px;
+                left: 376px;
                 }
 
                 .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
-                left: 398px;
+                left: 394px;
                 }
 
                 .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
-                left: 416px;
+                left: 412px;
                 }
 
                 .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
-                left: 434px;
+                left: 430px;
                 }
 
                 .b3-list ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul ul::before {
-                left: 452px;
+                left: 448px;
                 }
                 `;
       break;
