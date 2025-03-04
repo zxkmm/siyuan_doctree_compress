@@ -2,7 +2,7 @@
   "name": "siyuan_doctree_compress",
   "author": "zxkmm",
   "url": "https://github.com/zxkmm/siyuan_doctree_compress",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "minAppVersion": "2.12.1",
   "backends": [
     "windows",
