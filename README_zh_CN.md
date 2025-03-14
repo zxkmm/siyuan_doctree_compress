@@ -30,37 +30,6 @@
 
 ![static_area](https://tvax3.sinaimg.cn/large/0089YRx6gy1hlvq6uhx16j30z00oik89.jpg)   
 
-
-
-
-
-
-## 0.3.0
-- 添加了VSCode风格的文档树层级竖线
-- 添加了隐藏文档树图标气泡的功能
-- 添加了隐藏文档树项目详情气泡的功能
-- 添加了文档树项目分隔符
-- 添加了禁用图标点击但保留图标的功能
-- 添加了行高设置功能
-
-## 0.3.4
-- notebook outline support tight mode
-- notebook outline support dark/ night theme
-- fix fetching null in setting dialog
-- fix unexpected console print
-
-## 0.3.6
-- support multiple color for outline
-
-## 0.3.7
-- add multiple front line style
-
-## 0.3.8 
-- add four styles for flow layout
-
-## 0.3.9
-- support Docker
-
 ## 链接
  - repo/Source Code：https://github.com/zxkmm/siyuan_doctree_compress 
 
@@ -71,7 +40,13 @@
  - Forum / thread (Chinese)：https://ld246.com/article/1705326690352 https://ld246.com/article/1705227991331
 
 # 鸣谢
+# 捐助者
+- 林 先生/女士
+
+# 代码贡献者
 [@TCOTC](https://github.com/TCOTC)   ([in b3log](https://ld246.com/member/a2930610542))
+[@TinkMingKing](https://github.com/TinkMingKing)
+
 
 ## 申明
  - 本插件在MIT协议下完全开源，没有联网行为，也没有从远端fetch并植入恶意代码的能力
