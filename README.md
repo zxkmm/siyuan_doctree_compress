@@ -30,8 +30,8 @@ This makes it difficult or even impossible to click on multi-level subdirectorie
 ## Donator
 - Mr. or Mrs. 林
 ## Contributors
-[@TCOTC](https://github.com/TCOTC)   ([in b3log](https://ld246.com/member/a2930610542))
-[@TinkMingKing](https://github.com/TinkMingKing)
+- [@TCOTC](https://github.com/TCOTC)   ([in b3log](https://ld246.com/member/a2930610542))
+- [@TinkMingKing](https://github.com/TinkMingKing)
 
 
 
