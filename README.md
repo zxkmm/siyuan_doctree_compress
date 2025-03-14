@@ -27,7 +27,13 @@ This makes it difficult or even impossible to click on multi-level subdirectorie
  - Forum / Thread (Chinese): https://ld246.com/article/1705326690352 https://ld246.com/article/1705227991331
 
 # Credit
+## Donator
+- Mr. or Mrs. 林
+## Contributors
 [@TCOTC](https://github.com/TCOTC)   ([in b3log](https://ld246.com/member/a2930610542))
+[@TinkMingKing](https://github.com/TinkMingKing)
+
+
 
 # Declaration
  - This plugin is fully open source under the MIT license, does not have internet access, and does not have the ability to fetch and inject malicious code from a remote source.
