@@ -40,10 +40,10 @@
  - Forum / thread (Chinese)：https://ld246.com/article/1705326690352 https://ld246.com/article/1705227991331
 
 # 鸣谢
-# 捐助者
+## 捐助者
 - 林 先生/女士
 
-# 代码贡献者
+## 代码贡献者
 [@TCOTC](https://github.com/TCOTC)   ([in b3log](https://ld246.com/member/a2930610542))
 [@TinkMingKing](https://github.com/TinkMingKing)
 
