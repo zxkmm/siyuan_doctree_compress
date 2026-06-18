@@ -5,6 +5,12 @@
  * @FilePath     : /src/libs/setting-utils.ts
  * @LastEditTime : 2023-12-28 18:10:12
  * @Description  : A utility for siyuan plugin settings
+ *
+ * NOTE: The settings UI is now rendered by the Svelte SettingDialog
+ * (see ./SettingDialog.svelte). This class keeps the persistence layer
+ * (load/save/dump/get/assignValue) and the in-memory settings Map that
+ * both the dialog and the runtime (onLayoutReady) read from. It no
+ * longer populates the native SiYuan Setting panel.
  */
 
 import { Plugin, Setting } from 'siyuan';
@@ -21,24 +27,61 @@ export class SettingUtils {
         this.name = name ?? 'settings';
         this.plugin = plugin;
         this.file = this.name.endsWith('.json') ? this.name : `${this.name}.json`;
+        // Keep a (mostly empty) native Setting instance for API compatibility —
+        // the real UI is the Svelte dialog mounted by openSetting() in index.ts.
         this.plugin.setting = new Setting({
             width: width,
             height: height,
             confirmCallback: () => {
-                for (let key of this.settings.keys()) {
-                    this.updateValue(key);
-                }
-                let data = this.dump();
+                // The UI is rendered by SettingDialog, which calls
+                // applyValues() + save() directly. This native confirm path
+                // is only a fallback if openSetting() is not overridden.
                 if (callback !== undefined) {
-                    callback(data);
+                    callback(this.dump());
                 } else {
-                    this.plugin.data[this.name] = data;
                     this.save();
                 }
-                window.location.reload();
-
             }
         });
+    }
+
+    /**
+     * Snapshot of all current values as a plain object.
+     * Used by the Svelte settings dialog to seed its working copy.
+     */
+    getAll(): { [key: string]: any } {
+        const out: any = {};
+        for (const [key, item] of this.settings) {
+            if (item.type === 'button') continue;
+            out[key] = item.value;
+        }
+        return out;
+    }
+
+    /**
+     * Apply a values map back onto the settings items in memory.
+     * Does NOT persist; caller should call save() afterwards.
+     */
+    applyValues(values: { [key: string]: any }) {
+        for (const key of Object.keys(values)) {
+            const item = this.settings.get(key);
+            if (item) {
+                item.value = values[key];
+            }
+        }
+    }
+
+    /**
+     * Snapshot of every item's defaultValue (captured at addItem time).
+     * Used by the dialog's "Reset All".
+     */
+    getDefaults(): { [key: string]: any } {
+        const out: any = {};
+        for (const [key, item] of this.settings) {
+            if (item.type === 'button') continue;
+            out[key] = item.defaultValue ?? item.value;
+        }
+        return out;
     }
 
     async load() {
@@ -89,8 +132,21 @@ export class SettingUtils {
         return data;
     }
 
+    /**
+     * Register a setting item. Captures the initial value as the
+     * "default" for Reset-All in the dialog. The native panel is NOT
+     * populated — the Svelte SettingDialog renders every item.
+     */
     addItem(item: ISettingItem) {
+        if (item.defaultValue === undefined) {
+            item.defaultValue = item.value;
+        }
         this.settings.set(item.key, item);
+
+        // Build the control element and keep it in the elements map. The
+        // Svelte dialog does not use these DOM nodes directly, but legacy
+        // getElement/updateValue paths (and any external consumers) still
+        // rely on the map being populated.
         let itemElement: HTMLElement;
         switch (item.type) {
             case 'checkbox':
@@ -161,17 +217,7 @@ export class SettingUtils {
                 break;
         }
         this.elements.set(item.key, itemElement);
-        this.plugin.setting.addItem({
-            title: item.title,
-            description: item?.description,
-            createActionElement: () => {
-                let element = this.getElement(item.key);
-                return element;
-            }
-        })
     }
-
-    
 
     private getElement(key: string) {
         let item = this.settings.get(key);

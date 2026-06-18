@@ -1,4 +1,4 @@
-import { Plugin } from "siyuan";
+import { Plugin, Dialog } from "siyuan";
 import "@/index.scss";
 
 /*
@@ -11,6 +11,8 @@ _publicClassMember
 */
 
 import { SettingUtils } from "./libs/setting-utils";
+import SettingDialog from "./libs/SettingDialog.svelte";
+import type { SettingItem } from "./libs/SettingDialog.svelte";
 
 import {
   addFrontLine,
@@ -35,6 +37,25 @@ import {
 
 const STORAGE_NAME = "menu-config";
 
+/**
+ * Build the HTML for the "About / Credits" tab by combining the
+ * begging + hint i18n sections that were previously rendered as
+ * separate "hint"-type items in the flat panel.
+ */
+function buildAboutHtml(i18n: any): string {
+  const parts: string[] = [];
+
+  if (i18n.beggingDesc) {
+    parts.push(`<div class="b3-callout b3-callout--warning">${i18n.beggingDesc}</div>`);
+  }
+
+  if (i18n.hintDesc) {
+    parts.push(`<div class="b3-callout">${i18n.hintDesc}</div>`);
+  }
+
+  return parts.join('<hr class="b3-typography-hr" style="margin:16px 0">');
+}
+
 export default class SiyuanDoctreeCompress extends Plugin {
   private settingUtils: SettingUtils;
 
@@ -45,13 +66,9 @@ export default class SiyuanDoctreeCompress extends Plugin {
 
     this.settingUtils.load();
 
-    this.settingUtils.addItem({
-      key: "begging",
-      value: "",
-      type: "hint",
-      title: this.i18n.beggingTitle,
-      description: this.i18n.beggingDesc,
-    });
+    // ── General ──────────────────────────────────────────────────────
+    // (The begging + hint sections are now shown in the dedicated
+    //  "About / Credits" tab of the Svelte dialog, not as hint-items.)
 
     this.settingUtils.addItem({
       key: "mainSwitch",
@@ -59,38 +76,34 @@ export default class SiyuanDoctreeCompress extends Plugin {
       type: "checkbox",
       title: this.i18n.mainSwitch,
       description: "",
+      category: "general",
     });
 
-    this.settingUtils.addItem({
-      //dynamic options
-      key: "highPerformanceZoneHint",
-      value: "",
-      type: "hint",
-      title: this.i18n.experimentFeatureHintTitle,
-      description: this.i18n.experimentFeatureHintDesc,
-    });
+    // ── Dynamic doctree layout options ───────────────────────────────
 
     this.settingUtils.addItem({
       key: "mouseHoverZeroPadding",
       value: false,
       type: "checkbox",
-      title: "🌊 " + this.i18n.mouseHoverZeroPadding,
+      title: this.i18n.mouseHoverZeroPadding,
       description: this.i18n.mouseHoverZeroPaddingDesc,
+      category: "dynamic",
     });
 
     this.settingUtils.addItem({
       key: "mouseHoverZeroPaddingForce",
       value: true,
       type: "checkbox",
-      title: "🌊 " + this.i18n.mouseHoverZeroPaddingForce,
+      title: this.i18n.mouseHoverZeroPaddingForce,
       description: this.i18n.mouseHoverZeroPaddingForceDesc,
+      category: "dynamic",
     });
 
     this.settingUtils.addItem({
       key: "mouseHoverZeroPaddingStyle",
       value: 1,
       type: "select",
-      title: "🌊 " + this.i18n.mouseHoverZeroPaddingStyle,
+      title: this.i18n.mouseHoverZeroPaddingStyle,
       description: this.i18n.mouseHoverZeroPaddingStyledesc,
       options: {
         1: this.i18n.mouseHoverZeroPaddingStylePaddingToggle,
@@ -98,104 +111,109 @@ export default class SiyuanDoctreeCompress extends Plugin {
         3: this.i18n.mouseHoverZeroPaddingStylePaddingIconButMoveLR,
         4: this.i18n.mouseHoverZeroPaddingStylePaddingText,
       },
+      category: "dynamic",
     });
 
     this.settingUtils.addItem({
       key: "mouseHoverZeroPaddingPx",
       value: 4,
       type: "slider",
-      title: "🌊 " + this.i18n.mouseHoverZeroPaddingPx,
+      title: this.i18n.mouseHoverZeroPaddingPx,
       description: this.i18n.mouseHoverZeroPaddingPxDesc,
       slider: {
         min: 0,
         max: 10,
         step: 1,
       },
+      category: "dynamic",
     });
 
     this.settingUtils.addItem({
       key: "mouseOverLineUnclamp",
       value: false,
       type: "checkbox",
-      title: "🟰 " + this.i18n.mouseOverLineUnclampTitle,
+      title: this.i18n.mouseOverLineUnclampTitle,
       description: this.i18n.mouseOverLineUnclampDesc,
+      category: "dynamic",
     });
 
     this.settingUtils.addItem({
       key: "mouseOverLineUnclampForce",
       value: false,
       type: "checkbox",
-      title: "🟰 " + this.i18n.mouseOverLineUnclampForceTitle,
+      title: this.i18n.mouseOverLineUnclampForceTitle,
       description: this.i18n.mouseOverLineUnclampForceDesc,
+      category: "dynamic",
     });
 
     this.settingUtils.addItem({
       key: "mouseOverReduceFontSize",
       value: false,
       type: "checkbox",
-      title: "🔡 " + this.i18n.mouseOverReduceFontSizeTitle,
+      title: this.i18n.mouseOverReduceFontSizeTitle,
       description: this.i18n.mouseOverReduceFontSizeDesc,
+      category: "dynamic",
     });
 
     this.settingUtils.addItem({
       key: "mouseOverReduceFontSizeForce",
       value: false,
       type: "checkbox",
-      title: "🔡 " + this.i18n.mouseOverReduceFontSizeForceTitle,
+      title: this.i18n.mouseOverReduceFontSizeForceTitle,
       description: this.i18n.mouseOverReduceFontSizeForceDesc,
+      category: "dynamic",
     });
 
     this.settingUtils.addItem({
       key: "mouseHoverReduceFontSizePx",
       value: 4,
       type: "slider",
-      title: "🔡 " + this.i18n.mouseHoverReduceFontSizePx,
+      title: this.i18n.mouseHoverReduceFontSizePx,
       description: this.i18n.mouseHoverReduceFontSizePxDesc,
       slider: {
         min: 1,
         max: 50,
         step: 1,
       },
+      category: "dynamic",
     });
 
     this.settingUtils.addItem({
       key: "disable document buttons popup",
       value: false,
       type: "checkbox",
-      title: "💬 " + this.i18n.disableDocumentButtonsPopup,
+      title: this.i18n.disableDocumentButtonsPopup,
       description: this.i18n.disableDocumentButtonsPopupDesc,
+      category: "dynamic",
     });
 
     this.settingUtils.addItem({
       key: "hideContextualLabel",
       value: false,
       type: "checkbox",
-      title: "🖃  " + this.i18n.hideContextualLabel,
+      title: this.i18n.hideContextualLabel,
       description: this.i18n.hideContextualLabelDesc,
+      category: "dynamic",
     });
 
-    this.settingUtils.addItem({
-      //static options
-      key: "hintDangerousZone",
-      value: "",
-      type: "hint",
-      title: this.i18n.hintDangerousZoneTitle,
-      description: this.i18n.hintDangerousZoneDesc,
-    });
+    // ── Static doctree layout options ────────────────────────────────
+    // (Section divider is now the "Static" tab + its description.)
 
     this.settingUtils.addItem({
       key: "enableAdjustStaticDoctreePadding",
       value: false,
       type: "checkbox",
-      title: "🗜️ " + this.i18n.enableAdjustStaticDoctreePadding,
+      title: this.i18n.enableAdjustStaticDoctreePadding,
       description: this.i18n.enableAdjustStaticDoctreePaddingDesc,
+      category: "static",
     });
 
     this.settingUtils.addItem({
       key: "Slider",
+      category: "static",
       value: 50,
       type: "slider",
-      title: "🗜️ " + this.i18n.compressPercent,
+      title: this.i18n.compressPercent,
       description: this.i18n.compressPercentDesc,
       slider: {
         min: 0,
@@ -206,17 +224,19 @@ export default class SiyuanDoctreeCompress extends Plugin {
 
     this.settingUtils.addItem({
       key: "enableDoctreeFrontLine",
+      category: "static",
       value: false,
       type: "checkbox",
-      title: "⛕ " + this.i18n.enableDoctreeFrontLine,
+      title: this.i18n.enableDoctreeFrontLine,
       description: this.i18n.enableDoctreeFrontLineDesc,
     });
 
     this.settingUtils.addItem({
       key: "doctreeFrontLinePosition",
+      category: "static",
       value: 20,
       type: "slider",
-      title: "⛕ " + this.i18n.doctreeFrontLinePosition,
+      title: this.i18n.doctreeFrontLinePosition,
       description: this.i18n.doctreeFrontLinePositionDesc,
       slider: {
         min: 0,
@@ -227,9 +247,10 @@ export default class SiyuanDoctreeCompress extends Plugin {
 
     this.settingUtils.addItem({
       key: "doctreeFrontLinePadding",
+      category: "static",
       value: 20,
       type: "slider",
-      title: "⛕ " + this.i18n.doctreeFrontLinePadding,
+      title: this.i18n.doctreeFrontLinePadding,
       description: this.i18n.doctreeFrontLinePaddingDesc,
       slider: {
         min: 6,
@@ -240,9 +261,10 @@ export default class SiyuanDoctreeCompress extends Plugin {
 
     this.settingUtils.addItem({
       key: "doctreeFrontLineBorder",
+      category: "static",
       value: 2,
       type: "slider",
-      title: "⛕ " + this.i18n.doctreeFrontLineBorder,
+      title: this.i18n.doctreeFrontLineBorder,
       description: this.i18n.doctreeFrontLineBorderDesc,
       slider: {
         min: 1,
@@ -253,6 +275,7 @@ export default class SiyuanDoctreeCompress extends Plugin {
 
     this.settingUtils.addItem({
       key: "docTreeFrontLineImplememtation",
+      category: "static",
       value: 1,
       type: "select",
       title: this.i18n.docTreeFrontLineImplememtation,
@@ -267,17 +290,19 @@ export default class SiyuanDoctreeCompress extends Plugin {
 
     this.settingUtils.addItem({
       key: "enableDoctreeSeperateLine",
+      category: "static",
       value: false,
       type: "checkbox",
-      title: "➖ " + this.i18n.enableDoctreeSeperateLine,
+      title: this.i18n.enableDoctreeSeperateLine,
       description: this.i18n.enableDoctreeSeperateLineDesc,
     });
 
     this.settingUtils.addItem({
       key: "doctreeSeperateLineBorder",
+      category: "static",
       value: 2,
       type: "slider",
-      title: "➖ " + this.i18n.doctreeSeperateLineBorder,
+      title: this.i18n.doctreeSeperateLineBorder,
       description: this.i18n.doctreeSeperateLineBorderDesc,
       slider: {
         min: 1,
@@ -288,45 +313,51 @@ export default class SiyuanDoctreeCompress extends Plugin {
 
     this.settingUtils.addItem({
       key: "hideIcon",
+      category: "static",
       value: false,
       type: "checkbox",
-      title: "🧩 " + this.i18n.hideIcon,
+      title: this.i18n.hideIcon,
       description: this.i18n.hideIconDesc,
     }),
       this.settingUtils.addItem({
         key: "hideIconForce",
+        category: "static",
         value: false,
         type: "checkbox",
-        title: "🧩 " + this.i18n.hideIconForce,
+        title: this.i18n.hideIconForce,
         description: this.i18n.hideIconDescForce,
       }),
       this.settingUtils.addItem({
         key: "displayIconButDisableIconClick",
+        category: "static",
         value: false,
         type: "checkbox",
-        title: "🖱️ " + this.i18n.displayIconButDisableIconClick,
+        title: this.i18n.displayIconButDisableIconClick,
         description: this.i18n.displayIconButDisableIconClickDesc,
       });
 
     this.settingUtils.addItem({
       key: "overloadFontSizeSwitch",
+      category: "static",
       value: false,
       type: "checkbox",
-      title: "🇦 " + this.i18n.overloadFontSizeSwitch,
+      title: this.i18n.overloadFontSizeSwitch,
       description: this.i18n.overloadFontSizeSwitchDesc,
     }),
       this.settingUtils.addItem({
         key: "overloadFontSizeForceSwitch",
+        category: "static",
         value: false,
         type: "checkbox",
-        title: "🇦 " + this.i18n.overloadFontSizeForceSwitch,
+        title: this.i18n.overloadFontSizeForceSwitch,
         description: this.i18n.overloadFontSizeForceSwitchDesc,
       }),
       this.settingUtils.addItem({
         key: "overloadFontSizePx",
+        category: "static",
         value: 14,
         type: "slider",
-        title: "🇦 " + this.i18n.overloadFontSizePx,
+        title: this.i18n.overloadFontSizePx,
         description: this.i18n.overloadFontSizePxDesc,
         slider: {
           min: 5,
@@ -337,25 +368,28 @@ export default class SiyuanDoctreeCompress extends Plugin {
 
     this.settingUtils.addItem({
       key: "overloadLineHeight",
+      category: "static",
       value: false,
       type: "checkbox",
-      title: "🛅 " + this.i18n.overloadLineHeight,
+      title: this.i18n.overloadLineHeight,
       description: this.i18n.overloadLineHeightDesc,
     });
 
     this.settingUtils.addItem({
       key: "overloadLineHeightForce",
+      category: "static",
       value: false,
       type: "checkbox",
-      title: "🛅 " + this.i18n.overloadLineHeightForce,
+      title: this.i18n.overloadLineHeightForce,
       description: this.i18n.overloadLineHeightForceDesc,
     });
 
     this.settingUtils.addItem({
       key: "overloadLineHeightPx",
+      category: "static",
       value: 28,
       type: "slider",
-      title: "🛅 " + this.i18n.overloadLineHeightPx,
+      title: this.i18n.overloadLineHeightPx,
       description: this.i18n.overloadLineHeightPxDesc,
       slider: {
         min: 1,
@@ -367,9 +401,10 @@ export default class SiyuanDoctreeCompress extends Plugin {
     this.settingUtils.addItem({
       //by https://github.com/TCOTC aka @Jeffrey Chen
       key: "addNotebookOutline",
+      category: "static",
       value: false,
       type: "checkbox",
-      title: "🖼️ " + this.i18n.addNotebookOutline,
+      title: this.i18n.addNotebookOutline,
       description: this.i18n.addNotebookOutlineDesc,
     });
 
@@ -377,15 +412,16 @@ export default class SiyuanDoctreeCompress extends Plugin {
     //     key: "notebookOutlineTightMode",
     //     value: false,
     //     type: "checkbox",
-    //     title: "🖼️ " + this.i18n.notebookOutlineTightMode,
+    //     title: this.i18n.notebookOutlineTightMode,
     //     description: this.i18n.notebookOutlineTightModeDesc,
     // });
 
     this.settingUtils.addItem({
       key: "notebookOutlineMode",
+      category: "static",
       value: 1,
       type: "select",
-      title: "🖼️ " + this.i18n.notebookOutlineMode,
+      title: this.i18n.notebookOutlineMode,
       description: this.i18n.notebookOutlineModeDesc,
       options: {
         1: "normal",
@@ -394,16 +430,10 @@ export default class SiyuanDoctreeCompress extends Plugin {
       },
     });
 
-    this.settingUtils.addItem({
-      key: "hintDeviceSpecificSettings",
-      value: "",
-      type: "hint",
-      title: this.i18n.hintDeviceSpecificSettingsTitle,
-      description: this.i18n.hintDeviceSpecificSettingsDesc,
-    });
 
     this.settingUtils.addItem({
       key: "onlyEnableListedDevices",
+      category: "devices",
       value: false,
       type: "checkbox",
       title: this.i18n.onlyEnableListedDevices,
@@ -412,6 +442,7 @@ export default class SiyuanDoctreeCompress extends Plugin {
 
     this.settingUtils.addItem({
       key: "enableDeviceList",
+      category: "devices",
       value: "",
       type: "textarea",
       title: this.i18n.enableDeviceList,
@@ -420,6 +451,7 @@ export default class SiyuanDoctreeCompress extends Plugin {
 
     this.settingUtils.addItem({
       key: "addCurrentDeviceIntoList",
+      category: "devices",
       value: "",
       type: "button",
       title: this.i18n.addCurrentDeviceIntoList,
@@ -434,6 +466,7 @@ export default class SiyuanDoctreeCompress extends Plugin {
 
     this.settingUtils.addItem({
       key: "removeCurrentDeviceFromList",
+      category: "devices",
       value: "",
       type: "button",
       title: this.i18n.removeCurrentDeviceFromList,
@@ -446,13 +479,75 @@ export default class SiyuanDoctreeCompress extends Plugin {
       },
     });
 
-    this.settingUtils.addItem({
-      key: "hint",
-      value: "",
-      type: "hint",
-      title: this.i18n.hintTitle,
-      description: this.i18n.hintDesc,
+  }
+
+  /**
+   * Override the default openSetting to show the categorized, searchable
+   * Svelte dialog instead of the flat native Setting panel. Mirrors the
+   * approach in ../siyuan_rmv_btn.
+   */
+  openSetting() {
+    // Build the items array from the registered settings Map. Hint items
+    // are skipped (they were flat-panel section dividers; their content
+    // now lives in the About tab / category descriptions).
+    const items: SettingItem[] = [];
+    for (const [, item] of this.settingUtils.settings) {
+      if (item.type === "hint") continue;
+      if (!item.category) continue;
+      items.push({
+        key: item.key,
+        type: item.type,
+        title: item.title,
+        description: item.description,
+        category: item.category,
+        options: item.options,
+        slider: item.slider,
+        button: item.button,
+      });
+    }
+
+    const initialValues = this.settingUtils.getAll();
+    const defaults = this.settingUtils.getDefaults();
+    const aboutHtml = buildAboutHtml(this.i18n);
+
+    const dialog = new Dialog({
+      title: this.i18n.settingsDialogTitle || "Settings",
+      content: `<div id="doctree-compress-setting-mount" style="height:100%;"></div>`,
+      width: "960px",
+      height: "80vh",
+      destroyCallback: () => {
+        // Svelte auto-clears on target destruction
+      },
     });
+
+    // Mount after DOM insertion — use a microtask so the parent container
+    // is guaranteed to be in the document.
+    setTimeout(() => {
+      const target = dialog.element.querySelector(
+        "#doctree-compress-setting-mount"
+      ) as HTMLElement;
+      if (!target) return;
+
+      new SettingDialog({
+        target,
+        props: {
+          items,
+          initialValues,
+          defaults,
+          i18n: this.i18n,
+          aboutHtml,
+          onSave: (values: { [key: string]: any }) => {
+            this.settingUtils.applyValues(values);
+            this.settingUtils.save().then(() => {
+              window.location.reload();
+            });
+          },
+          onCancel: () => {
+            dialog.destroy();
+          },
+        },
+      });
+    }, 0);
   }
 
   onLayoutReady() {
