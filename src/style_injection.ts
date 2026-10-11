@@ -174,7 +174,7 @@ export function addFrontLine(
 
   var css;
 
-  switch (_implementation_) {
+  switch (String(_implementation_)) {
     case "1":
       css = ` .b3-list ul {
                 position: relative;
@@ -384,7 +384,7 @@ export function addFrontLine(
 }
 
 export function mouseOverZeroPadding(_force_, _px_, _style_) {
-  switch (_style_) {
+  switch (String(_style_)) {
     case "1":
       const css_padding_toggle = _force_
         ? `
